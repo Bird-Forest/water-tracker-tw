@@ -1,7 +1,5 @@
 export const App = () => {
   return (
-    // це час в мілісулундах
-
     <div
       style={{
         height: '100vh',
