@@ -10,6 +10,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.6",
     "formik": "^2.4.5",
+    "modern-normalize": "^2.0.0",
+    "normalize.css": "^8.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^5.0.1",
