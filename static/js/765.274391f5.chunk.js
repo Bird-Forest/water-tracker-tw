@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[765],{765:function(e,t,n){n.r(t),n.d(t,{default:function(){return u}});n(791);var r=n(329);function u(){return(0,r.jsx)("div",{children:"SignupPage"})}}}]);
+//# sourceMappingURL=765.274391f5.chunk.js.map
