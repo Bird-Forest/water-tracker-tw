@@ -19,7 +19,7 @@ export const StyledHomePage = styled.section`
 
     background-image: url(${BackgroundDesktopDrops});
     background-repeat: no-repeat;
-    background-size: 1380px 570px;
+    background-size: cover;
   }
 
   .wrapper {
