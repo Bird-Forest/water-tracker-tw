@@ -10,7 +10,7 @@ import { refreshUser } from './redux/auth/operations';
 const Welcome = lazy(() => import('pages/WelcomePage'));
 const SignIn = lazy(() => import('pages/SigninPage'));
 const SignUp = lazy(() => import('pages/SignupPage'));
-const Home = lazy(() => import('pages/HomePage'));
+const Home = lazy(() => import('pages/HomePage/HomePage'));
 const NotFound = lazy(() => import('pages/NotFoundPage'));
 
 export const App = () => {
