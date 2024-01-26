@@ -10,7 +10,7 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0;
 `;
-export const Header = styled.div`
+export const WrapHeader = styled.div`
   display: flex;
   width: 100%;
   height: 50px;
