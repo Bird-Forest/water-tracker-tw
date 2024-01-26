@@ -1,5 +1,12 @@
-import React from 'react';
+import SignBgWrapper from '../components/SignBgWrapper/SignBgWrapper';
+import SignupForm from 'components/SignupForm/SignupForm';
 
-export default function SignupPage() {
-  return <div>SignupPage</div>;
-}
+const SignupPage = () => {
+  return (
+    <SignBgWrapper>
+      <SignupForm/>
+    </SignBgWrapper>
+  );
+};
+
+export default SignupPage;

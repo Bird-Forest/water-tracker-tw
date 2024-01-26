@@ -6,10 +6,12 @@ import { Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { refreshUser } from './redux/auth/operations';
+import { GlobalStyles } from './BasicStyle/GlobalStyles';
 
 const Welcome = lazy(() => import('pages/WelcomePage'));
 const SignIn = lazy(() => import('pages/SigninPage'));
 const SignUp = lazy(() => import('pages/SignupPage'));
+const ForgotPassPage = lazy(() => import('pages/ForgotPassPage'));
 const Home = lazy(() => import('pages/HomePage'));
 const NotFound = lazy(() => import('pages/NotFoundPage'));
 
@@ -24,17 +26,21 @@ export const App = () => {
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
-    <Container>
-      <AppBar />
-      <Suspense fallback={null}>
-        <Routes>
-          <Route path="/" element={<Welcome />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="home" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </Container>
+    <>
+      <GlobalStyles/>
+      <Container>
+        <AppBar />
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Welcome />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="forgotpassword" element={<ForgotPassPage />} />
+            <Route path="home" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </Container>
+    </>
   );
 };
