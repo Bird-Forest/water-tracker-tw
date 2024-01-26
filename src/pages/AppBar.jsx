@@ -1,11 +1,11 @@
-import NavigatePages from 'components/NavigatePages';
+import NavigatePages from 'components/Header/NavigatePages';
 import React from 'react';
-import { Header } from './Pages.styled';
+import { WrapHeader } from './Pages.styled';
 
 export default function AppBar() {
   return (
-    <Header>
+    <WrapHeader>
       <NavigatePages />
-    </Header>
+    </WrapHeader>
   );
 }
