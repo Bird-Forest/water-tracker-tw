@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/water-tracker-tw/static/css/main.a97a1dbf.css",
-    "main.js": "/water-tracker-tw/static/js/main.00515b35.js",
+    "main.js": "/water-tracker-tw/static/js/main.7955c243.js",
     "static/js/676.4961641a.chunk.js": "/water-tracker-tw/static/js/676.4961641a.chunk.js",
     "static/js/139.6b260d3e.chunk.js": "/water-tracker-tw/static/js/139.6b260d3e.chunk.js",
     "static/js/765.274391f5.chunk.js": "/water-tracker-tw/static/js/765.274391f5.chunk.js",
-    "static/js/983.eb24065b.chunk.js": "/water-tracker-tw/static/js/983.eb24065b.chunk.js",
+    "static/js/667.6bf3e1c0.chunk.js": "/water-tracker-tw/static/js/667.6bf3e1c0.chunk.js",
     "static/js/520.bf6b1321.chunk.js": "/water-tracker-tw/static/js/520.bf6b1321.chunk.js",
     "static/media/Roboto-Medium.ttf": "/water-tracker-tw/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
     "static/media/Roboto-Regular.ttf": "/water-tracker-tw/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
@@ -19,15 +19,15 @@
     "static/media/MainPageDecktop.png": "/water-tracker-tw/static/media/MainPageDecktop.f64e661baefac36f8e09.png",
     "index.html": "/water-tracker-tw/index.html",
     "main.a97a1dbf.css.map": "/water-tracker-tw/static/css/main.a97a1dbf.css.map",
-    "main.00515b35.js.map": "/water-tracker-tw/static/js/main.00515b35.js.map",
+    "main.7955c243.js.map": "/water-tracker-tw/static/js/main.7955c243.js.map",
     "676.4961641a.chunk.js.map": "/water-tracker-tw/static/js/676.4961641a.chunk.js.map",
     "139.6b260d3e.chunk.js.map": "/water-tracker-tw/static/js/139.6b260d3e.chunk.js.map",
     "765.274391f5.chunk.js.map": "/water-tracker-tw/static/js/765.274391f5.chunk.js.map",
-    "983.eb24065b.chunk.js.map": "/water-tracker-tw/static/js/983.eb24065b.chunk.js.map",
+    "667.6bf3e1c0.chunk.js.map": "/water-tracker-tw/static/js/667.6bf3e1c0.chunk.js.map",
     "520.bf6b1321.chunk.js.map": "/water-tracker-tw/static/js/520.bf6b1321.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a97a1dbf.css",
-    "static/js/main.00515b35.js"
+    "static/js/main.7955c243.js"
   ]
 }
