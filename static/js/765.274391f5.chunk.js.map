@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/765.274391f5.chunk.js","mappings":"uMAEe,SAASA,IACtB,OAAOC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,cACd,C","sources":["pages/SignupPage.jsx"],"sourcesContent":["import React from 'react';\n\nexport default function SignupPage() {\n  return <div>SignupPage</div>;\n}\n"],"names":["SignupPage","_jsx","children"],"sourceRoot":""}
