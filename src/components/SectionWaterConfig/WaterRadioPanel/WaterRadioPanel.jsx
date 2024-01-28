@@ -14,7 +14,7 @@ export const WaterRadioPanel = () => {
 
   return (
     <>
-      <StyledRadioPanel previousValue={'60'} newValue={'90'}>
+      <StyledRadioPanel previousvalue={'60'} newvalue={'90'}>
         <div className="radio-panel-body">
           <h3 className="radio-panel-title">Today</h3>
           <div className="radio-panel-line">
