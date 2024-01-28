@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 // const MainPageDecktop = '../img/MainPageDecktop.png';
 import MainPageDecktop from '../img/MainPageDecktop.png';
+import BackgroundMobileDrops from '../img/BackgroundHomePage/BackgroundMobileDrops.png';
+import BackgroundTabletDrops from '../img/BackgroundHomePage/BackgroundTabletDrops.png';
+import BackgroundDesktopDrops from '../img/BackgroundHomePage/BackgroundDesktopDrops.png';
 
 export const Container = styled.div`
   display: flex;
@@ -30,4 +33,27 @@ export const WrapRender = styled.div`
   background-repeat: no-repeat;
   background-position: bottom;
   object-fit: cover;
+`;
+
+export const WrapperHomePage = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+
+  background-image: url(${BackgroundMobileDrops});
+  background-repeat: no-repeat;
+  background-position-y: 98px;
+  background-position-x: center;
+  background-size: 327px 1309px;
+
+  @media only screen and (min-width: 768px) {
+    background-image: url(${BackgroundTabletDrops});
+    background-position-y: 36px;
+    background-size: 768px 1280px;
+  }
+  @media only screen and (min-width: 1440px) {
+    background-image: url(${BackgroundDesktopDrops});
+    background-position-y: 61px;
+    background-size: 1404px 582px;
+  }
 `;
