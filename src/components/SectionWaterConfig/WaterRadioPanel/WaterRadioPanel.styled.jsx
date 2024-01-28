@@ -50,6 +50,9 @@ export const StyledRadioPanel = styled.div`
       @media only screen and (min-width: 768px) {
         width: 325px;
       }
+      @media only screen and (min-width: 1440px) {
+        width: 360px;
+      }
 
       &::before {
         content: '';
@@ -187,9 +190,11 @@ export const StyledRadioPanel = styled.div`
     }
 
     @media only screen and (min-width: 768px) {
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding: 10px 12px;
       align-self: center;
+    }
+    @media only screen and (min-width: 1440px) {
+      min-width: 178px;
     }
   }
 `;
