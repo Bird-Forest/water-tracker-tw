@@ -7,12 +7,11 @@ import {
   Gender,
   BlueText,
   NoteText,
-  DailyNormWrap,
 } from './DailyModal.styled';
 
 const DailyNormalModal = ({ closeModal }) => {
   return (
-    <DailyNormWrap>
+    <>
       <Modal closeModal={closeModal}>
         <Title>My daily norma</Title>
 
@@ -36,7 +35,7 @@ const DailyNormalModal = ({ closeModal }) => {
           </NoteText>
         </BoxTextNote>
       </Modal>
-    </DailyNormWrap>
+    </>
   );
 };
 
