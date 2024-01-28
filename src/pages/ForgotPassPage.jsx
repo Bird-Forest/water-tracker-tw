@@ -5,7 +5,7 @@ import ForgotPassForm from '../components/ForgotPassForm/ForgotPassForm';
 const ForgotPassPage = () => {
   return (
     <SignBgWrapper>
-      <ForgotPassForm/>
+      <ForgotPassForm />
     </SignBgWrapper>
   );
 };
