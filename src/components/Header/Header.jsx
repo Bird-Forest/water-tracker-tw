@@ -11,7 +11,6 @@ const HeaderComponent = () => (
     <div className="container">
       <Navigation>
         <HeaderLogo />
-        {/* <NavigatePages /> */}
         <UserAuth />
         {/* <UserLogo /> */}
       </Navigation>
