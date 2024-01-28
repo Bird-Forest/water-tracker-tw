@@ -1,6 +1,8 @@
 import theme from 'BasicStyle/themeJSX';
 const { default: styled } = require('styled-components');
 
+const bgColor = ({ bgColor }) => bgColor;
+
 export const StyledRadioPanel = styled.div`
   width: 100%;
 
@@ -38,6 +40,7 @@ export const StyledRadioPanel = styled.div`
     .radio-panel-line {
       display: flex;
       justify-content: space-between;
+
       position: relative;
 
       width: 256px;
@@ -90,8 +93,11 @@ export const StyledRadioPanel = styled.div`
         top: 0;
         left: 0;
 
+        
+
         border-radius: 10px;
         background-color: ${theme.colors.secondaryBlue};
+		  background-color: ${bgColor};
 
         animation-name: line;
         animation-duration: 2s;

@@ -5,7 +5,7 @@ export const StyledHomePage = styled.section`
   flex-direction: column;
   row-gap: 40px;
 
-  padding: 24px 20px 0;
+  padding: 24px 20px 40px;
   margin: 0 auto;
 
   width: 320px;
