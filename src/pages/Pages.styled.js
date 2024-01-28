@@ -31,3 +31,9 @@ export const WrapRender = styled.div`
   background-position: bottom;
   object-fit: cover;
 `;
+
+export const WrapperHomePage = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+`;

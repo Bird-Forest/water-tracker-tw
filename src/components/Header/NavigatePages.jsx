@@ -10,12 +10,12 @@ export default function NavigatePages() {
       <NavLink className="navigate" to="/">
         WelcomePage
       </NavLink>
-      <NavLink className="navigate" to="/signin">
+      {/* <NavLink className="navigate" to="/signin">
         SigninPage
       </NavLink>
       <NavLink className="navigate" to="/signup">
         SignupPage
-      </NavLink>
+      </NavLink> */}
       <NavLink className="navigate" to="/home">
         HomePage
       </NavLink>
