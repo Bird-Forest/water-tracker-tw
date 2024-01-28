@@ -19,6 +19,9 @@ export default function NavigatePages() {
       <NavLink className="navigate" to="/home">
         HomePage
       </NavLink>
+      <NavLink className="navigate" to="/forgotpass">
+        ForgotPassPage
+      </NavLink>
     </NavigateWrap>
   );
 }

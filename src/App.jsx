@@ -27,7 +27,7 @@ export const App = () => {
     <b>Refreshing user...</b>
   ) : (
     <>
-      <GlobalStyles/>
+      <GlobalStyles />
       <Container>
         <AppBar />
         <Suspense fallback={null}>
@@ -35,7 +35,7 @@ export const App = () => {
             <Route path="/" element={<Welcome />} />
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="forgotpassword" element={<ForgotPassPage />} />
+            <Route path="forgotpass" element={<ForgotPassPage />} />
             <Route path="home" element={<Home />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

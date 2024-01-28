@@ -4,7 +4,7 @@ import SignupForm from 'components/SignupForm/SignupForm';
 const SignupPage = () => {
   return (
     <SignBgWrapper>
-      <SignupForm/>
+      <SignupForm />
     </SignBgWrapper>
   );
 };

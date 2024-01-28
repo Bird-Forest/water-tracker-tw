@@ -27,33 +27,39 @@ const SignupForm = () => {
       password: '',
       repeatPassword: '',
     },
-    validate: (values) => {
+    validate: values => {
       const errors = {};
-  
+
       if (formik.touched.email && !values.email) {
         errors.email = 'Required';
-      } else if (formik.touched.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      } else if (
+        formik.touched.email &&
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+      ) {
         errors.email = 'Invalid email address';
       }
-  
+
       if (formik.touched.password && !values.password) {
         errors.password = 'Required';
       } else if (formik.touched.password && values.password.length < 8) {
         errors.password = 'Password must be at least 8 characters long';
       }
-  
+
       if (formik.touched.repeatPassword && !values.repeatPassword) {
         errors.repeatPassword = 'Required';
-      } else if (formik.touched.repeatPassword && values.password !== values.repeatPassword) {
+      } else if (
+        formik.touched.repeatPassword &&
+        values.password !== values.repeatPassword
+      ) {
         errors.repeatPassword = 'Passwords do not match';
       }
-  
+
       return errors;
     },
-    onSubmit: (values) => {
+    onSubmit: values => {
       console.log(values);
     },
-  });  
+  });
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -63,7 +69,7 @@ const SignupForm = () => {
     setShowRepeatPassword(!showRepeatPassword);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = event => {
     const password = event.target.value;
     const result = zxcvbn(password);
     setPasswordStrength(result.score);
@@ -95,7 +101,7 @@ const SignupForm = () => {
           id="password"
           name="password"
           placeholder="Password"
-          onChange={(e) => {
+          onChange={e => {
             formik.handleChange(e);
             handlePasswordChange(e);
           }}
@@ -104,12 +110,15 @@ const SignupForm = () => {
           data-has-error={formik.touched.password && formik.errors.password} // Додаємо властивість data-has-error
         />
         {formik.errors.password && formik.touched.password && (
-            <div className="error-message">{formik.errors.password}</div>
+          <div className="error-message">{formik.errors.password}</div>
         )}
         <ShowPasswordIcon onClick={toggleShowPassword}>
           {showPassword ? '👁️' : '👁️‍🗨️'}
         </ShowPasswordIcon>
-        <PasswordStrengthMeter strength={passwordStrength} showMeter={passwordLength > 0} />
+        <PasswordStrengthMeter
+          strength={passwordStrength}
+          showMeter={passwordLength > 0}
+        />
 
         <FormLabel htmlFor="repeatPassword">Repeat password</FormLabel>
         <RepeatPasswordInput
@@ -120,7 +129,9 @@ const SignupForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.repeatPassword}
-          data-has-error={formik.touched.repeatPassword && formik.errors.repeatPassword}
+          data-has-error={
+            formik.touched.repeatPassword && formik.errors.repeatPassword
+          }
         />
         {formik.errors.repeatPassword && formik.touched.repeatPassword && (
           <div className="error-message">{formik.errors.repeatPassword}</div>
@@ -133,7 +144,9 @@ const SignupForm = () => {
           Sign Up
         </SignUpButton>
       </SignUpForm>
-      <SignInLink as={Link} to="/signin">Sign In</SignInLink>
+      <SignInLink as={Link} to="/signin">
+        Sign In
+      </SignInLink>
     </SignUpContainer>
   );
 };
