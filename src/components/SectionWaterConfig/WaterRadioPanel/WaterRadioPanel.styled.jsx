@@ -1,9 +1,6 @@
 import theme from 'BasicStyle/themeJSX';
 const { default: styled } = require('styled-components');
 
-const width1 = ({ width1 }) => {
-  return width1;
-};
 
 export const StyledRadioPanel = styled.div`
   width: 100%;
@@ -38,7 +35,7 @@ export const StyledRadioPanel = styled.div`
       height: 14px;
       position: absolute;
       top: -50%;
-      left: calc(${({ width1 }) => width1}% - (7px));
+      left: calc(${({ previousValue }) => previousValue}% - (7px));
 
       z-index: 2;
 
@@ -54,14 +51,14 @@ export const StyledRadioPanel = styled.div`
 
     @keyframes circle {
       100% {
-        left: calc(${({ width2 }) => width2}% - (7px));
+        left: calc(${({ newValue}) => newValue}% - (7px));
       }
     }
 
     &::after {
       content: '';
       display: block;
-      width: calc(${({ width1 }) => width1}%);
+      width: calc(${({ previousValue }) => previousValue}%);
       height: 8px;
       position: absolute;
       top: 0;
@@ -70,15 +67,15 @@ export const StyledRadioPanel = styled.div`
       border-radius: 10px;
       background-color: ${theme.colors.secondaryBlue};
 
-      animation-name: circle2;
+      animation-name: line;
       animation-duration: 2s;
       animation-timing-function: linear;
       animation-fill-mode: forwards;
     }
 
-	 @keyframes circle2 {
+    @keyframes line {
       100% {
-         width: calc(${({ width2 }) => width2}%);
+        width: calc(${({ newValue }) => newValue}%);
       }
     }
 
