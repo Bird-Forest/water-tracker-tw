@@ -7,7 +7,7 @@ export default function NavigatePages() {
 
   return (
     <NavigateWrap>
-      <NavLink className="navigate" to="/">
+      {/* <NavLink className="navigate" to="/">
         WelcomePage
       </NavLink>
       <NavLink className="navigate" to="/signin">
@@ -15,7 +15,7 @@ export default function NavigatePages() {
       </NavLink>
       <NavLink className="navigate" to="/signup">
         SignupPage
-      </NavLink>
+      </NavLink> */}
       <NavLink className="navigate" to="/home">
         HomePage
       </NavLink>

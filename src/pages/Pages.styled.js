@@ -44,7 +44,7 @@ export const WrapperHomePage = styled.div`
   background-repeat: no-repeat;
   background-position-y: 98px;
   background-position-x: center;
-  background-size: 327px 1309px;
+  background-size: cover;
 
   @media only screen and (min-width: 768px) {
     background-image: url(${BackgroundTabletDrops});
