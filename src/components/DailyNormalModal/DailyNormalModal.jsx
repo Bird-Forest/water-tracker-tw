@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 
 import {
+  DailyNormWrap,
   BoxTextNote,
   Title,
   Gender,
   BlueText,
   NoteText,
-  DailyNormWrap,
   CalcBox,
   BoxForm,
   LabelGender,

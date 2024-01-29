@@ -9,6 +9,9 @@ export default function Buttons() {
   const closeModal = () => {
     setShowModal(false);
   };
+  const openModal = event => {
+    setShowModal(true);
+  };
 
   // const closeModal = event => {
   //   console.log(event.target);
@@ -19,10 +22,6 @@ export default function Buttons() {
   //   )
   //     setShowModal(false);
   // };
-
-  const openModal = event => {
-    setShowModal(true);
-  };
 
   // const handleKeyDown = event => {
   //   console.log(event);
@@ -37,7 +36,7 @@ export default function Buttons() {
       {showModal &&
         createPortal(
           <WrapModal closeModal={closeModal} showModal={showModal}>
-            <DailyNormalModal />
+            {/* <DailyNormalModal onClick={e => e.stopPropagation()} /> */}
           </WrapModal>,
           document.body
         )}

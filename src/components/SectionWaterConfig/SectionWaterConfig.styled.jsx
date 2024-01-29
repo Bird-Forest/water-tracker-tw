@@ -22,8 +22,11 @@ export const StyledSection = styled.div`
     background-size: 518px 386px;
   }
   @media only screen and (min-width: 1440px) {
-	min-height: 662px;
+    min-height: 678px;
+    padding-top: 30px;
+	 padding-bottom: 16px;
     background-image: url(${WaterDesktop});
     background-size: 738px 548px;
+
   }
 `;
