@@ -65,7 +65,13 @@ export const CloseButton = styled.button`
   background-color: transparent;
 
   cursor: pointer;
-  :hover {
-    color: white;
+
+  &:hover,
+  &:focus {
+    svg path {
+      stroke: red;
+      fill: red;
+      transition: stroke 0.5s ease;
+    }
   }
 `;
