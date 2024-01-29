@@ -6,8 +6,7 @@ import WrapModal from './WrapModal';
 export default function Buttons() {
   const [showModal, setShowModal] = useState(false);
 
-  const closeModal = event => {
-    console.log(event.target);
+  const closeModal = () => {
     setShowModal(false);
   };
 
@@ -22,7 +21,6 @@ export default function Buttons() {
   // };
 
   const openModal = event => {
-    console.log(event.target);
     setShowModal(true);
   };
 
@@ -38,11 +36,7 @@ export default function Buttons() {
       <button onClick={openModal}>Norm</button>
       {showModal &&
         createPortal(
-          <WrapModal
-            // handleKeyDown={handleKeyDown}
-            closeModal={closeModal}
-            showModal={showModal}
-          >
+          <WrapModal closeModal={closeModal} showModal={showModal}>
             <DailyNormalModal />
           </WrapModal>,
           document.body
