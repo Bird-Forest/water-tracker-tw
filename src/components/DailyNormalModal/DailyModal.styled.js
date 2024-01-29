@@ -34,3 +34,15 @@ export const NoteText = styled.p`
   line-height: 16px;
   height: auto;
 `;
+
+export const CalcBox = styled.div`
+  position: relative;
+`;
+
+export const BoxForm = styled.div`
+  margin: 0 auto;
+`;
+
+export const LabelGender = styled.label`
+  margin-right: 24px;
+`;
