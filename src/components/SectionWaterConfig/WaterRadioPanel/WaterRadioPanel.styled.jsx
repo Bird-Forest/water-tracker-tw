@@ -1,7 +1,7 @@
 import theme from 'BasicStyle/themeJSX';
 const { default: styled } = require('styled-components');
 
-const bgColor = ({ bgColor }) => bgColor;
+const $bgColor = ({ $bgColor }) => $bgColor;
 
 export const StyledRadioPanel = styled.div`
   width: 100%;
@@ -64,7 +64,7 @@ export const StyledRadioPanel = styled.div`
         height: 14px;
         position: absolute;
         top: -50%;
-        left: calc(${({ previousValue }) => previousValue}% - (7px));
+        left: calc(${({ $previousValue }) => $previousValue}% - (7px));
 
         z-index: 2;
 
@@ -80,14 +80,14 @@ export const StyledRadioPanel = styled.div`
 
       @keyframes circle {
         100% {
-          left: calc(${({ newValue }) => newValue}% - (7px));
+          left: calc(${({ $newValue }) => $newValue}% - (7px));
         }
       }
 
       &::after {
         content: '';
         display: block;
-        width: calc(${({ previousValue }) => previousValue}%);
+        width: calc(${({ $previousValue }) => $previousValue}%);
         height: 8px;
         position: absolute;
         top: 0;
@@ -97,7 +97,7 @@ export const StyledRadioPanel = styled.div`
 
         border-radius: 10px;
         background-color: ${theme.colors.secondaryBlue};
-		  background-color: ${bgColor};
+		  background-color: ${$bgColor};
 
         animation-name: line;
         animation-duration: 2s;
@@ -107,7 +107,7 @@ export const StyledRadioPanel = styled.div`
 
       @keyframes line {
         100% {
-          width: calc(${({ newValue }) => newValue}%);
+          width: calc(${({ $newValue }) => $newValue}%);
         }
       }
 
