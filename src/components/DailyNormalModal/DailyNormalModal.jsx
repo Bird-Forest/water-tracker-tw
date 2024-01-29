@@ -18,7 +18,7 @@ const DailyNormalModal = ({ closeModal }) => {
   const [gender, setGender] = useState('girl');
   const [weight, setWeight] = useState('');
   const [activeTraningHours, setActiveTraningHours] = useState('');
-  const [dailyVol, setDailyVol] = useState('1.5');
+  const [dailyVol, setDailyVol] = useState('1.8');
   const [volGoal, setVolGoal] = useState('');
 
   const calculateWaterVol = () => {

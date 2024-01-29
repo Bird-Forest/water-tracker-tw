@@ -8,39 +8,42 @@ import {
 } from './ModalWindow.styled';
 import IconCloseModal from '../../img/IconCloseModal';
 
-export const ModalWindow = ({ onShow = true, children, title, closeModal }) => {
-  const modalRoot = document.querySelector('#modal-root');
-
-  const modalContainerRef = useRef(null);
-  const overlayRef = useRef(null);
-
+export const ModalWindow = ({ children, title, closeModal }) => {
   useEffect(() => {
-    if (!onShow) return;
-
     const handleKey = event => {
       if (event.code === 'Escape') {
         closeModal();
       }
     };
 
+    const handleClickOutside = event => {
+      if (!modalContainerRef.current.contains(event.target)) {
+        closeModal();
+      }
+    };
+
     window.addEventListener('keydown', handleKey);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
       window.removeEventListener('keydown', handleKey);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [modalRoot.children.length, onShow, closeModal]);
+  }, [closeModal]);
+
+  const modalContainerRef = useRef(null);
 
   return (
-    <Overlay onClick={closeModal} ref={overlayRef}>
+    <Overlay>
       <ModalStyle>
         <ModalContent
           onClick={e => e.stopPropagation()}
           ref={modalContainerRef}
         >
-          <div>
-            <h3>{title}</h3>
-            <CloseContainer onClick={closeModal}>
-              <CloseButton>
+          <div className="modal-header">
+            <h2>{title}</h2>
+            <CloseContainer onClick={e => closeModal(e)}>
+              <CloseButton onClick={closeModal}>
                 <IconCloseModal size={24} />
               </CloseButton>
             </CloseContainer>
