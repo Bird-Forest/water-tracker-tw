@@ -17,6 +17,8 @@ import {
   FormRadioInput,
   QuestionLabel,
   QuestionText,
+  Input,
+  FormResult,
 } from './DailyModal.styled';
 
 const DailyNormalModal = ({ closeModal }) => {
@@ -107,7 +109,7 @@ const DailyNormalModal = ({ closeModal }) => {
             <BoxForm>
               <QuestionLabel>
                 <QuestionText>Your weight in kilograms:</QuestionText>
-                <input
+                <Input
                   type="number"
                   placeholder="kg"
                   value={weight}
@@ -122,7 +124,8 @@ const DailyNormalModal = ({ closeModal }) => {
                   Time of active participation in sports or other activities
                   with a high physical load:
                 </QuestionText>
-                <input
+
+                <Input
                   type="number"
                   placeholder="Time in hours"
                   value={activeTraningHours}
@@ -131,10 +134,11 @@ const DailyNormalModal = ({ closeModal }) => {
               </QuestionLabel>
             </BoxForm>
 
-            <BoxForm>
+            <FormResult>
               The required amount of water in liters per day:{' '}
               <strong>{dailyVol} L</strong>
-            </BoxForm>
+            </FormResult>
+
             <BoxForm>
               <p>Write down how much water you will drink:</p>
               <input
