@@ -1,17 +1,22 @@
-import { useState } from 'react';
-// import Modal from 'components/Modal/Modal';
+import React, { useState } from 'react';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 
 import {
   DailyNormWrap,
-  BoxTextNote,
   Title,
+  GenderWrap,
   Gender,
   BlueText,
+  BoxTextNote,
   NoteText,
   CalcBox,
   BoxForm,
+  FormName,
+  ChooseGender,
   LabelGender,
+  FormRadioInput,
+  QuestionLabel,
+  QuestionText,
 } from './DailyModal.styled';
 
 const DailyNormalModal = ({ closeModal }) => {
@@ -48,80 +53,88 @@ const DailyNormalModal = ({ closeModal }) => {
       <ModalWindow closeModal={closeModal}>
         <Title>My daily norma</Title>
 
-        <Gender>
-          For girl:
-          <BlueText>V=(M*0,03) + (T*0,4)</BlueText>
-        </Gender>
+        <GenderWrap>
+          <Gender>
+            For girl:
+            <BlueText>V=(M*0,03) + (T*0,4)</BlueText>
+          </Gender>
 
-        <Gender>
-          For man:
-          <BlueText>V=(M*0,04) + (T*0,6)</BlueText>
-        </Gender>
+          <Gender>
+            For man:
+            <BlueText>V=(M*0,04) + (T*0,6)</BlueText>
+          </Gender>
+        </GenderWrap>
 
         <BoxTextNote>
-          <BlueText>*</BlueText>
           <NoteText>
-            V is the volume of the water norm in liters per day, M is your body
-            weight, T is the time of active sports, or another type of activity
-            commensurate in terms of loads (in the absence of these, you must
-            set 0)
+            <BlueText>*</BlueText> V is the volume of the water norm in liters
+            per day, M is your body weight, T is the time of active sports, or
+            another type of activity commensurate in terms of loads (in the
+            absence of these, you must set 0)
           </NoteText>
         </BoxTextNote>
 
         <CalcBox>
           <form>
             <BoxForm>
-              <h4>Calculate your rate:</h4>
-              <LabelGender>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="girl"
-                  checked={gender === 'girl'}
-                  onChange={() => setGender('girl')}
-                />
-                For girl
-              </LabelGender>
-              <LabelGender>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="man"
-                  checked={gender === 'man'}
-                  onChange={() => setGender('man')}
-                />
-                For boy
-              </LabelGender>
+              <FormName>Calculate your rate:</FormName>
+
+              <ChooseGender>
+                <LabelGender>
+                  <FormRadioInput
+                    type="radio"
+                    name="gender"
+                    value="girl"
+                    checked={gender === 'girl'}
+                    onChange={() => setGender('girl')}
+                  />
+                  <span>For girl</span>
+                </LabelGender>
+
+                <LabelGender>
+                  <FormRadioInput
+                    type="radio"
+                    name="gender"
+                    value="boy"
+                    checked={gender === 'boy'}
+                    onChange={() => setGender('boy')}
+                  />
+                  <span>For boy</span>
+                </LabelGender>
+              </ChooseGender>
             </BoxForm>
 
             <BoxForm>
-              <p>Your weight in kilograms:</p>
-              <input
-                type="number"
-                placeholder="kg"
-                value={weight}
-                onChange={e => setWeight(e.target.value)}
-              />
+              <QuestionLabel>
+                <QuestionText>Your weight in kilograms:</QuestionText>
+                <input
+                  type="number"
+                  placeholder="kg"
+                  value={weight}
+                  onChange={e => setWeight(e.target.value)}
+                />
+              </QuestionLabel>
             </BoxForm>
 
             <BoxForm>
-              <p>
-                Time of active participation in sports or other activities with
-                a high physical load:
-              </p>
-              <input
-                type="number"
-                placeholder="Time in hours"
-                value={activeTraningHours}
-                onChange={e => setActiveTraningHours(e.target.value)}
-              />
+              <QuestionLabel>
+                <QuestionText>
+                  Time of active participation in sports or other activities
+                  with a high physical load:
+                </QuestionText>
+                <input
+                  type="number"
+                  placeholder="Time in hours"
+                  value={activeTraningHours}
+                  onChange={e => setActiveTraningHours(e.target.value)}
+                />
+              </QuestionLabel>
             </BoxForm>
 
             <BoxForm>
               The required amount of water in liters per day:{' '}
               <strong>{dailyVol} L</strong>
             </BoxForm>
-
             <BoxForm>
               <p>Write down how much water you will drink:</p>
               <input
@@ -131,7 +144,6 @@ const DailyNormalModal = ({ closeModal }) => {
                 onChange={e => setVolGoal(e.target.value)}
               />
             </BoxForm>
-
             <button onClick={handleSave}>Save</button>
           </form>
         </CalcBox>
