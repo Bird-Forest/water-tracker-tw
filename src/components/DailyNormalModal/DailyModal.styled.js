@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-// import Circle from 'img/Circle';
-
 export const DailyNormWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -160,4 +158,35 @@ export const QuestionLabel = styled.label`
 export const QuestionText = styled.p`
   font-size: 16px;
   line-height: 1.25;
+`;
+
+export const Input = styled.input`
+  min-width: 256px;
+  padding: 12px 10px;
+  margin-bottom: 16px;
+
+  border-radius: 6px;
+  border: 1px solid #d7e3ff;
+
+  color: #407bff;
+  font-size: 16px;
+
+  line-height: 1.25;
+`;
+
+export const FormResult = styled.div`
+  max-width: 256px;
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+  margin-bottom: 26px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 656px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 544px;
+  }
 `;
