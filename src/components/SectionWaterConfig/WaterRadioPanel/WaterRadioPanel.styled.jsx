@@ -1,6 +1,8 @@
 import theme from 'BasicStyle/themeJSX';
 const { default: styled } = require('styled-components');
 
+const $bgColor = ({ $bgColor }) => $bgColor;
+
 export const StyledRadioPanel = styled.div`
   width: 100%;
 
@@ -38,6 +40,7 @@ export const StyledRadioPanel = styled.div`
     .radio-panel-line {
       display: flex;
       justify-content: space-between;
+
       position: relative;
 
       width: 256px;
@@ -50,6 +53,9 @@ export const StyledRadioPanel = styled.div`
       @media only screen and (min-width: 768px) {
         width: 325px;
       }
+      @media only screen and (min-width: 1440px) {
+        width: 360px;
+      }
 
       &::before {
         content: '';
@@ -58,7 +64,9 @@ export const StyledRadioPanel = styled.div`
         height: 14px;
         position: absolute;
         top: -50%;
-        left: calc(${({ previousValue }) => previousValue}% - (7px));
+ home-page/water-config-section
+        left: calc(${({ $previousValue }) => $previousValue}% - (7px));
+
 
         z-index: 2;
 
@@ -74,21 +82,27 @@ export const StyledRadioPanel = styled.div`
 
       @keyframes circle {
         100% {
-          left: calc(${({ newValue }) => newValue}% - (7px));
+          left: calc(${({ $newValue }) => $newValue}% - (7px));
+
         }
       }
 
       &::after {
         content: '';
         display: block;
-        width: calc(${({ previousValue }) => previousValue}%);
+
+        width: calc(${({ $previousValue }) => $previousValue}%);
+
         height: 8px;
         position: absolute;
         top: 0;
         left: 0;
 
+        
+
         border-radius: 10px;
         background-color: ${theme.colors.secondaryBlue};
+		  background-color: ${$bgColor};
 
         animation-name: line;
         animation-duration: 2s;
@@ -98,7 +112,9 @@ export const StyledRadioPanel = styled.div`
 
       @keyframes line {
         100% {
-          width: calc(${({ newValue }) => newValue}%);
+
+          width: calc(${({ $newValue }) => $newValue}%);
+
         }
       }
 
@@ -187,9 +203,11 @@ export const StyledRadioPanel = styled.div`
     }
 
     @media only screen and (min-width: 768px) {
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding: 10px 12px;
       align-self: center;
+    }
+    @media only screen and (min-width: 1440px) {
+      min-width: 178px;
     }
   }
 `;
