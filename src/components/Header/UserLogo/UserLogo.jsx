@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/selectors';
+import UserLogoModal from 'components/ModalUser/UserLogoModal';
 import {
   UserAvatar,
   UserName,
@@ -74,6 +75,7 @@ const UserLogo = () => {
         </UserLogoIcon>
       </UserLogoBtn>
       {/* <UserLogoModal isOpen={isOpen} onClose={() => setIsOpen(false)} /> */}
+      {isOpen && <UserLogoModal onClose={() => setIsOpen(false)} />}
     </UserLogoContainer>
   );
 };

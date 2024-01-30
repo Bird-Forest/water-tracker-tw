@@ -20,7 +20,7 @@ export const Div = styled.div`
 export const Button = styled.button`
   &:hover,
   &:focus {
-    color: #ff9d43;
+    color: #131eed;
   }
   display: flex;
   align-items: center;

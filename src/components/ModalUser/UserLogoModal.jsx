@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Div, Button } from './UserLogoModal.styled';
 import SettingModal from './SettingModal';
 import UserLogoutModal from './UserLogoutModal';
+import Modal from 'components/Modal/Modal';
 
 const UserLogoModal = () => {
   const [isOpenUserInfoModal, setOpenUserInfoModal] = useState(false);
@@ -29,11 +30,17 @@ const UserLogoModal = () => {
         <Button onClick={openUserLogoutModal}>Logout</Button>
       </Div>
       {/* Модальне вікно для settings */}
-      {isOpenUserInfoModal ?? <SettingModal onClose={closeUserInfoModal} />}
-
+      {isOpenUserInfoModal && !isOpenUserLogoutModal && (
+        <Modal title="Setting" onClose={closeUserInfoModal}>
+          <SettingModal onClose={closeUserInfoModal} />
+        </Modal>
+      )}
       {/* Модальне вікно для logout */}
-      {isOpenUserLogoutModal ?? (
-        <UserLogoutModal onClose={closeUserLogoutModal} />
+
+      {isOpenUserLogoutModal && !isOpenUserInfoModal && (
+        <Modal title="Logout" onClose={closeUserLogoutModal}>
+          <UserLogoutModal onClose={closeUserLogoutModal} />
+        </Modal>
       )}
     </>
   );
