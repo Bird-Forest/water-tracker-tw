@@ -19,6 +19,10 @@ import {
   QuestionText,
   Input,
   FormResult,
+  ResultText,
+  ResultValue,
+  HowMuchYouWant,
+  SubmitButton,
 } from './DailyModal.styled';
 
 const DailyNormalModal = ({ closeModal }) => {
@@ -105,7 +109,6 @@ const DailyNormalModal = ({ closeModal }) => {
                 </LabelGender>
               </ChooseGender>
             </BoxForm>
-
             <BoxForm>
               <QuestionLabel>
                 <QuestionText>Your weight in kilograms:</QuestionText>
@@ -117,7 +120,6 @@ const DailyNormalModal = ({ closeModal }) => {
                 />
               </QuestionLabel>
             </BoxForm>
-
             <BoxForm>
               <QuestionLabel>
                 <QuestionText>
@@ -135,20 +137,26 @@ const DailyNormalModal = ({ closeModal }) => {
             </BoxForm>
 
             <FormResult>
-              The required amount of water in liters per day:{' '}
-              <strong>{dailyVol} L</strong>
+              <ResultText>
+                The required amount of water in liters per day:{' '}
+              </ResultText>
+              <ResultValue>{dailyVol} L</ResultValue>
             </FormResult>
 
             <BoxForm>
-              <p>Write down how much water you will drink:</p>
-              <input
-                type="number"
-                placeholder="L"
-                value={volGoal}
-                onChange={e => setVolGoal(e.target.value)}
-              />
+              <QuestionLabel>
+                <HowMuchYouWant>
+                  Write down how much water you will drink:
+                </HowMuchYouWant>
+                <Input
+                  type="number"
+                  placeholder="L"
+                  value={volGoal}
+                  onChange={e => setVolGoal(e.target.value)}
+                />
+              </QuestionLabel>
             </BoxForm>
-            <button onClick={handleSave}>Save</button>
+            <SubmitButton onClick={handleSave}>Save</SubmitButton>
           </form>
         </CalcBox>
       </ModalWindow>

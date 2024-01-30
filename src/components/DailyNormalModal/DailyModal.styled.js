@@ -190,3 +190,51 @@ export const FormResult = styled.div`
     max-width: 544px;
   }
 `;
+
+export const ResultText = styled.p`
+  max-width: 190px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 100%;
+  }
+`;
+
+export const ResultValue = styled.p`
+  color: #407bff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.33;
+`;
+
+export const HowMuchYouWant = styled.p`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.11;
+`;
+
+export const SubmitButton = styled.button`
+  display: block;
+  margin: 0 auto;
+  padding: 8px 30px;
+
+  min-width: 256px;
+  height: 36px;
+
+  border: none;
+  border-radius: 10px;
+  background: #407bff;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+
+  @media screen and (min-width: 768px) {
+    min-width: 160px;
+    height: 44px;
+    padding: 10px 30px;
+    margin-right: 0;
+  }
+`;
