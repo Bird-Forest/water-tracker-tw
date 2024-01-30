@@ -5,6 +5,10 @@ import BackgroundMobileDrops from '../img/BackgroundHomePage/BackgroundMobileDro
 import BackgroundTabletDrops from '../img/BackgroundHomePage/BackgroundTabletDrops.png';
 import BackgroundDesktopDrops from '../img/BackgroundHomePage/BackgroundDesktopDrops.png';
 
+import bg_mob from '../img/bg/mob-bg.svg';
+import bg_tab from '../img/bg/tab-bg.svg';
+import bg_desk from '../img/bg/desk-bg.svg';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,6 +16,25 @@ export const Container = styled.div`
   height: 100%;
   margin: 0 auto;
   padding: 0;
+
+  @media screen and (min-width: 320px) {
+    background-image: url(${bg_mob});
+    background-repeat: repeat-y;
+    background-position-x: center;
+    background-position-y: 108px;
+    background-size: contain;
+  }
+
+  @media screen and (min-width: 768px) {
+    background-image: url(${bg_tab});
+    background-position-y: 26px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    background-image: url(${bg_desk});
+    background-position-y: center;
+    background-repeat: no-repeat;
+  }
 `;
 export const WrapHeader = styled.div`
   display: flex;

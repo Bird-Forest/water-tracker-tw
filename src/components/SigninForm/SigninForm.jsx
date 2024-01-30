@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn } from '../../redux/auth/operations';
+import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { Navigate } from 'react-router-dom';
 import {
   SignInContainer,
   SignInTitle,
@@ -11,10 +16,13 @@ import {
   SignInButton,
   SignUpLink,
   ForgotPasswordLink,
+  LinksWrapper
 } from './SigninForm.styled';
 
 const SigninForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const formik = useFormik({
     initialValues: {
@@ -36,10 +44,21 @@ const SigninForm = () => {
 
       return errors;
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        await dispatch(logIn(values));
+        // Після успішного логіну можна використати Navigate для переходу на сторінку Home
+      } catch (error) {
+        console.log(error);
+        // Обробка помилок логіну, відображення повідомлення користувачу
+      }
     },
   });
+
+  if (isLoggedIn) {
+    // Якщо користувач вже авторизований, перенаправити його на home
+    return <Navigate to="/home" />;
+  }
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -80,7 +99,7 @@ const SigninForm = () => {
             <div className="error-message">{formik.errors.password}</div>
           )}
           <ShowPasswordIcon onClick={toggleShowPassword}>
-            {showPassword ? '👁️' : '👁️‍🗨️'}
+            {showPassword ? <FiEyeOff size={16} color="#407BFF" style={{transform: 'rotate(180deg)'}} /> : <FiEye size={16} color="#407BFF" />}
           </ShowPasswordIcon>
         </FormLabel>
 
@@ -88,8 +107,10 @@ const SigninForm = () => {
           Sign In
         </SignInButton>
       </SignInForm>
-      <SignUpLink as={Link} to="/signup">Sign Up</SignUpLink>
-      <ForgotPasswordLink as={Link} to="/forgotpassword">Forgot password?</ForgotPasswordLink>
+      <LinksWrapper>
+        <SignUpLink as={Link} to="/signup">Sign Up</SignUpLink>
+        <ForgotPasswordLink as={Link} to="/forgotpass">Forgot password?</ForgotPasswordLink>
+      </LinksWrapper>
     </SignInContainer>
   );
 };
