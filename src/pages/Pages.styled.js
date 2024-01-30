@@ -19,21 +19,20 @@ export const Container = styled.div`
 
   @media screen and (min-width: 320px) {
     background-image: url(${bg_mob});
-    background-repeat: repeat-y;
+    background-repeat: no-repeat;
     background-position-x: center;
     background-position-y: 108px;
-    background-size: contain;
+    background-size: 100%;
   }
 
   @media screen and (min-width: 768px) {
     background-image: url(${bg_tab});
-    background-position-y: 26px;
+    background-position-y: 90px;
   }
 
   @media screen and (min-width: 1440px) {
     background-image: url(${bg_desk});
     background-position-y: center;
-    background-repeat: no-repeat;
   }
 `;
 export const WrapHeader = styled.div`
