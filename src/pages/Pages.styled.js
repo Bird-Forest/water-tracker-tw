@@ -1,12 +1,10 @@
 import styled from 'styled-components';
-
+// const MainPageDecktop = '../img/MainPageDecktop.png';
 import WaterMainPage from '../img/BgMainPage/WaterMainPage.svg';
 import WaterMainTablet from '../img/BgMainPage/WaterMainTablet.svg';
 import WaterMainMobile from '../img/BgMainPage/WaterMainMobile.svg';
 
-import BackgroundMobileDrops from '../img/BackgroundHomePage/BackgroundMobileDrops.png';
-import BackgroundTabletDrops from '../img/BackgroundHomePage/BackgroundTabletDrops.png';
-import BackgroundDesktopDrops from '../img/BackgroundHomePage/BackgroundDesktopDrops.png';
+
 
 import bg_mob from '../img/bg/mob-bg.svg';
 import bg_tab from '../img/bg/tab-bg.svg';
@@ -66,28 +64,5 @@ export const WrapRender = styled.div`
   @media only screen and (min-width: 1200px) {
     background-image: url(${WaterMainPage});
     background-position: bottom;
-  }
-`;
-
-export const WrapperHomePage = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-
-  background-image: url(${BackgroundMobileDrops});
-  background-repeat: no-repeat;
-  background-position-y: 98px;
-  background-position-x: center;
-  background-size: cover;
-
-  @media only screen and (min-width: 768px) {
-    background-image: url(${BackgroundTabletDrops});
-    background-position-y: 24px;
-    background-size: 768px 1280px;
-  }
-  @media only screen and (min-width: 1440px) {
-    background-image: url(${BackgroundDesktopDrops});
-    background-position-y: 61px;
-    background-size: 1404px 582px;
   }
 `;
