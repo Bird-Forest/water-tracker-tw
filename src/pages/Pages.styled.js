@@ -54,15 +54,18 @@ export const WrapRender = styled.div`
   padding: 0;
   background-image: url(${WaterMainMobile});
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: top;
   background-size: cover;
 
   @media only screen and (min-width: 768px) {
     background-image: url(${WaterMainTablet});
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
   }
   @media only screen and (min-width: 1200px) {
     background-image: url(${WaterMainPage});
-    // background-size: 100vw;
+    background-position: bottom;
   }
 `;
 

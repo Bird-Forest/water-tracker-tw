@@ -74,7 +74,9 @@ const UserLogo = () => {
           </svg>
         </UserLogoIcon>
       </UserLogoBtn>
-      <UserLogoModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      {isOpen && (
+        <UserLogoModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      )}
     </UserLogoContainer>
   );
 };
