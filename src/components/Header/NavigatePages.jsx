@@ -1,9 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../redux/auth/operations';
 import { NavLink } from 'react-router-dom';
 import { NavigateWrap } from './Navigate.styled';
 
 export default function NavigatePages() {
-  // const { isLoggedIn } = useAuth();
+  const dispatch = useDispatch(); // Додано useDispatch()
+
+  // Додаємо функцію для обробки натискання на кнопку "Logout"
+  const handleLogout = () => {
+    // Викликаємо дію розлогінювання (logOut)
+    dispatch(logOut());
+  };
 
   return (
     <NavigateWrap>
@@ -22,6 +30,7 @@ export default function NavigatePages() {
       <NavLink className="navigate" to="/forgotpass">
         ForgotPassPage
       </NavLink>
+      <button onClick={handleLogout}>Log out</button> {/* Додаємо обробник натискання */}
     </NavigateWrap>
   );
 }
