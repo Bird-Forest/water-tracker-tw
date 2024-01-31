@@ -4,7 +4,7 @@ import AppBar from 'pages/AppBar';
 import { Container } from 'pages/Pages.styled';
 import { Suspense } from 'react';
 import { useDispatch } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { GlobalStyles } from './BasicStyle/GlobalStyles';
 import { refreshUser } from './redux/auth/operations';
 
@@ -17,7 +17,7 @@ const NotFound = lazy(() => import('pages/NotFoundPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn, isRefreshing } = useAuth();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
