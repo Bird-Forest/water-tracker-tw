@@ -5,7 +5,7 @@ import zxcvbn from 'zxcvbn';
 import PasswordStrengthMeter from '../PassStrengthMeter/PasswordStrengthMeter';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/auth/operations';
+import { register, logIn } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import { Navigate } from 'react-router-dom';
 import {
@@ -63,10 +63,11 @@ const SignupForm = () => {
 
       return errors;
     },
-    onSubmit: async (values) => {
+    onSubmit: async ({ email, password }) => {
       try {
-        await dispatch(register(values));
-        // Після успішного логіну можна використати Navigate для переходу на сторінку Home
+        await dispatch(register({ email, password }));
+        // Викликаємо функцію логінування після успішної реєстрації
+        await dispatch(logIn({ email, password }));
       } catch (error) {
         console.log(error);
         // Обробка помилок реєстрації, відображення повідомлення користувачу
