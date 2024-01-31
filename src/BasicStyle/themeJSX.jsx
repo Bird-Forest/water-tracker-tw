@@ -6,7 +6,7 @@ const theme = Object.freeze({
 
     secondaryLight: '#ECF2FF',
     secondaryLightBlue: '#D7E3FF',
-    secondaryBlue: '#9EBBFF',
+    secondaryBlue: '#9ebbff',
     secondaryRed: '#EF5050',
     secondaryYellow: '#FF9D43',
     secondaryGray: '#8F8F8F',
