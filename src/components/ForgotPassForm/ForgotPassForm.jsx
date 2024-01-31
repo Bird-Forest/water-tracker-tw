@@ -36,21 +36,21 @@ const ForgotPassForm = () => {
     <ForgotPasswordContainer>
       <ForgotPasswordTitle>Forgot Password</ForgotPasswordTitle>
       <ForgotPasswordForm onSubmit={formik.handleSubmit}>
-        <FormLabel htmlFor="email">Enter your email</FormLabel>
-        <FormInput
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-          onBlur={formik.handleBlur}
-          className={formik.touched.email && formik.errors.email ? 'error' : ''}
-        />
-        {formik.touched.email && formik.errors.email && (
-          <div className="error-message">{formik.errors.email}</div>
-        )}
-
+        <FormLabel htmlFor="email">Enter your email
+          <FormInput
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            onBlur={formik.handleBlur}
+            className={formik.touched.email && formik.errors.email ? 'error' : ''}
+          />
+          {formik.touched.email && formik.errors.email && (
+            <div className="error-message">{formik.errors.email}</div>
+          )}
+        </FormLabel>
         <ForgotPasswordButton type="submit" disabled={!formik.isValid}>Send Reset Request</ForgotPasswordButton>
       </ForgotPasswordForm>
       <BackToSignInLink as={Link} to="/signin">Back to Sign In</BackToSignInLink>

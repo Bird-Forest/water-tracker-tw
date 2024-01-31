@@ -5,8 +5,8 @@ import { Container } from 'pages/Pages.styled';
 import { Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { refreshUser } from './redux/auth/operations';
 import { GlobalStyles } from './BasicStyle/GlobalStyles';
+import { refreshUser } from './redux/auth/operations';
 
 const Welcome = lazy(() => import('pages/WelcomePage'));
 const SignIn = lazy(() => import('pages/SigninPage'));
@@ -23,6 +23,10 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
+  if (isRefreshing) {
+    return <b>Refreshing user...</b>;
+  }
+
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
@@ -37,6 +41,7 @@ export const App = () => {
             <Route path="signup" element={<SignUp />} />
             <Route path="forgotpass" element={<ForgotPassPage />} />
             <Route path="home" element={<Home />} />
+            {/* <Route path="home" element={isLoggedIn ? <Home /> : <Navigate to="/signin" replace />} /> */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
