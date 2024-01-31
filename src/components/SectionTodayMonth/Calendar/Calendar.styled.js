@@ -1,29 +1,7 @@
 import styled from 'styled-components';
 import theme from '../../../BasicStyle/themeJSX.jsx';
 
-export const Frame = styled.div`
-  margin-bottom: 40px;
-  padding: 24px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 
-  border-radius: 10px;
-  background: ${theme.colors.secondaryLight};
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 44px;
-    padding: 32px 24px;
-    width: 656px;
-    height: 688px;
-  }
-  @media only screen and (min-width: 1440px) {
-    margin-bottom: 0;
-    width: 544px;
-    height: 680px;
-  }
-`;
 export const StyledMonthStatsTable = styled.div`
 display: flex;
 flex-direction: column;
@@ -39,11 +17,11 @@ export const MonthTitle = styled.h2`
   color: ${theme.colors.primaryDark};
   font-size: 24px;
   font-weight: 600;
-  line-height: calc(30 / 24);
+  line-height: 1.25;
 
   @media screen and (min-width: 768px) {
     font-size: 26px;
-    line-height: calc(32 / 26);
+    line-height: 1.23;
   }
 `;
 
@@ -99,47 +77,44 @@ export const Popup = styled.div`
 display: none;
 flex-direction: column;
 gap: 16px;
-width: 20px;
+width: 280px;
+height: 188px;
 position: absolute;
-bottom: 54px;
+top: -188px;
+left: 0;
+
 background-color:${theme.colors.primaryLight};
 border-radius: 10px;
 box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
 padding: 24px 13px;
-transform-origin: bottom;
+// transform-origin: bottom;
 z-index: 2;
 
-@media screen and (max-width: 767px) {
-  left: ${props => -7 - props.$deltaNum}px;
-}
 
 @media screen and (min-width: 768px) {
-  right: ${props => (props.$delta ? '17px' : '')};
-  left: ${props => (props.$delta ? '' : '17px')};
   padding: 24px 16px;
   width: 292px;
-  bottom: 58px;
 }
 
 @media screen and (min-width: 1440px) {
-  bottom: 56px;
+ 
 }
 
 h3 {
   color: ${theme.colors.primaryAccent};
-  font-size: '16px';
-  line-height: calc(20 / 16);
+  font-size: 16px;
+  line-height: 1.25;
   margin: 0;
 }
 p {
   color: ${theme.colors.primaryDark};
-  font-size: '16px';
-  line-height: calc(20 / 16);
+  font-size: 16px;
+  line-height: 1.25);
   span {
     color: ${theme.colors.primaryAccent};
-    font-size: '18px';
+    font-size: 18px;
     font-weight: 500;
-    line-height: calc(24 / 18);
+    line-height: 1.33;
   }
 `;
 
@@ -158,8 +133,7 @@ font-size: 14px;
 line-height: 18px;
 
 &:hover ${Popup} {
-  display: block;
-  top:-200px;
+  display: flex;
 }
 
 
@@ -179,14 +153,14 @@ export const DayPercent = styled.span`
   font-weight: 400;
   align-items: center;
   margin-top: 4px;
-  line-height: calc(16 / 10);
+  line-height: 1.6;
   @media screen and (min-width: 768px) {
     font-size: 13px;
-    line-height: calc(20 / 13);
+    line-height: 1.54;
   }
   @media screen and (min-width: 1440px) {
     font-size: 12px;
-    line-height: calc(18 / 12);
+    line-height: 1.5;
   }
 `;
 
