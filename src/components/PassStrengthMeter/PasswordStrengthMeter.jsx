@@ -1,26 +1,12 @@
-import styled from 'styled-components';
-
-const MeterContainer = styled.div`
-  margin-top: 8px;
-  width: 100%;
-  display: ${(props) => (props.$showMeter ? 'block' : 'none')}; // Встановлення відображення або приховання
-`;
-
-const StrengthMeterBar = styled.div`
-  height: 8px;
-  border-radius: 4px;
-  background-color: ${(props) => props.color};
-  width: ${(props) => props.width}%;
-  transition: width 0.3s ease-in-out;
-`;
+import { MeterContainer, StrengthMeterBar } from './PassStrengthMeter.styled';
 
 const PasswordStrengthMeter = ({ strength, showMeter }) => {
   const getColor = () => {
     switch (strength) {
       case 0:
-        return '#ff4d4f'; // Weak
+        return '#EF5050'; // Weak
       case 1:
-        return '#ffa940'; // Fair
+        return '#FF9D43'; // Fair
       case 2:
         return '#faad14'; // Good
       case 3:

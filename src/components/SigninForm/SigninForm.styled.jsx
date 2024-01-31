@@ -2,21 +2,20 @@ import styled from 'styled-components';
 import theme from '../../BasicStyle/themeJSX';
 
 export const SignInContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0 20px;
-  padding: 24px 20px;
-  @media screen and (min-width: 320px) {
-
-  }
+  padding: 24px 0;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  /* @media screen and (min-width: 320px) {
+  } */
 
   @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    padding: 40px 0 0 0;
   }
 
   @media screen and (min-width: 1440px) {
-
+    grid-column-start: 8;
+    grid-column-end: 12;
+    transform: translateY(-12%);
   }
 
   div.error-message {
@@ -30,6 +29,10 @@ export const SignInContainer = styled.div`
 
 export const SignInTitle = styled.strong`
   font-size: 24px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 26px;
+  }
 `;
 
 export const SignInForm = styled.form`
@@ -38,7 +41,6 @@ export const SignInForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  min-width: 280px;
   margin-top: 16px;
 `;
 
@@ -55,10 +57,10 @@ export const FormInput = styled.input.attrs((props) => ({
   padding: 10px;
   border: 1px solid ${(props) => (props['data-has-error'] ? '#EF5050' : '#D7E3FF')};
   border-radius: 6px;
+  outline: none;
 `;
 
 export const ShowPasswordIcon = styled.span`
-  /* Стилі для іконки показу/приховування пароля */
   cursor: pointer;
   position: absolute;
   right: 10px;
@@ -76,13 +78,15 @@ export const SignInButton = styled.button`
   color: ${theme.colors.primaryLight};
   border: none;
   margin-top: 10px;
+  outline: none;
+
+  &:hover {
+    background-color: ${(props) => (props.disabled ? '#8F8F8F' : '#407BFF')}; /* Змінює колір при наведенні, якщо кнопка активна */
+  }
 `;
 
 export const SignUpLink = styled.a`
-  grid-column-start: 1;
-  grid-column-end: 3;
   display: inline-block;
-  margin-top: 16px;
   text-decoration: none;
   color: ${theme.colors.primaryAccent};
   cursor: pointer;
@@ -93,10 +97,7 @@ export const SignUpLink = styled.a`
 `;
 
 export const ForgotPasswordLink = styled.a`
-  grid-column-start: 1;
-  grid-column-end: 3;
   display: inline-block;
-  margin-top: 10px;
   text-decoration: none;
   color: ${theme.colors.primaryAccent};
   cursor: pointer;
@@ -105,3 +106,10 @@ export const ForgotPasswordLink = styled.a`
     color: ${theme.colors.secondaryYellow};
   }
 `;
+
+export const LinksWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+`
