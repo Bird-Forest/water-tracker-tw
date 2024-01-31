@@ -15,8 +15,8 @@ import { rotate180DegVariants } from './rotateanimation';
 
 const UserLogo = () => {
   const userProfile = useSelector(selectUser);
-  const name = userProfile.userName;
-  const avatar = userProfile.avatarURL;
+  const name = userProfile?.userName;
+  const avatar = userProfile?.avatarURL;
   const defaultName = name ? name.slice(0, 1).toUpperCase() : 'V';
 
   const modalRef = useRef(null);
