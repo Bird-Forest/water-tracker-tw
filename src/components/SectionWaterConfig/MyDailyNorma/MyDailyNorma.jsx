@@ -76,4 +76,3 @@ export const MyDailyNorma = () => {
 //       {activeModal === 'someModal' && <Modal closeModal={handleCloseModal} />}
 //     </>
 //   );
-// };
