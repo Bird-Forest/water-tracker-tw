@@ -12,6 +12,9 @@ import {
 } from './UserLogo.styled';
 import sprite from '../../../img/sprite.svg';
 import { rotate180DegVariants } from './rotateanimation';
+import UserLogoutModal from 'components/ModalUser/UserLogoutModal';
+import SettingModal from 'components/ModalUser/SettingModal';
+import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 
 const UserLogo = () => {
   const userProfile = useSelector(selectUser);
@@ -21,6 +24,24 @@ const UserLogo = () => {
 
   const modalRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+
+  const [isOpenUserInfoModal, setOpenUserInfoModal] = useState(false);
+  const [isOpenUserLogoutModal, setOpenUserLogoutModal] = useState(false);
+
+  const openUserInfoModal = () => {
+    setOpenUserInfoModal(true);
+  };
+  const openUserLogoutModal = () => {
+    setOpenUserLogoutModal(true);
+  };
+
+  const closeUserInfoModal = () => {
+    setOpenUserInfoModal(false);
+  };
+
+  const closeUserLogoutModal = () => {
+    setOpenUserLogoutModal(false);
+  };
 
   const handleButtonClick = e => {
     setIsOpen(!isOpen);
@@ -75,7 +96,22 @@ const UserLogo = () => {
         </UserLogoIcon>
       </UserLogoBtn>
       {isOpen && (
-        <UserLogoModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <UserLogoModal
+          openUserInfoModal={openUserInfoModal}
+          openUserLogoutModal={openUserLogoutModal}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+        />
+      )}
+      {isOpenUserInfoModal && !isOpenUserLogoutModal && (
+        <ModalWindow title="Setting" onClose={closeUserInfoModal}>
+          <SettingModal onClose={closeUserInfoModal} />
+        </ModalWindow>
+      )}
+      {isOpenUserLogoutModal && !isOpenUserInfoModal && (
+        <ModalWindow title="Logout" onClose={closeUserLogoutModal}>
+          <UserLogoutModal onClose={closeUserLogoutModal} />
+        </ModalWindow>
       )}
     </UserLogoContainer>
   );
