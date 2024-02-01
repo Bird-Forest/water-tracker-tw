@@ -19,7 +19,7 @@ const UserLogo = () => {
   const avatar = userProfile?.avatarURL;
   const defaultName = name ? name.slice(0, 1).toUpperCase() : 'V';
 
-  const modalRef = useRef(null);
+  //   const modalRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleButtonClick = e => {
@@ -34,10 +34,18 @@ const UserLogo = () => {
       }
     };
     const closeModal = e => {
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
+      if (
+        e.target.className !== 'sc-hLQSwg fhncXH' &&
+        e.target.className !== 'sc-dmyCSP NBJoq'
+      ) {
         setIsOpen(false);
       }
     };
+    //  const closeModal = e => {
+    //    if (modalRef.current && !modalRef.current.contains(e.target)) {
+    //      setIsOpen(false);
+    //    }
+    //  };
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscapeKey);
@@ -48,13 +56,13 @@ const UserLogo = () => {
       document.removeEventListener('keydown', handleEscapeKey);
       document.removeEventListener('click', closeModal);
     };
-  }, [isOpen, setIsOpen, modalRef]);
+  }, [isOpen, setIsOpen]);
 
   return (
     <UserLogoContainer>
       <UserLogoBtn
         onClick={e => handleButtonClick(e)}
-        ref={modalRef}
+        //   ref={modalRef}
         aria-label="User Logo"
       >
         <UserName>{name}</UserName>

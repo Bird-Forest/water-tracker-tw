@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ModalWindow } from '../ModalWindow/ModalWindow';
+// import { ModalWindow } from '../ModalWindow/ModalWindow';
 import {
   AddWater,
   ChooseText,
@@ -10,6 +10,7 @@ import {
   StyledPlusIcon,
   FormStyled,
   ButtonSaveWrapper,
+  StyledAddWaterModal,
 } from './AddWaterModal.styled';
 
 const AddWaterModal = ({ closeModal }) => {
@@ -56,58 +57,58 @@ const AddWaterModal = ({ closeModal }) => {
   };
 
   return (
-    <>
-      <ModalWindow closeModal={closeModal}>
-        <AddWater>Add Water</AddWater>
-        <ChooseText>Choose a value:</ChooseText>
-        <AmountText>Amount of water:</AmountText>
+    <StyledAddWaterModal>
+      {/* <ModalWindow closeModal={closeModal}> */}
+      <AddWater>Add Water</AddWater>
+      <ChooseText>Choose a value:</ChooseText>
+      <AmountText>Amount of water:</AmountText>
 
-        <ButtonWrapper>
-          <button
-            type="button"
-            name="minus"
-            onClick={handleAmountChange}
-            disabled={waterAmount === 0}
-          >
-            <StyledMinusIcon aria-label="minus_button" />
-          </button>
+      <ButtonWrapper>
+        <button
+          type="button"
+          name="minus"
+          onClick={handleAmountChange}
+          disabled={waterAmount === 0}
+        >
+          <StyledMinusIcon aria-label="minus_button" />
+        </button>
 
-          <span>{waterAmount}ml</span>
+        <span>{waterAmount}ml</span>
 
-          <button type="button" name="plus" onClick={handleAmountChange}>
-            <StyledPlusIcon aria-label="plus_button" />
-          </button>
-        </ButtonWrapper>
+        <button type="button" name="plus" onClick={handleAmountChange}>
+          <StyledPlusIcon aria-label="plus_button" />
+        </button>
+      </ButtonWrapper>
 
-        <FormStyled>
-          <label>
-            Recording time:
-            <input
-              type="time"
-              value={recordedTime}
-              onChange={evt => setRecordedTime(evt.target.value)}
-            />
-          </label>
+      <FormStyled>
+        <label>
+          Recording time:
+          <input
+            type="time"
+            value={recordedTime}
+            onChange={evt => setRecordedTime(evt.target.value)}
+          />
+        </label>
 
-          <label>
-            Enter the value of the water used:
-            <input
-              name="input"
-              type="number"
-              value={waterAmount}
-              onChange={evt => handleAmountChange(evt)}
-              min="1"
-              max="5000"
-            />
-          </label>
+        <label>
+          Enter the value of the water used:
+          <input
+            name="input"
+            type="number"
+            value={waterAmount}
+            onChange={evt => handleAmountChange(evt)}
+            min="1"
+            max="5000"
+          />
+        </label>
 
-          <ButtonSaveWrapper>
-            <p>{waterAmount}ml</p>
-            <button onClick={handleSave}>Save</button>
-          </ButtonSaveWrapper>
-        </FormStyled>
-      </ModalWindow>
-    </>
+        <ButtonSaveWrapper>
+          <p>{waterAmount}ml</p>
+          <button onClick={handleSave}>Save</button>
+        </ButtonSaveWrapper>
+      </FormStyled>
+      {/* </ModalWindow> */}
+    </StyledAddWaterModal>
   );
 };
 

@@ -1,37 +1,32 @@
-// import { useState } from 'react';
 import { StyledRadioPanel } from './WaterRadioPanel.styled';
 import { GoPlusCircle } from 'react-icons/go';
 import theme from 'BasicStyle/themeJSX';
+import { useState } from 'react';
+import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
+import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 
 export const WaterRadioPanel = () => {
-  //   const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
-  //  const handleOpenModal = () => {
-  //    setOpenModal(true);
-  //  };
-  //   const handleСloseModal = () => {
-  //     setOpenModal(false);
-  //   };
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
   let bgColor;
-  let previousValue = 30;
-  let newValue = 60;
+  let parsent = 160;
 
   const change = value => {
     if (value > 100) {
-      newValue = 100;
+      parsent = 100;
       bgColor = `${theme.colors.primaryAccent}`;
     }
   };
 
-  change(newValue);
+  change(parsent);
 
   return (
     <>
-      <StyledRadioPanel
-        $bgColor={bgColor}
-        $previousValue={previousValue}
-        $newValue={newValue}
-      >
+      <StyledRadioPanel $bgColor={bgColor} $parsent={parsent}>
         <div className="radio-panel-body">
           <h3 className="radio-panel-title">Today</h3>
           <div className="radio-panel-line">
@@ -45,13 +40,20 @@ export const WaterRadioPanel = () => {
             <p className="radio-panel-parsent end">100%</p>
           </div>
         </div>
-        {/* onClick={handleOpenModal} - Подію повішати на кнопку! */}
-        <button className="radio-panel-btn">
+        <button onClick={handleOpenModal} className="radio-panel-btn">
           <GoPlusCircle className="icon-btn" />
           Add Water
         </button>
       </StyledRadioPanel>
-      {/* {openModal && <AddWater closeModal={handleСloseModal} />} */}
+      {openModal && (
+        <GlobalModal
+          $position={'center'}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        >
+          <AddWaterModal />
+        </GlobalModal>
+      )}
     </>
   );
 };

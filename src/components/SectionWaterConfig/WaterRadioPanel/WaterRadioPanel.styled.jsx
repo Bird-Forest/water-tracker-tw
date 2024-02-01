@@ -1,7 +1,6 @@
 import theme from 'BasicStyle/themeJSX';
 const { default: styled } = require('styled-components');
 
-const $bgColor = ({ $bgColor }) => $bgColor;
 
 export const StyledRadioPanel = styled.div`
   width: 100%;
@@ -65,7 +64,7 @@ export const StyledRadioPanel = styled.div`
         position: absolute;
         top: -50%;
 
-        left: calc(${({ $previousValue }) => $previousValue}% - (7px));
+        left: calc(${({ $parsent }) => $parsent}% - (7px));
 
         z-index: 2;
 
@@ -73,23 +72,23 @@ export const StyledRadioPanel = styled.div`
         border: 1px solid ${theme.colors.primaryAccent};
         background-color: ${theme.colors.primaryLight};
 
-        animation-name: circle;
+        /* animation-name: circle;
         animation-duration: 2s;
         animation-timing-function: linear;
-        animation-fill-mode: forwards;
+        animation-fill-mode: forwards; */
       }
 
-      @keyframes circle {
+      /* @keyframes circle {
         100% {
           left: calc(${({ $newValue }) => $newValue}% - (7px));
         }
-      }
+      } */
 
       &::after {
         content: '';
         display: block;
 
-        width: calc(${({ $previousValue }) => $previousValue}%);
+        width: calc(${({ $parsent }) => $parsent}%);
 
         height: 8px;
         position: absolute;
@@ -98,19 +97,19 @@ export const StyledRadioPanel = styled.div`
 
         border-radius: 10px;
         background-color: ${theme.colors.secondaryBlue};
-        background-color: ${$bgColor};
+        background-color: ${({$bgColor}) => $bgColor};
 
-        animation-name: line;
+        /* animation-name: line;
         animation-duration: 2s;
         animation-timing-function: linear;
-        animation-fill-mode: forwards;
+        animation-fill-mode: forwards; */
       }
 
-      @keyframes line {
+      /* @keyframes line {
         100% {
           width: calc(${({ $newValue }) => $newValue}%);
         }
-      }
+      } */
 
       .line-start,
       .line-center,

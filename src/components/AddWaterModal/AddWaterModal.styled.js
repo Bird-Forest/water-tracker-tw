@@ -4,6 +4,18 @@ import { ReactComponent as PlusIcon } from '../../img/plus.svg';
 import { ReactComponent as MinusIcon } from '../../img/minus.svg';
 import theme from '../../BasicStyle/themeJSX';
 
+export const StyledAddWaterModal = styled.div`
+  width: 100vw;
+  max-width: 280px;
+  @media only screen and (min-width: 768px) {
+    max-width: 704px;
+  }
+
+  @media only screen and (min-width: 1440px) {
+    max-width: 592px;
+  }
+`;
+
 export const AddWater = styled.p`
   font-size: 26px;
   font-weight: 500;
@@ -97,7 +109,7 @@ export const FormStyled = styled.form`
     display: flex;
     align-items: flex-start;
 
-    width: 120px;
+    /* width: 120px; */
     gap: 10px;
     padding: 12px 10px;
     margin-bottom: 24px;

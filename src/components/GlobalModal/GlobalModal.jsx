@@ -6,6 +6,7 @@ export const GlobalModal = ({
   width,
   height,
   openModal,
+  $position,
   setOpenModal,
   children,
 }) => {
@@ -38,7 +39,7 @@ export const GlobalModal = ({
   }, [setOpenModal, openModal]);
 
   return (
-    <GlobalOverlay closeModal={handleCloseModal}>
+    <GlobalOverlay $position={$position} closeModal={handleCloseModal}>
       <GlobalBodyModalWrapper width={width} height={height}>
         {children}
       </GlobalBodyModalWrapper>

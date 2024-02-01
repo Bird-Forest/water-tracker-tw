@@ -1,5 +1,5 @@
 import { StyledOverlay } from './GlobalOverlay.styled';
 
-export const GlobalOverlay = ({ closeModal, children }) => {
-  return <StyledOverlay onClick={closeModal}>{children}</StyledOverlay>;
+export const GlobalOverlay = ({$position, closeModal, children }) => {
+  return <StyledOverlay $position={$position} onClick={closeModal}>{children}</StyledOverlay>;
 };
