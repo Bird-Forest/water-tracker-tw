@@ -40,7 +40,7 @@ export const App = () => {
             <Route path="/" element={<Welcome />} />
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="forgotpass" element={<ForgotPassPage />} />
+            <Route path="forgot-password" element={<ForgotPassPage />} />
             <Route path="home" element={<Home />} />
             {/* <Route path="home" element={isLoggedIn ? <Home /> : <Navigate to="/signin" replace />} /> */}
             <Route path="*" element={<NotFound />} />
