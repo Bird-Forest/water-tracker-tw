@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyles } from './BasicStyle/GlobalStyles';
 import { refreshUser } from './redux/auth/operations';
+import Loader from 'components/Loader/Loader';
 
 const Welcome = lazy(() => import('pages/WelcomePage'));
 const SignIn = lazy(() => import('pages/SigninPage'));
@@ -34,12 +35,12 @@ export const App = () => {
       <GlobalStyles />
       <Container>
         <AppBar />
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader/>}>
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="signin" element={<SignIn />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="forgotpass" element={<ForgotPassPage />} />
+            <Route path="forgot-password" element={<ForgotPassPage />} />
             <Route path="home" element={<Home />} />
             {/* <Route path="home" element={isLoggedIn ? <Home /> : <Navigate to="/signin" replace />} /> */}
             <Route path="*" element={<NotFound />} />

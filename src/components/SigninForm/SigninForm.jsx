@@ -109,7 +109,7 @@ const SigninForm = () => {
       </SignInForm>
       <LinksWrapper>
         <SignUpLink as={Link} to="/signup">Sign Up</SignUpLink>
-        <ForgotPasswordLink as={Link} to="/forgotpass">Forgot password?</ForgotPasswordLink>
+        <ForgotPasswordLink as={Link} to="/forgot-password">Forgot password?</ForgotPasswordLink>
       </LinksWrapper>
     </SignInContainer>
   );
