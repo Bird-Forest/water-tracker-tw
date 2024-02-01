@@ -30,7 +30,6 @@ export const Button = styled.button`
   height: 14px;
   padding: 0;
   cursor: pointer;
-  margin: 0 10px;
   background-color: transparent;
   border: none;
 
@@ -81,13 +80,12 @@ width: 280px;
 height: 188px;
 position: absolute;
 top: -188px;
-left: 0;
+left: 100%;
 
 background-color:${theme.colors.primaryLight};
 border-radius: 10px;
 box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
 padding: 24px 13px;
-// transform-origin: bottom;
 z-index: 2;
 
 
@@ -109,7 +107,8 @@ h3 {
 p {
   color: ${theme.colors.primaryDark};
   font-size: 16px;
-  line-height: 1.25);
+  line-height: 1.25;
+}
   span {
     color: ${theme.colors.primaryAccent};
     font-size: 18px;
@@ -170,7 +169,8 @@ export const StyledMonthWrapper = styled.div`
 color: ${theme.colors.primaryAccent};
 display: flex;
 align-items: center;
-justify-content: center;
+justify-content: space-between;
+min-width: 170px;
 `
 export const Month = styled.span`
   font-size: 16px;

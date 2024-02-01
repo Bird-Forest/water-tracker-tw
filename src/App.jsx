@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyles } from './BasicStyle/GlobalStyles';
 import { refreshUser } from './redux/auth/operations';
+import Loader from 'components/Loader/Loader';
 
 const Welcome = lazy(() => import('pages/WelcomePage'));
 const SignIn = lazy(() => import('pages/SigninPage'));
@@ -34,7 +35,7 @@ export const App = () => {
       <GlobalStyles />
       <Container>
         <AppBar />
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader/>}>
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="signin" element={<SignIn />} />
