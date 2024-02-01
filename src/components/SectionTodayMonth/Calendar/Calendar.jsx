@@ -56,6 +56,7 @@ const Calendar = () => {
   let waterRate = 1800;
   let percent = 85;
   let numberRecords = 7;
+  const isOutlineVisible = true;
 
   return (
     <StyledMonthStatsTable>
@@ -87,6 +88,7 @@ const Calendar = () => {
                     <Day
                       $isToday={isToday}
                       $isSelected={isSelected}
+                      $isOutlineVisible={isOutlineVisible}
                       onClick={() => {
                         setDay(dayOfMonth);
                       }}
@@ -111,7 +113,6 @@ const Calendar = () => {
                         </>
                       </Popup>
                     </Day>
-
                     <DayPercent>60%</DayPercent>
                   </DayCell>
                 );
