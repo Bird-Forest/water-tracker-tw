@@ -5,14 +5,13 @@ import HeaderLogo from './HeaderLogo';
 import { HeaderContainer, Navigation } from './Header.styled';
 import NavigatePages from './NavigatePages';
 
-const HeaderComponent = () => (
+const HeaderComponent = ({ isAuthenticated }) => (
   <HeaderContainer>
     <NavigatePages />
     <div className="container">
       <Navigation>
-        <HeaderLogo />
-        <UserAuth />
-        <UserLogo />
+        <HeaderLogo isAuthenticated={isAuthenticated} />
+        {isAuthenticated ? <UserLogo /> : <UserAuth />}
       </Navigation>
     </div>
   </HeaderContainer>

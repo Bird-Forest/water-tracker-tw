@@ -42,7 +42,7 @@ export const WrapHeader = styled.div`
   height: 10vh;
   margin: 0;
   padding: 0;
-  background-color: #e3f2fd;
+  // background-color: #e3f2fd;
 `;
 export const WrapRender = styled.div`
   display: flex;
