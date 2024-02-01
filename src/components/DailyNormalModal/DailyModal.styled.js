@@ -17,9 +17,9 @@ export const Title = styled.h2`
 export const GenderWrap = styled.div`
   gap: 16px;
   margin-bottom: 12px;
-}
+  /* } */
 
-@media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     flex-direction: row;
     gap: 24px;
   }

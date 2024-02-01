@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyledDailyNorma } from './MyDailyNorma.styled';
 import DailyNormalModal from 'components/DailyNormalModal/DailyNormalModal';
+import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 
 export const MyDailyNorma = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -8,9 +9,9 @@ export const MyDailyNorma = () => {
   const handleOpenModal = () => {
     setOpenModal(true);
   };
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
+  // const handleCloseModal = () => {
+  //     setOpenModal(false);
+  //   };
 
   return (
     <>
@@ -27,7 +28,12 @@ export const MyDailyNorma = () => {
           </button>
         </div>
       </StyledDailyNorma>
-      {openModal && <DailyNormalModal closeModal={handleCloseModal} />}
+      {/* {openModal && <DailyNormalModal closeModal={handleCloseModal} />} */}
+      {openModal && (
+        <GlobalModal openModal={openModal} setOpenModal={setOpenModal}>
+          <DailyNormalModal />
+        </GlobalModal>
+      )}
     </>
   );
 };

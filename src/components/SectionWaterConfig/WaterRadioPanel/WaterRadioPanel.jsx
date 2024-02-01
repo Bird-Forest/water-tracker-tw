@@ -26,13 +26,12 @@ export const WaterRadioPanel = () => {
   change(newValue);
 
   return (
-    <> home-page/water-config-section
+    <>
       <StyledRadioPanel
         $bgColor={bgColor}
         $previousValue={previousValue}
         $newValue={newValue}
       >
-
         <div className="radio-panel-body">
           <h3 className="radio-panel-title">Today</h3>
           <div className="radio-panel-line">

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalWindow } from '../ModalWindow/ModalWindow';
+// import { ModalWindow } from '../ModalWindow/ModalWindow';
 
 import {
   DailyNormWrap,
@@ -56,7 +56,7 @@ const DailyNormalModal = ({ closeModal }) => {
 
   return (
     <DailyNormWrap>
-      <ModalWindow closeModal={closeModal}>
+      {/* <ModalWindow closeModal={closeModal}> */}
         <Title>My daily norma</Title>
 
         <GenderWrap>
@@ -159,7 +159,7 @@ const DailyNormalModal = ({ closeModal }) => {
             <SubmitButton onClick={handleSave}>Save</SubmitButton>
           </form>
         </CalcBox>
-      </ModalWindow>
+      {/* </ModalWindow> */}
     </DailyNormWrap>
   );
 };
