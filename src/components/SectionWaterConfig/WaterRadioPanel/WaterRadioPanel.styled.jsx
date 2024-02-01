@@ -64,9 +64,8 @@ export const StyledRadioPanel = styled.div`
         height: 14px;
         position: absolute;
         top: -50%;
- home-page/water-config-section
-        left: calc(${({ $previousValue }) => $previousValue}% - (7px));
 
+        left: calc(${({ $previousValue }) => $previousValue}% - (7px));
 
         z-index: 2;
 
@@ -83,7 +82,6 @@ export const StyledRadioPanel = styled.div`
       @keyframes circle {
         100% {
           left: calc(${({ $newValue }) => $newValue}% - (7px));
-
         }
       }
 
@@ -98,11 +96,9 @@ export const StyledRadioPanel = styled.div`
         top: 0;
         left: 0;
 
-        
-
         border-radius: 10px;
         background-color: ${theme.colors.secondaryBlue};
-		  background-color: ${$bgColor};
+        background-color: ${$bgColor};
 
         animation-name: line;
         animation-duration: 2s;
@@ -112,9 +108,7 @@ export const StyledRadioPanel = styled.div`
 
       @keyframes line {
         100% {
-
           width: calc(${({ $newValue }) => $newValue}%);
-
         }
       }
 
