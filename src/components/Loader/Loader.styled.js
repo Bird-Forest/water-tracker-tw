@@ -11,40 +11,50 @@ export const StyledLoader = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
-  width: 210px; 
+
+  width: 210px;
   height: 100px;
   border-radius: 20px;
-  border: 5px solid #407BFF;
+  border: 2px solid #407bff;
   background-image: linear-gradient(45deg, 0%, 100%);
   opacity: 0.95;
   box-shadow: 0px 2px 0px #ffe8da;
-  
+
   .tile01 {
     margin: auto;
-    width: 200px; 
-    height: 100px; 
+    width: 200px;
+    height: 100px;
   }
 
   .mask {
     position: relative;
     top: 5px;
     margin: auto;
-    width: 200px; 
-    height: 100px; 
+    width: 200px;
+    height: 100px;
     font-size: 60px;
     font-weight: 700;
     font-family: 'Lobster Two', cursive;
     text-align: center;
     line-height: 90px;
-    text-shadow: 0px 2px 2px rgba(0,0,0,0.1), 0px 2px 0px rgba(255,255,255,0.3);
-    background-image: radial-gradient(circle at center 10px, #111111 50%, #407BFF 51%);
-    background-size: 40px 110px;  
-    background-clip: text; 
-    color: transparent; 
-    animation-name: ${waveAnimation}; 
-    animation-duration: 3s;  
-    animation-iteration-count: infinite; 
-    animation-timing-function: linear; 
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1),
+      0px 2px 0px rgba(255, 255, 255, 0.3);
+    background-image: radial-gradient(
+      circle at center 10px,
+      #111111 50%,
+      #407bff 51%
+    );
+    background-size: 40px 110px;
+    background-clip: text;
+    color: transparent;
+    animation-name: ${waveAnimation};
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
   }
+`;
+
+export const WrapSpinner = styled.div`
+  top: 0;
+  left: 0;
 `;

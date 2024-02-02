@@ -7,6 +7,7 @@ import { GlobalStyles } from './BasicStyle/GlobalStyles';
 import { refreshUser } from './redux/auth/operations';
 import PageRoutes from './X_files/PageRoutes';
 import Loader from 'components/Loader/Loader';
+import Spinner from 'components/Loader/Spinner';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Spinner />
   ) : (
     <>
       <GlobalStyles />
