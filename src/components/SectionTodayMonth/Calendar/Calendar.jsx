@@ -39,8 +39,7 @@ const Calendar = () => {
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
-  const [hoveredDay, setHoveredDay] = useState(null);
-  
+  const [setHoveredDay] = useState(null);
 
   useEffect(() => {
     setDay(date.getDate());
@@ -85,21 +84,25 @@ const Calendar = () => {
                   month === today.getMonth() &&
                   year === today.getFullYear();
                 const isSelected = dayOfMonth === day;
-                const isLeft = (dayOfMonth <= 6) || (dayOfMonth >= 11 && dayOfMonth <= 16) || (dayOfMonth >= 21 && dayOfMonth <= 26) || (dayOfMonth === 31);
+                const isLeft =
+                  dayOfMonth <= 6 ||
+                  (dayOfMonth >= 11 && dayOfMonth <= 16) ||
+                  (dayOfMonth >= 21 && dayOfMonth <= 26) ||
+                  dayOfMonth === 31;
                 return (
                   <DayCell key={`${dayOfMonth}-${month + 1}`}>
                     <Day
                       $isToday={isToday}
                       $isSelected={isSelected}
                       $isOutlineVisible={isOutlineVisible}
-                      onMouseEnter={() => setHoveredDay(dayOfMonth)} 
+                      onMouseEnter={() => setHoveredDay(dayOfMonth)}
                       onClick={() => {
                         setDay(dayOfMonth);
                       }}
                     >
                       {dayOfMonth}
                       <Popup className={isLeft ? 'left' : 'right'}>
-                      <>
+                        <>
                           <h3>
                             {dayOfMonth}, {monthName}{' '}
                           </h3>
@@ -114,7 +117,7 @@ const Calendar = () => {
                             How many servings of water:{' '}
                             <span>{numberRecords}</span>
                           </p>
-                          </>
+                        </>
                       </Popup>
                       {/* <Popup>
                         <>
