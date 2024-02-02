@@ -39,6 +39,8 @@ const Calendar = () => {
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
+  const [hoveredDay, setHoveredDay] = useState(null);
+  
 
   useEffect(() => {
     setDay(date.getDate());
@@ -83,18 +85,38 @@ const Calendar = () => {
                   month === today.getMonth() &&
                   year === today.getFullYear();
                 const isSelected = dayOfMonth === day;
+                const isLeft = (dayOfMonth <= 6) || (dayOfMonth >= 11 && dayOfMonth <= 16) || (dayOfMonth >= 21 && dayOfMonth <= 26) || (dayOfMonth === 31);
                 return (
                   <DayCell key={`${dayOfMonth}-${month + 1}`}>
                     <Day
                       $isToday={isToday}
                       $isSelected={isSelected}
                       $isOutlineVisible={isOutlineVisible}
+                      onMouseEnter={() => setHoveredDay(dayOfMonth)} 
                       onClick={() => {
                         setDay(dayOfMonth);
                       }}
                     >
                       {dayOfMonth}
-                      <Popup>
+                      <Popup className={isLeft ? 'left' : 'right'}>
+                      <>
+                          <h3>
+                            {dayOfMonth}, {monthName}{' '}
+                          </h3>
+                          <p>
+                            Daily norma: <span>{waterRate / 1000} L</span>
+                          </p>
+                          <p>
+                            Fulfillment of the daily norm:{' '}
+                            <span>{percent > 100 ? 100 : percent}%</span>
+                          </p>
+                          <p>
+                            How many servings of water:{' '}
+                            <span>{numberRecords}</span>
+                          </p>
+                          </>
+                      </Popup>
+                      {/* <Popup>
                         <>
                           <h3>
                             {dayOfMonth}, {monthName}{' '}
@@ -111,7 +133,7 @@ const Calendar = () => {
                             <span>{numberRecords}</span>
                           </p>
                         </>
-                      </Popup>
+                      </Popup> */}
                     </Day>
                     <DayPercent>60%</DayPercent>
                   </DayCell>
