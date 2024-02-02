@@ -2,17 +2,14 @@ import styled from 'styled-components';
 import theme from 'BasicStyle/themeJSX';
 
 export const StyledSection = styled.div`
-  max-width: 100%;
-
+  max-width: calc(100vw - 64px);
+  height: 100%;
   width: ${({ width }) => width && `${width}px`};
   height: ${({ height }) => height && `${height}px`};
 
   display: flex;
   justify-content: center;
   position: relative;
-
-  max-height: calc(100vh - 40px);
-  overflow-y: auto;
 
   padding: 24px 12px;
 

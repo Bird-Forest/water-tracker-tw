@@ -20,8 +20,17 @@ import {
   UlStyle,
   WrapBtn,
 } from '../TodayWaterList/TodayWaterList.styled';
+import { useState } from 'react';
+import { GlobalModal } from 'components/GlobalModal/GlobalModal';
+import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
 
 const TodayWaterList = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
   const portionsAll = portions.map(({ id, time, quantity }) => (
     <ListItem key={id}>
       <InfoWrap>
@@ -52,13 +61,23 @@ const TodayWaterList = () => {
           {portionsAll}
 
           <StyledLi>
-            <AddBtnStyle>
+            <AddBtnStyle onClick={handleOpenModal}>
               <FaPlus />
               Add water
             </AddBtnStyle>
           </StyledLi>
         </UlStyle>
       </ListAddDiv>
+
+      {openModal && (
+        <GlobalModal
+          $position={'center'}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        >
+          <AddWaterModal />
+        </GlobalModal>
+      )}
     </TodayStyledDiv>
   );
 };

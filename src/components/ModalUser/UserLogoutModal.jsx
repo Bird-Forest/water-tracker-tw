@@ -11,9 +11,9 @@ const UserLogoutModal = ({ onClose }) => {
     onClose(false);
   };
 
-  const handleClose = () => {
-    onClose(false);
-  };
+//   const handleClose = () => {
+//     onClose(false);
+//   };
   return (
     <LogoutModal>
       <div>
@@ -22,9 +22,9 @@ const UserLogoutModal = ({ onClose }) => {
           <button type="button" onClick={handleLogout} className="logoutbtn">
             Logout
           </button>
-          <button type="button" onClick={handleClose} className="cancelbtn">
+          {/* <button type="button" onClick={handleClose} className="cancelbtn">
             Cancel
-          </button>
+          </button> */}
         </div>
       </div>
     </LogoutModal>
