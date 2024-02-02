@@ -47,6 +47,8 @@ export const Button = styled.button`
 
 
 export const DaysContainer = styled.div`
+position: relative;
+display: inline-block;
 width: 100%;
 
 display: flex;
@@ -74,13 +76,14 @@ export const DayCell = styled.div`
 
 export const Popup = styled.div`
 display: none;
-flex-direction: column;
-gap: 16px;
-width: 280px;
-height: 188px;
-position: absolute;
-top: -188px;
-left: 100%;
+  flex-direction: column;
+  gap: 16px;
+  width: 280px;
+  height: 188px;
+  position: absolute;
+  top: 0;
+  transform: translate(0, -100%);
+  transition: all 0.2s ease-in-out;
 
 background-color:${theme.colors.primaryLight};
 border-radius: 10px;
@@ -88,7 +91,14 @@ box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
 padding: 24px 13px;
 z-index: 2;
 
-
+@media screen and (max-width: 768px) {
+    top: -50%;
+    bottom: -100%;
+   
+    /* left: 50%; */
+    transform: translate(0, -100%);
+  }
+  
 @media screen and (min-width: 768px) {
   padding: 24px 16px;
   width: 292px;
@@ -118,6 +128,7 @@ p {
 `;
 
 export const Day = styled.div`
+position: relative;
 width: 32px;
 height: 32px;
 border-radius: 50%;
@@ -134,6 +145,26 @@ line-height: 18px;
 &:hover ${Popup} {
   display: flex;
 }
+@media (max-width: 768px) {
+  &:hover ${Popup} {
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  &:hover ${Popup}.right {
+    left: auto;
+    right: 0;
+  }
+
+  &:hover ${Popup}.left {
+    left: 0;
+    right: auto;
+  }
+}
+
+
 
 
 @media screen and (min-width: 768px) {
