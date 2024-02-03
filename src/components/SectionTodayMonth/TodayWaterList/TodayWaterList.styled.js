@@ -109,8 +109,6 @@ export const InfoWrap = styled.div`
     @media only screen and (min-width: 1440px) {
     }
     & use {
-      /* x: 5px;
-      y: 2px; */
       fill: ${theme.colors.primaryAccent};
     }
   }

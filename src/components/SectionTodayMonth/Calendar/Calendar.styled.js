@@ -48,7 +48,6 @@ export const Button = styled.button`
 
 export const DaysContainer = styled.div`
 position: relative;
-display: inline-block;
 width: 100%;
 
 display: flex;
@@ -75,7 +74,7 @@ export const DayCell = styled.div`
 `;
 
 export const Popup = styled.div`
-display: none;
+  display: none;
   flex-direction: column;
   gap: 16px;
   width: 280px;
@@ -92,11 +91,10 @@ padding: 24px 13px;
 z-index: 2;
 
 @media screen and (max-width: 768px) {
-    top: -50%;
-    bottom: -100%;
-   
-    /* left: 50%; */
-    transform: translate(0, -100%);
+  position: fixed; 
+   top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   }
   
 @media screen and (min-width: 768px) {
@@ -145,22 +143,18 @@ line-height: 18px;
 &:hover ${Popup} {
   display: flex;
 }
-@media (max-width: 768px) {
-  &:hover ${Popup} {
-    left: 0;
-    right: 0;
-  }
-}
 
 @media (min-width: 768px) {
   &:hover ${Popup}.right {
     left: auto;
-    right: 0;
+    right: 100%;
+    top: -10%
   }
 
   &:hover ${Popup}.left {
-    left: 0;
+    left: 100%;
     right: auto;
+    top: -10%
   }
 }
 
