@@ -19,6 +19,7 @@ import {
   TodayStyledDiv,
   UlStyle,
   WrapBtn,
+  StyledQuestion,
 } from '../TodayWaterList/TodayWaterList.styled';
 import { useState } from 'react';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
@@ -67,7 +68,9 @@ const TodayWaterList = () => {
       <TodayStyle>Today</TodayStyle>
       <ListAddDiv>
         <UlStyle>
-          {portionsAll}
+     {portionsAll?.length > 0 ? portionsAll : <li>
+             <StyledQuestion>Did you drink water today?</StyledQuestion>
+            </li>}
 
           <StyledLi>
             <AddBtnStyle onClick={handleOpenModalAddWater}>

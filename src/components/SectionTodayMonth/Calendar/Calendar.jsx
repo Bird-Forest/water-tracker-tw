@@ -39,7 +39,7 @@ const Calendar = () => {
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
-  const [setHoveredDay] = useState(null);
+  const [ , setHoveredDay] = useState(null);
 
   useEffect(() => {
     setDay(date.getDate());
