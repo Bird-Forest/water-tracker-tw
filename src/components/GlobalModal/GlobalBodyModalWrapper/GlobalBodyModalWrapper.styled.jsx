@@ -26,8 +26,8 @@ export const StyledSection = styled.div`
     align-items: center;
     position: absolute;
 
-    top: 2.8%;
-    right: 4.2%;
+    top: 24px;
+    right: 12px;
 
     padding: 0;
     width: 24px;
@@ -37,12 +37,17 @@ export const StyledSection = styled.div`
 
     cursor: pointer;
     background-color: transparent;
-    ._cross-btn-close-modal-window_  {
+    ._cross-btn-close-modal-window_ {
       path {
         width: 12px;
         height: 12px;
         fill: ${theme.colors.primaryAccent};
       }
+    }
+
+    @media only screen and (min-width: 768px) {
+      top: 36px;
+      right: 24px;
     }
   }
 `;
