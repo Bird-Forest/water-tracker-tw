@@ -15,7 +15,9 @@ const paramsForNotify = {
   fontAwesomeIconSize: '20px',
 };
 
-axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL = 'http://localhost:3001';
+
+// axios.defaults.baseURL = 'https://backend-225p.onrender.com';
 
 // Utility to add JWT
 const setAuthHeader = token => {
@@ -37,8 +39,9 @@ export const register = createAsyncThunk(
     try {
       const res = await axios.post('/auth/register', user);
       setAuthHeader(res.data.token);
-      logIn(user)(thunkAPI.dispatch, thunkAPI.getState, null);
-      console.log(res.data);
+      // logIn(user)(thunkAPI.dispatch, thunkAPI.getState, null);
+      setAuthHeader(res.data);
+      console.log('I am operations:', res);
       return res.data;
     } catch (error) {
       if (error.response.status === 400) {
@@ -123,6 +126,7 @@ export const refreshUser = createAsyncThunk(
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
       const res = await axios.get('/auth/current');
+      console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error);
