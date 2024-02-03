@@ -23,12 +23,21 @@ import {
 import { useState } from 'react';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
+import { WaterDelModal } from 'components/WaterDelModal/WaterDelModal';
 
 const TodayWaterList = () => {
-  const [openModal, setOpenModal] = useState(false);
+  const [openModalAddWater, setOpenModalAddWater] = useState(false);
+  const [openModalEditWater, setOpenModalEditWater] = useState(false);
+  const [openModalDel, setOpenModalDel] = useState(false);
 
-  const handleOpenModal = () => {
-    setOpenModal(true);
+  const handleOpenModalAddWater = () => {
+    setOpenModalAddWater(true);
+  };
+  const handleOpenModalEditWater = () => {
+    setOpenModalEditWater(true);
+  };
+  const handleModalDel = () => {
+    setOpenModalDel(true);
   };
 
   const portionsAll = portions.map(({ id, time, quantity }) => (
@@ -43,10 +52,10 @@ const TodayWaterList = () => {
       </InfoWrap>
 
       <WrapBtn>
-        <EditBtn>
+        <EditBtn onClick={handleOpenModalEditWater}>
           <FaRegEdit />
         </EditBtn>
-        <DeleteBtn>
+        <DeleteBtn onClick={handleModalDel}>
           <CiTrash />
         </DeleteBtn>
       </WrapBtn>
@@ -61,7 +70,7 @@ const TodayWaterList = () => {
           {portionsAll}
 
           <StyledLi>
-            <AddBtnStyle onClick={handleOpenModal}>
+            <AddBtnStyle onClick={handleOpenModalAddWater}>
               <FaPlus />
               Add water
             </AddBtnStyle>
@@ -69,13 +78,39 @@ const TodayWaterList = () => {
         </UlStyle>
       </ListAddDiv>
 
-      {openModal && (
+      {openModalAddWater && (
         <GlobalModal
           $position={'center'}
-          openModal={openModal}
-          setOpenModal={setOpenModal}
+          openModal={openModalAddWater}
+          setOpenModal={setOpenModalAddWater}
         >
-          <AddWaterModal />
+          <AddWaterModal
+            closeModal={setOpenModalDel}
+            isEditing={false}
+            title={'add water'}
+          />
+        </GlobalModal>
+      )}
+      {openModalEditWater && (
+        <GlobalModal
+          $position={'center'}
+          openModal={openModalEditWater}
+          setOpenModal={setOpenModalEditWater}
+        >
+          <AddWaterModal
+            closeModal={setOpenModalDel}
+            isEditing={true}
+            title={'Edit the entered amount of water'}
+          />
+        </GlobalModal>
+      )}
+      {openModalDel && (
+        <GlobalModal
+          $position={'center'}
+          openModal={openModalDel}
+          setOpenModal={setOpenModalDel}
+        >
+          <WaterDelModal closeModal={setOpenModalDel} title={'Delete entry'} />
         </GlobalModal>
       )}
     </TodayStyledDiv>
