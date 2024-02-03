@@ -26,7 +26,7 @@ export const WaterDelModal = ({ closeModal }) => {
     <ModalWrap>
       <TextStyle>Are you sure you want to delete the entry?</TextStyle>
       <ButtonBox>
-        <Button onClick={handleDelete}>
+        <Button  onClick={handleDelete}>
           Delete {isDeleting && 'Deleting...'}
         </Button>
         <Button onClick={closeModal}>Cancel</Button>

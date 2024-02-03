@@ -31,17 +31,22 @@ const UserLogo = () => {
     e.stopPropagation();
   };
 
+  const closeModal = e => {
+console.log(e.target);
+console.log(e.currentTarget);
+
+    if (
+      e.target.className === 'sc-hLQSwg fhncXH' ||
+      e.target.className === 'sc-dmyCSP NBJoq'
+    ) {
+      return;
+    }
+    setIsOpen(false);
+  };
+
   useEffect(() => {
     const handleEscapeKey = e => {
       if (e.key === 'Escape') {
-        setIsOpen(false);
-      }
-    };
-    const closeModal = e => {
-      if (
-        e.target.className !== 'sc-hLQSwg fhncXH' &&
-        e.target.className !== 'sc-dmyCSP NBJoq'
-      ) {
         setIsOpen(false);
       }
     };
@@ -55,6 +60,7 @@ const UserLogo = () => {
       document.addEventListener('keydown', handleEscapeKey);
       document.addEventListener('click', closeModal);
     }
+	 
 
     return () => {
       document.removeEventListener('keydown', handleEscapeKey);
@@ -87,7 +93,12 @@ const UserLogo = () => {
         </UserLogoIcon>
       </UserLogoBtn>
       {isOpen && (
-        <UserLogoModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        <UserLogoModal
+          isOpen={isOpen}
+			 setIsOpen={setIsOpen}
+          closeModal={closeModal}
+          onClose={() => setIsOpen(false)}
+        />
       )}
     </UserLogoContainer>
   );
