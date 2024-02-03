@@ -1,4 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../redux/auth/authSelectors';
+// import { updateWaterRateThunk } from '../../redux/auth/operations';
 
 import {
   DailyNormWrap,
@@ -31,7 +34,11 @@ const DailyNormalModal = ({ closeModal }) => {
   const [dailyVol, setDailyVol] = useState('1.8');
   const [volGoal, setVolGoal] = useState('');
 
+  const { user } = useSelector(selectUser);
+  // const dispatch = useDispatch();
+
   const calculateWaterVol = useCallback(() => {
+    if (!weight) return;
     const factor = gender === 'girl' ? 0.03 : 0.04;
     const activityFactor = gender === 'girl' ? 0.4 : 0.6;
     const volume = (
@@ -43,7 +50,11 @@ const DailyNormalModal = ({ closeModal }) => {
 
   useEffect(() => {
     calculateWaterVol();
-  }, [calculateWaterVol]);
+
+    if (user) {
+      setGender(user.gender || 'female');
+    }
+  }, [calculateWaterVol, user]);
 
   const handleSave = async () => {
     //! *temporary entry to avoid the error message:*
@@ -54,6 +65,7 @@ const DailyNormalModal = ({ closeModal }) => {
       activeTraningHours,
       dailyVol,
     };
+    // dispatch(updateWaterRateThunk({ waterRateData })); //* waterRate
   };
 
   return (
