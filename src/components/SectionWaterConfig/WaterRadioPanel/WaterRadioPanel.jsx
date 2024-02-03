@@ -51,7 +51,11 @@ export const WaterRadioPanel = () => {
           openModal={openModal}
           setOpenModal={setOpenModal}
         >
-          <AddWaterModal closeModal={setOpenModal} title={'add Water'}/>
+          <AddWaterModal
+            closeModal={setOpenModal}
+            isEditing={false}
+            title={'add Water'}
+          />
         </GlobalModal>
       )}
     </>

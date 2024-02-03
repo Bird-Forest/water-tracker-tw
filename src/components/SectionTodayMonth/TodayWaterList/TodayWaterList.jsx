@@ -84,7 +84,11 @@ const TodayWaterList = () => {
           openModal={openModalAddWater}
           setOpenModal={setOpenModalAddWater}
         >
-          <AddWaterModal closeModal={setOpenModalDel} title={'add water'} />
+          <AddWaterModal
+            closeModal={setOpenModalDel}
+            isEditing={false}
+            title={'add water'}
+          />
         </GlobalModal>
       )}
       {openModalEditWater && (
@@ -95,6 +99,7 @@ const TodayWaterList = () => {
         >
           <AddWaterModal
             closeModal={setOpenModalDel}
+            isEditing={true}
             title={'Edit the entered amount of water'}
           />
         </GlobalModal>
