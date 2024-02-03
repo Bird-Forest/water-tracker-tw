@@ -7,8 +7,6 @@ export const StyledSection = styled.div`
   width: ${({ width }) => width && `${width}px`};
   height: ${({ height }) => height && `${height}px`};
 
-  display: flex;
-  justify-content: center;
   position: relative;
 
   padding: 24px 12px;
