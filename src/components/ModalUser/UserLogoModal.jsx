@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Div, Button } from './UserLogoModal.styled';
-import SettingModal from './SettingModal';
+import SettingModal from '../SettingsModal/SettingModal';
 import UserLogoutModal from './UserLogoutModal';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 
@@ -15,13 +15,13 @@ const UserLogoModal = () => {
     setOpenUserLogoutModal(true);
   };
 
-  //   const closeUserInfoModal = () => {
-  //     setOpenUserInfoModal(false);
-  //   };
+  const closeUserInfoModal = () => {
+    setOpenUserInfoModal(false);
+  };
 
-  //   const closeUserLogoutModal = () => {
-  //     setOpenUserLogoutModal(false);
-  //   };
+  const closeUserLogoutModal = () => {
+    setOpenUserLogoutModal(false);
+  };
 
   return (
     <>
@@ -43,18 +43,19 @@ const UserLogoModal = () => {
           $position={'center'}
           openModal={isOpenUserLogoutModal}
           setOpenModal={setOpenUserLogoutModal}
+          title={'Log out'}
         >
           <UserLogoutModal />
         </GlobalModal>
       )}
 
       {/* Модальне вікно для settings */}
-      {/* {isOpenUserInfoModal ?? <SettingModal onClose={closeUserInfoModal} />} */}
+      {isOpenUserInfoModal ?? <SettingModal onClose={closeUserInfoModal} />}
 
       {/* Модальне вікно для logout */}
-      {/* {isOpenUserLogoutModal ?? (
+      {isOpenUserLogoutModal ?? (
         <UserLogoutModal onClose={closeUserLogoutModal} />
-      )} */}
+      )}
     </>
   );
 };
