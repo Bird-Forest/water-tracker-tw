@@ -8,7 +8,12 @@ export const LogoutModal = styled.div`
     line-height: 1.11;
     margin-bottom: 24px;
   }
-
+  .title_logout {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.23;
+    margin-bottom: 24px;
+  }
   .logoutBtn {
     display: block;
     border-radius: 10px;

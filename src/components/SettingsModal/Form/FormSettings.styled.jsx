@@ -29,17 +29,18 @@ export const LabelName = styled.label`
   line-height: 20px;
   color: ${theme.colors.primaryDark};
 
-  @media screen and (min-width: 1440px) {
+  /* @media screen and (min-width: 1440px) {
     &:first-child {
       margin-top: 53px;
     }
-  }
+  } */
 `;
 
 export const GenderWrapper = styled.div`
   margin-top: 12px;
   display: flex;
   gap: 24px;
+  margin-bottom: 74px;
 `;
 
 export const RadioWrapper = styled.div`
@@ -100,16 +101,9 @@ export const PasswordWrapper = styled.div`
 export const EyeButton = styled.span`
   position: absolute;
   right: 8px;
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
   cursor: pointer;
-
-  svg {
-    display: block;
-    width: 16px;
-    height: 16px;
-    fill: ${theme.colors.secondaryBlue};
-  }
 `;
 
 export const Input = styled.input`
@@ -121,7 +115,7 @@ export const Input = styled.input`
   color: ${theme.colors.blue};
   line-height: 20px;
   margin-top: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 24px;
 
   &:focus {
     outline: 1px solid ${theme.colors.secondaryBlue};

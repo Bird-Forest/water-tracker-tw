@@ -5,7 +5,7 @@ import FormSettings from './Form/FormSettings';
 const SettingModal = () => {
   return (
     <div>
-      Settings
+      <h1>Settings</h1>
       <UploadImage />
       <FormSettings />
     </div>
