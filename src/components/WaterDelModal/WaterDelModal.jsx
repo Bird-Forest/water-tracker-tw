@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import {
   ModalWrap,
+  TextStyle,
   ButtonBox,
   Button,
-  TextStyle,
 } from './WaterDelModal.styled';
 
 export const WaterDelModal = ({ closeModal }) => {
@@ -17,6 +17,7 @@ export const WaterDelModal = ({ closeModal }) => {
     closeModal();
   };
 
+  // eslint-disable-next-line
   const handleRecordIdChange = newRecordId => {
     setRecordId(newRecordId);
   };

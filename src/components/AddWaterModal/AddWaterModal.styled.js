@@ -86,13 +86,12 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const StyledPlusIcon = styled(PlusIcon)`
-  width: 2em;
-  height: 2em;
-  stroke: blue;
+  stroke: ${theme.colors.primaryAccent};
 `;
 
 export const StyledMinusIcon = styled(MinusIcon)`
-  stroke: blue;
+  stroke: ${theme.colors.primaryAccent};
+  fill: ${theme.colors.primaryAccent};
 `;
 
 export const FormStyled = styled.form`

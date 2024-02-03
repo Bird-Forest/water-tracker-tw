@@ -25,11 +25,11 @@ const AddWaterModal = ({ closeModal }) => {
         setWaterAmount(state => Math.max(state - 50, 0));
         break;
       case 'plus':
-        setWaterAmount(state => Math.min(state + 50, 4500));
+        setWaterAmount(state => Math.min(state + 50, 5000));
         break;
       case 'input':
         const inputValue = Number(evt.target.value);
-        const validInputValue = Math.min(Math.max(inputValue, 0), 4500);
+        const validInputValue = Math.min(Math.max(inputValue, 0), 5000);
         setWaterAmount(validInputValue);
         break;
       default:
