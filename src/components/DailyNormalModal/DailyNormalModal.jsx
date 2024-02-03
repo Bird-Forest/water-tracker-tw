@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/auth/authSelectors';
+import { selectUser } from '../../redux/auth/selectors';
 // import { updateWaterRateThunk } from '../../redux/auth/operations';
 
 import {
