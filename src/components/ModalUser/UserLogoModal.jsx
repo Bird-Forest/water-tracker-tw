@@ -13,9 +13,9 @@ const UserLogoModal = ({ closeModal }) => {
   };
 
   if (isOpenUserInfoModal || isOpenUserLogoutModal) {
-    document.removeEventListener('click', closeModal);
+    window.removeEventListener('click', closeModal);
   } else {
-    document.addEventListener('click', closeModal);
+    window.addEventListener('click', closeModal);
   }
 
   const openUserLogoutModal = () => {

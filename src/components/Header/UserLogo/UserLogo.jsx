@@ -32,9 +32,6 @@ const UserLogo = () => {
   };
 
   const closeModal = e => {
-console.log(e.target);
-console.log(e.currentTarget);
-
     if (
       e.target.className === 'sc-hLQSwg fhncXH' ||
       e.target.className === 'sc-dmyCSP NBJoq'
@@ -57,14 +54,13 @@ console.log(e.currentTarget);
     //  };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscapeKey);
-      document.addEventListener('click', closeModal);
+      window.addEventListener('keydown', handleEscapeKey);
+      window.addEventListener('click', closeModal);
     }
-	 
 
     return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
-      document.removeEventListener('click', closeModal);
+      window.removeEventListener('keydown', handleEscapeKey);
+      window.removeEventListener('click', closeModal);
     };
   }, [isOpen, setIsOpen]);
 
@@ -95,8 +91,8 @@ console.log(e.currentTarget);
       {isOpen && (
         <UserLogoModal
           isOpen={isOpen}
-			 setIsOpen={setIsOpen}
           closeModal={closeModal}
+			 setIsOpen={setIsOpen}
           onClose={() => setIsOpen(false)}
         />
       )}
