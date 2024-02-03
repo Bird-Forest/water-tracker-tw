@@ -85,9 +85,9 @@ const Calendar = () => {
                   year === today.getFullYear();
                 const isSelected = dayOfMonth === day;
                 const isLeft =
-                  dayOfMonth <= 6 ||
-                  (dayOfMonth >= 11 && dayOfMonth <= 16) ||
-                  (dayOfMonth >= 21 && dayOfMonth <= 26) ||
+                  dayOfMonth <= 5 ||
+                  (dayOfMonth >= 11 && dayOfMonth <= 15) ||
+                  (dayOfMonth >= 21 && dayOfMonth <= 25) ||
                   dayOfMonth === 31;
                 return (
                   <DayCell key={`${dayOfMonth}-${month + 1}`}>
