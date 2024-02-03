@@ -12,20 +12,24 @@ export const GlobalModal = ({
 }) => {
   const handleCloseModal = e => {
     if (
-      e.target !== e.currentTarget &&
-      e.target.nodeName !== 'svg' &&
-      e.target.nodeName !== 'path' &&
-      e.target.nodeName !== 'BUTTON'
+      e.target === e.currentTarget ||
+      (e.target.nodeName === 'BUTTON' &&
+        e.target.children[0]?.className.baseVal ===
+          '_cross-btn-close-modal-window_') ||
+      (e.target.nodeName === 'svg' &&
+        e.target.className.baseVal === '_cross-btn-close-modal-window_') ||
+      (e.target.nodeName === 'path' &&
+        e.target.ownerSVGElement.className.baseVal ===
+          '_cross-btn-close-modal-window_')
     ) {
-      return;
+      setOpenModal(false);
     }
-    setOpenModal(false);
   };
 
   useEffect(() => {
     if (openModal) {
       document.body.style.overflow = 'hidden';
-    } 
+    }
     const handelKey = function (e) {
       if (e.key === 'Escape') {
         setOpenModal(false);
@@ -34,7 +38,7 @@ export const GlobalModal = ({
     window.addEventListener('keydown', handelKey);
     return () => {
       window.removeEventListener('keydown', handelKey);
-		document.body.style.overflow = 'visible';
+      document.body.style.overflow = 'visible';
     };
   }, [setOpenModal, openModal]);
 

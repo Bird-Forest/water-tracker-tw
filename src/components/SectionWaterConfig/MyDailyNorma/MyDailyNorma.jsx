@@ -31,7 +31,7 @@ export const MyDailyNorma = () => {
       {/* {openModal && <DailyNormalModal closeModal={handleCloseModal} />} */}
       {openModal && (
         <GlobalModal openModal={openModal} setOpenModal={setOpenModal}>
-          <DailyNormalModal />
+          <DailyNormalModal closeModal={setOpenModal} title={'My daily norma'}/>
         </GlobalModal>
       )}
     </>

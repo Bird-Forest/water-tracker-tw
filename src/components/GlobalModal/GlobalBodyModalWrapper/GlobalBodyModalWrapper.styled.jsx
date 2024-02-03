@@ -20,7 +20,7 @@ export const StyledSection = styled.div`
     padding: 32px 24px;
   }
 
-  .btn-modal {
+  .btn-modal-cross-cancel {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,7 +37,7 @@ export const StyledSection = styled.div`
 
     cursor: pointer;
     background-color: transparent;
-    .btn-cross {
+    ._cross-btn-close-modal-window_  {
       path {
         width: 12px;
         height: 12px;
