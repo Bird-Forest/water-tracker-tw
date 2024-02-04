@@ -42,7 +42,7 @@ const UserLogoModal = ({ closeModal }) => {
           openModal={isOpenUserInfoModal}
           setOpenModal={setOpenUserInfoModal}
         >
-          <SettingModal />
+          <SettingModal title={'Title'} />
         </GlobalModal>
       )}
       {isOpenUserLogoutModal && (
@@ -51,7 +51,7 @@ const UserLogoModal = ({ closeModal }) => {
           openModal={isOpenUserLogoutModal}
           setOpenModal={setOpenUserLogoutModal}
         >
-          <UserLogoutModal />
+          <UserLogoutModal onClose={setOpenUserLogoutModal} title={'Log out'} />
         </GlobalModal>
       )}
 
