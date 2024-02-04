@@ -1,14 +1,15 @@
 import React from 'react';
 import UploadImage from './Upload/UploadImage';
 import FormSettings from './Form/FormSettings';
+import { StyledSettingModal } from './SettingModal.styled';
 
 const SettingModal = () => {
   return (
-    <div>
+    <StyledSettingModal>
       <h1>Settings</h1>
       <UploadImage />
       <FormSettings />
-    </div>
+    </StyledSettingModal>
   );
 };
 

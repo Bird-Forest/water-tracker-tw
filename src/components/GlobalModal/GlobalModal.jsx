@@ -3,12 +3,10 @@ import { GlobalBodyModalWrapper } from './GlobalBodyModalWrapper/GlobalBodyModal
 import { GlobalOverlay } from './GlobalOverlay/GlobalOverlay';
 
 export const GlobalModal = ({
-  width,
-  height,
   openModal,
-  $position,
   setOpenModal,
   children,
+  $position,
 }) => {
   const handleCloseModal = e => {
     if (
@@ -43,10 +41,8 @@ export const GlobalModal = ({
   }, [setOpenModal, openModal]);
 
   return (
-    <GlobalOverlay $position={$position} closeModal={handleCloseModal}>
-      <GlobalBodyModalWrapper width={width} height={height}>
-        {children}
-      </GlobalBodyModalWrapper>
+    <GlobalOverlay closeModal={handleCloseModal} $position={$position}>
+      <GlobalBodyModalWrapper>{children}</GlobalBodyModalWrapper>
     </GlobalOverlay>
   );
 };

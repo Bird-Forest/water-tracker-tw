@@ -6,13 +6,13 @@ import theme from '../../BasicStyle/themeJSX';
 
 export const StyledAddWaterModal = styled.div`
   width: 100vw;
-  max-width: 280px;
+  max-width: calc(280px - 24px);
   @media only screen and (min-width: 768px) {
-    max-width: 704px;
+    max-width: calc(704px - 48px);
   }
 
   @media only screen and (min-width: 1440px) {
-    max-width: 592px;
+    max-width: calc(592px - 48px);
   }
 `;
 
