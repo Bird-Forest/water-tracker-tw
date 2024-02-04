@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 
 export const LogoutModal = styled.div`
+  width: 100vw;
+  max-width: calc(280px - 24px);
+
+  @media only screen and (max-width: 767px) {
+    padding: 12px 12px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    max-width: calc(592px - 48px);
+  }
   .title {
     color: #2f2f2f;
     font-size: 18px;
@@ -24,7 +34,7 @@ export const LogoutModal = styled.div`
     border: transparent;
     padding: 8px 30px;
 
-    width: 232px;
+    width: 100%;
     height: 36px;
 
     color: #ffffff;
@@ -50,7 +60,7 @@ export const LogoutModal = styled.div`
     border: transparent;
     padding: 8px 30px;
 
-    width: 232px;
+    width: 100%;
     height: 36px;
 
     color: #407bff;

@@ -23,7 +23,9 @@ export const MyDailyNorma = () => {
       <StyledDailyNorma>
         <h3 className="daily-norma-title">My daily norma</h3>
         <div className="daily-norma-body">
-          <p className="daily-norma-text">{userProfile.dailyNorma} L</p>
+          <p className="daily-norma-text">
+            {userProfile.dailyNorma ? userProfile.dailyNorma : '2'} L
+          </p>
           <button
             onClick={handleOpenModal}
             className="daily-norma-btn"
