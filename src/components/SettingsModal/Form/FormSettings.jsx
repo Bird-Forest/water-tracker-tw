@@ -156,13 +156,13 @@ export const FormSettings = () => {
             <PasswordWrapper>
               <EyeButton onClick={() => setShowPassword(!showPassword)}>
                 {showPassword ? (
-                  <FiEyeOff
+                  <FiEye
                     size={16}
                     color="#407BFF"
                     style={{ transform: 'rotate(180deg)' }}
                   />
                 ) : (
-                  <FiEye size={16} color="#407BFF" />
+                  <FiEyeOff size={16} color="#407BFF" />
                 )}
               </EyeButton>
               <Input
@@ -181,13 +181,13 @@ export const FormSettings = () => {
               <PasswordWrapper>
                 <EyeButton onClick={() => setShowNewPassword(!showNewPassword)}>
                   {showPassword ? (
-                    <FiEyeOff
+                    <FiEye
                       size={16}
                       color="#407BFF"
                       style={{ transform: 'rotate(180deg)' }}
                     />
                   ) : (
-                    <FiEye size={16} color="#407BFF" />
+                    <FiEyeOff size={16} color="#407BFF" />
                   )}
                 </EyeButton>
                 <Input
@@ -209,13 +209,13 @@ export const FormSettings = () => {
                   onClick={() => setShowRepeatPassword(!showRepeatPassword)}
                 >
                   {showPassword ? (
-                    <FiEyeOff
+                    <FiEye
                       size={16}
                       color="#407BFF"
                       style={{ transform: 'rotate(180deg)' }}
                     />
                   ) : (
-                    <FiEye size={16} color="#407BFF" />
+                    <FiEyeOff size={16} color="#407BFF" />
                   )}
                 </EyeButton>
                 <Input
@@ -232,7 +232,7 @@ export const FormSettings = () => {
         </div>
       </FormContainer>
       <Button disabled={!isSubmit} type="submit">
-        Save
+        <p className="saveBtn">Save</p>
       </Button>
     </Form>
   );

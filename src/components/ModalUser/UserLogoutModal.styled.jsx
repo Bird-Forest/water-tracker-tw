@@ -75,7 +75,11 @@ export const LogoutModal = styled.div`
   .cancelBtn:active {
     box-shadow: none;
   }
-
+  @media only screen and (max-width: 767px) {
+    .div {
+      max-width: 280px;
+    }
+  }
   @media only screen and (min-width: 768px) {
     .logoutBtn {
       font-size: 18px;
