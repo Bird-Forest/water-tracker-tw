@@ -4,13 +4,20 @@ import SettingModal from '../SettingsModal/SettingModal';
 import UserLogoutModal from './UserLogoutModal';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 
-const UserLogoModal = () => {
+const UserLogoModal = ({ closeModal }) => {
   const [isOpenUserInfoModal, setOpenUserInfoModal] = useState(false);
   const [isOpenUserLogoutModal, setOpenUserLogoutModal] = useState(false);
 
   const openUserInfoModal = () => {
     setOpenUserInfoModal(true);
   };
+
+  if (isOpenUserInfoModal || isOpenUserLogoutModal) {
+    window.removeEventListener('click', closeModal);
+  } else {
+    window.addEventListener('click', closeModal);
+  }
+
   const openUserLogoutModal = () => {
     setOpenUserLogoutModal(true);
   };
