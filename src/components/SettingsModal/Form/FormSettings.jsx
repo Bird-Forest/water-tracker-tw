@@ -1,6 +1,8 @@
 import { useAuth } from '../../../hooks/useAuth';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../../redux/auth/operations';
 
 import {
   Form,
@@ -16,6 +18,7 @@ import {
   Button,
   FormContainer,
 } from './FormSettings.styled';
+import { Notify } from 'notiflix';
 
 export const FormSettings = () => {
   const { user } = useAuth();
@@ -31,6 +34,16 @@ export const FormSettings = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const state = {
+    gender: gender,
+    name: name,
+    email: email,
+    password: password,
+    newPassword: newPassword,
+  };
 
   const handleChangePassword = e => {
     setRepeatPassword(e.target.value);
@@ -57,21 +70,24 @@ export const FormSettings = () => {
   };
 
   const handleSubmit = e => {
-    const errors = {};
-
     e.preventDefault();
 
     if (password && !newPassword) {
-      return errors;
+      Notify.error('Please enter new password');
+      return;
     }
     if (!password && newPassword) {
-      return errors;
+      Notify.error('Please enter old password');
+      return;
     }
     if (newPassword !== repeatPassword) {
-      return errors;
+      Notify.error("Passwords don't match");
+      return;
     }
     isSubmit = false;
     setNewPassword(newPassword);
+    dispatch(updateUser(state));
+    Notify.success("User's data updated successfully");
   };
 
   return (

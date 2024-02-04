@@ -16,11 +16,12 @@ const UserLogoutModal = ({ onClose }) => {
   };
   return (
     <LogoutModal>
+      <h1 className="title_logout">Log out</h1>
       <div>
         <h4 className="title">Do you really want to leave?</h4>
         <div className="buttons">
           <button type="button" onClick={handleLogout} className="logoutBtn">
-            Logout
+            Log out
           </button>
           <button type="button" onClick={handleClose} className="cancelBtn">
             Cancel

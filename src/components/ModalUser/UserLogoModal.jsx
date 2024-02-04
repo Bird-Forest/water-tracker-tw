@@ -34,6 +34,7 @@ const UserLogoModal = () => {
           $position={'center'}
           openModal={isOpenUserInfoModal}
           setOpenModal={setOpenUserInfoModal}
+          width={1008}
         >
           <SettingModal />
         </GlobalModal>
@@ -43,7 +44,7 @@ const UserLogoModal = () => {
           $position={'center'}
           openModal={isOpenUserLogoutModal}
           setOpenModal={setOpenUserLogoutModal}
-          title={'Log out'}
+          width={524}
         >
           <UserLogoutModal />
         </GlobalModal>
