@@ -112,7 +112,7 @@ const Calendar = () => {
                       $isSelected={isSelected}
                       $isOutlineVisible={isOutlineVisible}
                       onMouseEnter={event => {
-                        var rect = event.target.getBoundingClientRect();
+                        const rect = event.target.getBoundingClientRect();
                         setHoveredDayCoords({
                           x: hoveredDayCoords.x,
                           y: rect.bottom,
