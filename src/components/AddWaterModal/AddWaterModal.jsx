@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import Notiflix from 'notiflix';
 // import { useDispatch } from 'react-redux';
 // import {
 //   addWaterEntry,
 //   updateWaterEntry,
+//   getDailyWaterAmount,
 // } from '../../redux/tracker/operations';
 
 import {
@@ -22,6 +24,8 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
   const [recordedTime, setRecordedTime] = useState(
     new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   );
+
+  // const dispatch = useDispatch();
 
   const handleAmountChange = evt => {
     const { name } = evt.currentTarget;
@@ -46,20 +50,35 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
     evt.preventDefault();
 
     if (amountWater === 0) {
-      alert('Enter a non-zero value for water');
+      Notiflix.Notify.warning(
+        'A non-zero value must be entered for the amount of water'
+      );
       return;
     }
     if (amountWater < 0 || amountWater === '') {
-      alert('Enter a positive value for water');
+      Notiflix.Notify.warning(
+        'It is necessary to enter a positive value for the amount of water'
+      );
       return;
     }
     if (!recordedTime) {
-      alert('Enter the recording time');
+      Notiflix.Notify.warning('Enter the recording time');
       return;
     }
-
+    const newTime = new Date(recordedTime);
     // eslint-disable-next-line
-    const saveWater = { amountWater: amountWater, time: recordedTime };
+    const saveWater = { dailyWaterAmount: amountWater, time: newTime };
+
+    // dispatch(addWaterEntry(saveWater))
+    //   .then(() => {
+    //     Notiflix.Notify.success('Amount of water added successfully!');
+    //     dispatch(getDailyWaterAmount());
+    //   //! опційно - закриття модалки
+    //     close();
+    //   })
+    //   .catch(error => {
+    //     Notiflix.Notify.failure(`Failed to add amount of water: ${error.message}`);
+    //   });
   };
 
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
