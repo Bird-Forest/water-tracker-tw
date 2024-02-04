@@ -39,7 +39,7 @@ export const register = createAsyncThunk(
     try {
       const res = await axios.post('/auth/register', user);
       setAuthHeader(res.data.token);
-      logIn(user)(thunkAPI.dispatch, thunkAPI.getState, null);
+      logIn(user)(thunkAPI.dispatch, thunkAPI.getState);
       setAuthHeader(res.data);
       console.log('I am operations:', res);
       return res.data;
@@ -48,7 +48,7 @@ export const register = createAsyncThunk(
         Notify.failure('User creation error.', paramsForNotify);
         return thunkAPI.rejectWithValue(error.message);
       } else if (error.response.status === 409) {
-        Notify.failure('Email in already in use.', paramsForNotify);
+        Notify.failure('Email is already in use.', paramsForNotify);
         return thunkAPI.rejectWithValue(error.message);
       } else if (error.response.status === 500) {
         Notify.failure('Server error.', paramsForNotify);
@@ -79,6 +79,12 @@ export const logIn = createAsyncThunk(
     } catch (error) {
       if (error.response.status === 400) {
         Notify.failure('Login error.', paramsForNotify);
+      } else if (error.response.status === 401) {
+        Notify.failure('Email or password is wrong', paramsForNotify);
+        return thunkAPI.rejectWithValue(error.message);
+      } else if (error.response.status === 500) {
+        Notify.failure('Server error.', paramsForNotify);
+        return thunkAPI.rejectWithValue(error.message);
       }
       console.log(error);
       return thunkAPI.rejectWithValue(error.message);
@@ -115,14 +121,14 @@ export const refreshUser = createAsyncThunk(
 
 export const getInfoUser = createAsyncThunk(
   'user/getInfoUser',
-  async (_, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
 
       setAuthHeader(token);
 
-      const res = await axios.get('user/current');
+      const res = await axios.get(`user/${userData._id}`, userData);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -162,7 +168,28 @@ export const updateUser = createAsyncThunk(
 
       setAuthHeader(token);
 
-      const res = await axios.put('user/current', userData);
+      const res = await axios.patch(`user/update/${userData._id}`, userData);
+
+      Notify.success('User information updated successfully.', paramsForNotify);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      Notify.failure('Error updating user information.', paramsForNotify);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateWaterRate = createAsyncThunk(
+  'user/waterRate',
+  async (_, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      setAuthHeader(token);
+
+      const res = await axios.patch('/user/water-rate');
 
       Notify.success('User information updated successfully.', paramsForNotify);
       return res.data;
