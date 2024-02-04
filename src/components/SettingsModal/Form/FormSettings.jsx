@@ -180,7 +180,7 @@ export const FormSettings = () => {
             <div>
               <PasswordWrapper>
                 <EyeButton onClick={() => setShowNewPassword(!showNewPassword)}>
-                  {showPassword ? (
+                  {showNewPassword ? (
                     <FiEye
                       size={16}
                       color="#407BFF"
@@ -208,7 +208,7 @@ export const FormSettings = () => {
                 <EyeButton
                   onClick={() => setShowRepeatPassword(!showRepeatPassword)}
                 >
-                  {showPassword ? (
+                  {showRepeatPassword ? (
                     <FiEye
                       size={16}
                       color="#407BFF"
