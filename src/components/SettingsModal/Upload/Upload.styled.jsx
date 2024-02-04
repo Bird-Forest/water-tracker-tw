@@ -33,6 +33,15 @@ export const Upload = styled.label`
       color: ${theme.colors.secondaryYellow};
     }
   }
+  &:hover,
+  &:focus {
+    & svg {
+      fill: ${theme.colors.secondaryYellow};
+    }
+  }
+  & svg {
+    transition: fill 0.25s ${theme.animation.cubicBezier};
+  }
 `;
 
 export const Avatar = styled.img`
