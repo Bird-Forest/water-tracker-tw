@@ -1,8 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser } from './operations';
+import {
+  register,
+  logIn,
+  logOut,
+  refreshUser,
+  updateWaterRate,
+  updateAvatar,
+  updateUser,
+  getInfoUser,
+} from './operations';
 
 const initialState = {
-  user: { name: null, email: null, avatarURL: null, gender: null },
+  user: {
+    name: null,
+    email: null,
+    avatarURL: null,
+    gender: null,
+    dailyNorma: null,
+  },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -50,6 +65,50 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        state.loading = false;
+      })
+      .addCase(updateWaterRate.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(updateWaterRate.fulfilled, (state, action) => {
+        state.user.dailyNorma = action.payload.dailyNorma;
+        state.loading = false;
+      })
+      .addCase(updateWaterRate.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loading = false;
+      })
+      .addCase(updateAvatar.pending, state => {
+        state.loading = true;
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.user.avatarURL = action.payload.avatarURL;
+        state.loading = false;
+      })
+      .addCase(updateAvatar.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loading = false;
+      })
+      .addCase(updateUser.pending, state => {
+        state.loading = true;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.loading = false;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.error = action.error.message;
+        state.loading = false;
+      })
+      .addCase(getInfoUser.pending, state => {
+        state.loading = true;
+      })
+      .addCase(getInfoUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.loading = false;
+      })
+      .addCase(getInfoUser.rejected, (state, action) => {
+        state.error = action.error.message;
         state.loading = false;
       }),
 });

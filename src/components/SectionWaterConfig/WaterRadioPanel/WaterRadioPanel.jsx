@@ -4,25 +4,35 @@ import theme from 'BasicStyle/themeJSX';
 import { useState } from 'react';
 import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
+import { useSelector } from 'react-redux';
+import { selectDailyWaterAmount } from '../../../redux/tracker/selectors';
 
 export const WaterRadioPanel = () => {
   const [openModal, setOpenModal] = useState(false);
+  //   const [parsent, setParsent] = useState(0);
+  //   const [bgColor, setBgColor] = useState('');
 
   const handleOpenModal = () => {
     setOpenModal(true);
   };
+  const { percentage } = useSelector(selectDailyWaterAmount);
 
+  let parsent = percentage;
   let bgColor;
-  let parsent = 160;
 
-  const change = value => {
-    if (value > 100) {
-      parsent = 100;
-      bgColor = `${theme.colors.primaryAccent}`;
-    }
-  };
+  if (percentage >= 100) {
+    parsent = 100;
+    bgColor = theme.colors.primaryAccent;
+  }
 
-  change(parsent);
+  //   useEffect(() => {
+  //     setParsent(percentage);
+
+  //     if (parsent >= 100) {
+  //       setParsent(100);
+  //       setBgColor(theme.colors.primaryAccent);
+  //     }
+  //   }, [percentage, parsent]);
 
   return (
     <>

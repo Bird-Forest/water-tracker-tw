@@ -41,6 +41,7 @@ const TodayWaterList = () => {
     setOpenModalDel(true);
   };
 
+
   const portionsAll = portions.map(({ id, time, quantity }) => (
     <ListItem key={id}>
       <InfoWrap>
@@ -56,7 +57,7 @@ const TodayWaterList = () => {
         <EditBtn onClick={handleOpenModalEditWater}>
           <FaRegEdit />
         </EditBtn>
-        <DeleteBtn onClick={handleModalDel}>
+        <DeleteBtn  onClick={handleModalDel}>
           <CiTrash />
         </DeleteBtn>
       </WrapBtn>
@@ -113,7 +114,7 @@ const TodayWaterList = () => {
           openModal={openModalDel}
           setOpenModal={setOpenModalDel}
         >
-          <WaterDelModal closeModal={setOpenModalDel} title={'Delete entry'} />
+          <WaterDelModal  closeModal={setOpenModalDel} title={'Delete entry'} />
         </GlobalModal>
       )}
     </TodayStyledDiv>

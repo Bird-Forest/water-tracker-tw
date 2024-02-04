@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { StyledDailyNorma } from './MyDailyNorma.styled';
 import DailyNormalModal from 'components/DailyNormalModal/DailyNormalModal';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/selectors';
 
 export const MyDailyNorma = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -9,6 +11,9 @@ export const MyDailyNorma = () => {
   const handleOpenModal = () => {
     setOpenModal(true);
   };
+
+  const userProfile = useSelector(selectUser);
+
   // const handleCloseModal = () => {
   //     setOpenModal(false);
   //   };
@@ -18,7 +23,7 @@ export const MyDailyNorma = () => {
       <StyledDailyNorma>
         <h3 className="daily-norma-title">My daily norma</h3>
         <div className="daily-norma-body">
-          <p className="daily-norma-text">1.5 L</p>
+          <p className="daily-norma-text">{userProfile.dailyNorma} L</p>
           <button
             onClick={handleOpenModal}
             className="daily-norma-btn"
@@ -31,7 +36,10 @@ export const MyDailyNorma = () => {
       {/* {openModal && <DailyNormalModal closeModal={handleCloseModal} />} */}
       {openModal && (
         <GlobalModal openModal={openModal} setOpenModal={setOpenModal}>
-          <DailyNormalModal closeModal={setOpenModal} title={'My daily norma'}/>
+          <DailyNormalModal
+            closeModal={setOpenModal}
+            title={'My daily norma'}
+          />
         </GlobalModal>
       )}
     </>

@@ -1,30 +1,31 @@
 import { LogoutModal } from 'components/ModalUser/UserLogoutModal.styled';
 import React from 'react';
-// import { useDispatch } from 'react-redux';
-// import { logOut } from 'redux/auth/operations';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../redux/auth/operations';
 
 const UserLogoutModal = ({ onClose }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    // dispatch(logOut());
+    dispatch(logOut());
     onClose(false);
   };
 
-//   const handleClose = () => {
-//     onClose(false);
-//   };
+  const handleClose = () => {
+    onClose(false);
+  };
   return (
     <LogoutModal>
+      <h1 className="title_logout">Log out</h1>
       <div>
         <h4 className="title">Do you really want to leave?</h4>
-        <div>
-          <button type="button" onClick={handleLogout} className="logoutbtn">
-            Logout
+        <div className="buttons">
+          <button type="button" onClick={handleLogout} className="logoutBtn">
+            Log out
           </button>
-          {/* <button type="button" onClick={handleClose} className="cancelbtn">
+          <button type="button" onClick={handleClose} className="cancelBtn">
             Cancel
-          </button> */}
+          </button>
         </div>
       </div>
     </LogoutModal>

@@ -32,4 +32,10 @@ export const Button = styled.button`
   border: transparent;
   font-size: 16px;
   line-height: 1.25;
+  &:hover,
+  &:focus {
+    & svg {
+      fill: #ff9d43;
+    }
+  }
 `;
