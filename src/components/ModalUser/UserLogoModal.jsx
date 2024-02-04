@@ -38,7 +38,6 @@ const UserLogoModal = ({ closeModal }) => {
       </Div>
       {isOpenUserInfoModal && (
         <GlobalModal
-          $position={'center'}
           openModal={isOpenUserInfoModal}
           setOpenModal={setOpenUserInfoModal}
           width={1008}
