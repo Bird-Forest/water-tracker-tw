@@ -16,7 +16,7 @@ export const StyledAddWaterModal = styled.div`
   }
 `;
 
-export const AddWater = styled.p`
+export const AddWater = styled.h2`
   font-size: 26px;
   font-weight: 500;
   line-height: 1.23;
