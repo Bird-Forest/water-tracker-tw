@@ -160,14 +160,15 @@ export const refreshUser = createAsyncThunk(
 
 export const getInfoUser = createAsyncThunk(
   'user/getInfoUser',
-  async (userData, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
+      const userId = state.auth.user._id;
 
       setAuthHeader(token);
 
-      const res = await axios.get(`user/${userData._id}`, userData);
+      const res = await axios.get(`user/${userId}`);
       return res.data;
     } catch (error) {
       switch (error.response.status) {
@@ -199,7 +200,7 @@ export const updateAvatar = createAsyncThunk(
 
       setAuthHeader(token);
 
-      const res = await axios.patch('/avatars', formData);
+      const res = await axios.patch('user/avatars', formData);
 
       Notify.success(NOTIFICATIONS.SUCCESS.AVATAR_UPDATED, paramsForNotify);
       return res.data;
@@ -230,10 +231,11 @@ export const updateUser = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
+      const userId = state.auth.user._id;
 
       setAuthHeader(token);
 
-      const res = await axios.patch(`user/update/${userData._id}`, userData);
+      const res = await axios.patch(`user/update/${userId}`, userData);
 
       Notify.success(NOTIFICATIONS.SUCCESS.USER_UPDATED, paramsForNotify);
       return res.data;
