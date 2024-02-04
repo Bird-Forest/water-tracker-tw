@@ -39,12 +39,28 @@ const Calendar = () => {
   const [day, setDay] = useState(date.getDate());
   const [month, setMonth] = useState(date.getMonth());
   const [year, setYear] = useState(date.getFullYear());
-  const [setHoveredDay] = useState(null);
+  const [hoveredDayCoords, setHoveredDayCoords] = useState({ x: 0, y: 0 });
+  const daysContainerRef = React.useRef(null);
+
+  const updateXCoord = () => {
+    if (daysContainerRef.current) {
+      const rect = daysContainerRef.current.getBoundingClientRect();
+      setHoveredDayCoords(coords => ({
+        ...coords,
+        x: rect.left + rect.width / 2,
+      }));
+    }
+  };
 
   useEffect(() => {
     setDay(date.getDate());
     setMonth(date.getMonth());
     setYear(date.getFullYear());
+    updateXCoord();
+    window.addEventListener('resize', updateXCoord);
+    return () => {
+      window.removeEventListener('resize', updateXCoord);
+    };
   }, [date]);
 
   function isLeapYear(year) {
@@ -73,7 +89,7 @@ const Calendar = () => {
           </Button>
         </StyledMonthWrapper>
       </MonthNav>
-      <DaysContainer>
+      <DaysContainer ref={daysContainerRef}>
         {days[month]
           ? Array(days[month])
               .fill(null)
@@ -85,9 +101,9 @@ const Calendar = () => {
                   year === today.getFullYear();
                 const isSelected = dayOfMonth === day;
                 const isLeft =
-                  dayOfMonth <= 6 ||
-                  (dayOfMonth >= 11 && dayOfMonth <= 16) ||
-                  (dayOfMonth >= 21 && dayOfMonth <= 26) ||
+                  dayOfMonth <= 5 ||
+                  (dayOfMonth >= 11 && dayOfMonth <= 15) ||
+                  (dayOfMonth >= 21 && dayOfMonth <= 25) ||
                   dayOfMonth === 31;
                 return (
                   <DayCell key={`${dayOfMonth}-${month + 1}`}>
@@ -95,13 +111,23 @@ const Calendar = () => {
                       $isToday={isToday}
                       $isSelected={isSelected}
                       $isOutlineVisible={isOutlineVisible}
-                      onMouseEnter={() => setHoveredDay(dayOfMonth)}
+                      onMouseEnter={event => {
+                        var rect = event.target.getBoundingClientRect();
+                        setHoveredDayCoords({
+                          x: hoveredDayCoords.x,
+                          y: rect.bottom,
+                        });
+                      }}
                       onClick={() => {
                         setDay(dayOfMonth);
                       }}
                     >
                       {dayOfMonth}
-                      <Popup className={isLeft ? 'left' : 'right'}>
+                      <Popup
+                        x={hoveredDayCoords.x}
+                        y={hoveredDayCoords.y}
+                        className={isLeft ? 'left' : 'right'}
+                      >
                         <>
                           <h3>
                             {dayOfMonth}, {monthName}{' '}
@@ -119,24 +145,6 @@ const Calendar = () => {
                           </p>
                         </>
                       </Popup>
-                      {/* <Popup>
-                        <>
-                          <h3>
-                            {dayOfMonth}, {monthName}{' '}
-                          </h3>
-                          <p>
-                            Daily norma: <span>{waterRate / 1000} L</span>
-                          </p>
-                          <p>
-                            Fulfillment of the daily norm:{' '}
-                            <span>{percent > 100 ? 100 : percent}%</span>
-                          </p>
-                          <p>
-                            How many servings of water:{' '}
-                            <span>{numberRecords}</span>
-                          </p>
-                        </>
-                      </Popup> */}
                     </Day>
                     <DayPercent>60%</DayPercent>
                   </DayCell>

@@ -109,8 +109,6 @@ export const InfoWrap = styled.div`
     @media only screen and (min-width: 1440px) {
     }
     & use {
-      /* x: 5px;
-      y: 2px; */
       fill: ${theme.colors.primaryAccent};
     }
   }
@@ -212,3 +210,17 @@ export const AddBtnStyle = styled.button`
 export const StyledLi = styled.li`
   list-style: none;
 `;
+
+
+export const StyledQuestion = styled.p`
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100px;
+color: var(--Primery-Color-Black, #2f2f2f);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 133.3%;
+
+
+`
