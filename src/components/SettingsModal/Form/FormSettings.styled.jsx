@@ -28,12 +28,6 @@ export const LabelName = styled.label`
   font-weight: 600;
   line-height: 20px;
   color: ${theme.colors.primaryDark};
-
-  /* @media screen and (min-width: 1440px) {
-    &:first-child {
-      margin-top: 53px;
-    }
-  } */
 `;
 
 export const GenderWrapper = styled.div`
@@ -170,6 +164,7 @@ export const Button = styled.button`
     height: 44px;
     padding: 10px 30px;
     margin-left: auto;
+    display: flex;
   }
 
   @media screen and (min-width: 1440px) {
