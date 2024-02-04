@@ -38,12 +38,11 @@ const UserLogoModal = ({ closeModal }) => {
       </Div>
       {isOpenUserInfoModal && (
         <GlobalModal
-          $position={'center'}
           openModal={isOpenUserInfoModal}
           setOpenModal={setOpenUserInfoModal}
           width={1008}
         >
-          <SettingModal />
+          <SettingModal title={'Title'} />
         </GlobalModal>
       )}
       {isOpenUserLogoutModal && (
@@ -53,7 +52,7 @@ const UserLogoModal = ({ closeModal }) => {
           setOpenModal={setOpenUserLogoutModal}
           width={524}
         >
-          <UserLogoutModal />
+          <UserLogoutModal onClose={setOpenUserLogoutModal} title={'Log out'} />
         </GlobalModal>
       )}
 
