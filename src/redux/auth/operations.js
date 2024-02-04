@@ -2,7 +2,31 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const paramsForNotify = {
+export const NOTIFICATIONS = {
+  SUCCESS: {
+    AVATAR_UPDATED: 'Avatar updated successfully.',
+    USER_UPDATED: 'User information updated successfully.',
+  },
+  FAILURE: {
+    USER_CREATION: 'User creation error.',
+    INVALID_DATA: 'Email or password is wrong.',
+    NOT_FOUND: 'Not found.',
+    EMAIL: 'Email is already in use.',
+    SERVER: 'Server error.',
+    LOGIN: 'Login error.',
+    UNAUTHORIZED: 'Not authorized.',
+    NO_FILE: 'File not found.',
+    FETCHING_USER: 'Unable to fetch user.',
+    USER_UPDATE: 'Error updating user information.',
+    LOGOUT: 'Logout error.',
+  },
+  INFO: {
+    WELCOME: 'Welcome to Tracker of Water!',
+    LOGOUT: `We're going to miss you...`,
+  },
+};
+
+export const paramsForNotify = {
   position: 'center-bottom',
   distance: '16px',
   timeout: 3000,
@@ -41,20 +65,27 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       logIn(user)(thunkAPI.dispatch, thunkAPI.getState);
       setAuthHeader(res.data);
-      console.log('I am operations:', res);
       return res.data;
     } catch (error) {
-      if (error.response.status === 400) {
-        Notify.failure('User creation error.', paramsForNotify);
-        return thunkAPI.rejectWithValue(error.message);
-      } else if (error.response.status === 409) {
-        Notify.failure('Email is already in use.', paramsForNotify);
-        return thunkAPI.rejectWithValue(error.message);
-      } else if (error.response.status === 500) {
-        Notify.failure('Server error.', paramsForNotify);
-        return thunkAPI.rejectWithValue(error.message);
+      switch (error.response.status) {
+        case 400:
+          Notify.failure(NOTIFICATIONS.FAILURE.USER_CREATION, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 401:
+          Notify.failure(NOTIFICATIONS.FAILURE.INVALID_DATA, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 404:
+          Notify.failure(NOTIFICATIONS.FAILURE.NOT_FOUND, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 409:
+          Notify.failure(NOTIFICATIONS.FAILURE.EMAIL, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 500:
+          Notify.failure(NOTIFICATIONS.FAILURE.SERVER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        default:
+          return thunkAPI.rejectWithValue(error.message);
       }
-      console.log(error);
     }
   }
 );
@@ -70,24 +101,25 @@ export const logIn = createAsyncThunk(
       const res = await axios.post('/auth/login', credentials);
       // After successful login, add the token to the HTTP header
       setAuthHeader(res.data.token);
-      Notify.info(
-        `Welcome to Tracker
-      of Water!`,
-        paramsForNotify
-      );
+      Notify.info(NOTIFICATIONS.INFO.WELCOME, paramsForNotify);
       return res.data;
     } catch (error) {
-      if (error.response.status === 400) {
-        Notify.failure('Login error.', paramsForNotify);
-      } else if (error.response.status === 401) {
-        Notify.failure('Email or password is wrong', paramsForNotify);
-        return thunkAPI.rejectWithValue(error.message);
-      } else if (error.response.status === 500) {
-        Notify.failure('Server error.', paramsForNotify);
-        return thunkAPI.rejectWithValue(error.message);
+      switch (error.response.status) {
+        case 400:
+          Notify.failure(NOTIFICATIONS.FAILURE.LOGIN, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 401:
+          Notify.failure(NOTIFICATIONS.FAILURE.INVALID_DATA, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 404:
+          Notify.failure(NOTIFICATIONS.FAILURE.NOT_FOUND, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 500:
+          Notify.failure(NOTIFICATIONS.FAILURE.SERVER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        default:
+          return thunkAPI.rejectWithValue(error.message);
       }
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -103,18 +135,25 @@ export const refreshUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
-    if (persistedToken === null) {
-      // If there is no token, exit without performing any request
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
       const res = await axios.get('/auth/current');
       return res.data;
     } catch (error) {
-      console.log(error);
-      return thunkAPI.rejectWithValue(error.message);
+      switch (error.response.status) {
+        case 400:
+          Notify.failure(NOTIFICATIONS.FAILURE.FETCHING_USER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 401:
+          Notify.failure(NOTIFICATIONS.FAILURE.UNAUTHORIZED, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 500:
+          Notify.failure(NOTIFICATIONS.FAILURE.SERVER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        default:
+          return thunkAPI.rejectWithValue(error.message);
+      }
     }
   }
 );
@@ -131,9 +170,22 @@ export const getInfoUser = createAsyncThunk(
       const res = await axios.get(`user/${userData._id}`, userData);
       return res.data;
     } catch (error) {
-      console.error(error);
-      Notify.failure('Error fetching user information.', paramsForNotify);
-      return thunkAPI.rejectWithValue(error.message);
+      switch (error.response.status) {
+        case 400:
+          Notify.failure(NOTIFICATIONS.FAILURE.FETCHING_USER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 401:
+          Notify.failure(NOTIFICATIONS.FAILURE.UNAUTHORIZED, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 404:
+          Notify.failure(NOTIFICATIONS.FAILURE.NOT_FOUND, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 500:
+          Notify.failure(NOTIFICATIONS.FAILURE.SERVER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        default:
+          return thunkAPI.rejectWithValue(error.message);
+      }
     }
   }
 );
@@ -149,12 +201,25 @@ export const updateAvatar = createAsyncThunk(
 
       const res = await axios.patch('/avatars', formData);
 
-      Notify.success('Avatar updated successfully.', paramsForNotify);
+      Notify.success(NOTIFICATIONS.SUCCESS.AVATAR_UPDATED, paramsForNotify);
       return res.data;
     } catch (error) {
-      console.error(error);
-      Notify.failure('Error updating avatar.', paramsForNotify);
-      return thunkAPI.rejectWithValue(error.message);
+      switch (error.response.status) {
+        case 400:
+          Notify.failure(NOTIFICATIONS.FAILURE.NO_FILE, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 401:
+          Notify.failure(NOTIFICATIONS.FAILURE.UNAUTHORIZED, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 404:
+          Notify.failure(NOTIFICATIONS.FAILURE.NOT_FOUND, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 500:
+          Notify.failure(NOTIFICATIONS.FAILURE.SERVER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        default:
+          return thunkAPI.rejectWithValue(error.message);
+      }
     }
   }
 );
@@ -170,12 +235,25 @@ export const updateUser = createAsyncThunk(
 
       const res = await axios.patch(`user/update/${userData._id}`, userData);
 
-      Notify.success('User information updated successfully.', paramsForNotify);
+      Notify.success(NOTIFICATIONS.SUCCESS.USER_UPDATED, paramsForNotify);
       return res.data;
     } catch (error) {
-      console.error(error);
-      Notify.failure('Error updating user information.', paramsForNotify);
-      return thunkAPI.rejectWithValue(error.message);
+      switch (error.response.status) {
+        case 400:
+          Notify.failure(NOTIFICATIONS.FAILURE.USER_UPDATE, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 401:
+          Notify.failure(NOTIFICATIONS.FAILURE.UNAUTHORIZED, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 404:
+          Notify.failure(NOTIFICATIONS.FAILURE.NOT_FOUND, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 500:
+          Notify.failure(NOTIFICATIONS.FAILURE.SERVER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        default:
+          return thunkAPI.rejectWithValue(error.message);
+      }
     }
   }
 );
@@ -191,11 +269,11 @@ export const updateWaterRate = createAsyncThunk(
 
       const res = await axios.patch('/user/water-rate');
 
-      Notify.success('User information updated successfully.', paramsForNotify);
+      Notify.success(NOTIFICATIONS.SUCCESS.USER_UPDATED, paramsForNotify);
       return res.data;
     } catch (error) {
       console.error(error);
-      Notify.failure('Error updating user information.', paramsForNotify);
+      Notify.failure(NOTIFICATIONS.FAILURE.USER_UPDATE, paramsForNotify);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -210,14 +288,20 @@ export const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
     await axios.post('/auth/logout');
     // After a successful logout, remove the token from the HTTP header
     clearAuthHeader();
-    Notify.info(`We're going to miss you, ...`, paramsForNotify);
+    Notify.info(NOTIFICATIONS.INFO.LOGOUT, paramsForNotify);
   } catch (error) {
-    console.log(error);
-    if (error.response.status === 401) {
-      Notify.failure('Logout error.', paramsForNotify);
-    } else if (error.response.status === 500) {
-      Notify.failure('Server error.', paramsForNotify);
+    switch (error.response.status) {
+      case 400:
+        Notify.failure(NOTIFICATIONS.FAILURE.LOGOUT, paramsForNotify);
+        return thunkAPI.rejectWithValue(error.message);
+      case 401:
+        Notify.failure(NOTIFICATIONS.FAILURE.UNAUTHORIZED, paramsForNotify);
+        return thunkAPI.rejectWithValue(error.message);
+      case 500:
+        Notify.failure(NOTIFICATIONS.FAILURE.SERVER, paramsForNotify);
+        return thunkAPI.rejectWithValue(error.message);
+      default:
+        return thunkAPI.rejectWithValue(error.message);
     }
-    return thunkAPI.rejectWithValue(error.message);
   }
 });
