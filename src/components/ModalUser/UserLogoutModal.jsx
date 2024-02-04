@@ -1,13 +1,13 @@
 import { LogoutModal } from 'components/ModalUser/UserLogoutModal.styled';
 import React from 'react';
-// import { useDispatch } from 'react-redux';
-// import { logOut } from 'redux/auth/operations';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../redux/auth/operations';
 
 const UserLogoutModal = ({ onClose }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    // dispatch(logOut());
+    dispatch(logOut());
     onClose(false);
   };
 
