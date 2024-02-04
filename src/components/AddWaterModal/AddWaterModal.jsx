@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import {
+//   addWaterEntry,
+//   updateWaterEntry,
+// } from '../../redux/tracker/operations';
 
 import {
   AddWater,
@@ -13,7 +18,7 @@ import {
 } from './AddWaterModal.styled';
 
 const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
-  const [waterAmount, setWaterAmount] = useState(initialAmount || 0);
+  const [amountWater, setAmountWater] = useState(initialAmount || 0);
   const [recordedTime, setRecordedTime] = useState(
     new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   );
@@ -23,15 +28,15 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
 
     switch (name) {
       case 'minus':
-        setWaterAmount(state => Math.max(state - 50, 0));
+        setAmountWater(state => Math.max(state - 50, 0));
         break;
       case 'plus':
-        setWaterAmount(state => Math.min(state + 50, 5000));
+        setAmountWater(state => Math.min(state + 50, 5000));
         break;
       case 'input':
         const inputValue = Number(evt.target.value);
         const validInputValue = Math.min(Math.max(inputValue, 0), 5000);
-        setWaterAmount(validInputValue);
+        setAmountWater(validInputValue);
         break;
       default:
     }
@@ -40,11 +45,11 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
   const handleSave = async evt => {
     evt.preventDefault();
 
-    if (waterAmount === 0) {
+    if (amountWater === 0) {
       alert('Enter a non-zero value for water');
       return;
     }
-    if (waterAmount < 0 || waterAmount === '') {
+    if (amountWater < 0 || amountWater === '') {
       alert('Enter a positive value for water');
       return;
     }
@@ -54,7 +59,7 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
     }
 
     // eslint-disable-next-line
-    const saveWater = { amount: waterAmount, time: recordedTime };
+    const saveWater = { amountWater: amountWater, time: recordedTime };
   };
 
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
@@ -86,7 +91,7 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
           type="button"
           name="minus"
           onClick={handleAmountChange}
-          disabled={waterAmount === 0}
+          disabled={amountWater === 0}
         >
           <StyledMinusIcon aria-label="minus_button" />
         </button>
@@ -94,13 +99,13 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
         <span>
           {/* <input
             type="number"
-            value={waterAmount}
+            value={amountWater}
             onChange={handleAmountChange}
             onBlur={() =>
               setWaterAmount(prevAmount => prevAmount || initialAmount || 0)
             }
           /> */}
-          {waterAmount}ml
+          {amountWater}ml
         </span>
 
         <button type="button" name="plus" onClick={handleAmountChange}>
@@ -124,7 +129,7 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
           <input
             name="input"
             type="number"
-            value={waterAmount}
+            value={amountWater}
             onChange={evt => handleAmountChange(evt)}
             min="1"
             max="5000"
@@ -132,7 +137,7 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
         </label>
 
         <ButtonSaveWrapper>
-          <p>{waterAmount}ml</p>
+          <p>{amountWater}ml</p>
           <button onClick={handleSave}>Save</button>
         </ButtonSaveWrapper>
       </FormStyled>

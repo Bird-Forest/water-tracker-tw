@@ -28,7 +28,7 @@ import {
 } from './DailyModal.styled';
 
 const DailyNormalModal = ({ closeModal }) => {
-  const [gender, setGender] = useState('girl');
+  const [gender, setGender] = useState('female');
   const [weight, setWeight] = useState('');
   const [activeTraningHours, setActiveTraningHours] = useState('');
   const [dailyVol, setDailyVol] = useState('1.8');
@@ -39,8 +39,8 @@ const DailyNormalModal = ({ closeModal }) => {
 
   const calculateWaterVol = useCallback(() => {
     if (!weight) return;
-    const factor = gender === 'girl' ? 0.03 : 0.04;
-    const activityFactor = gender === 'girl' ? 0.4 : 0.6;
+    const factor = gender === 'female' ? 0.03 : 0.04;
+    const activityFactor = gender === 'female' ? 0.4 : 0.6;
     const volume = (
       weight * factor +
       activeTraningHours * activityFactor
@@ -103,9 +103,9 @@ const DailyNormalModal = ({ closeModal }) => {
                 <FormRadioInput
                   type="radio"
                   name="gender"
-                  value="girl"
-                  checked={gender === 'girl'}
-                  onChange={() => setGender('girl')}
+                  value="female"
+                  checked={gender === 'female'}
+                  onChange={() => setGender('female')}
                 />
                 <span>For girl</span>
               </LabelGender>
@@ -114,9 +114,9 @@ const DailyNormalModal = ({ closeModal }) => {
                 <FormRadioInput
                   type="radio"
                   name="gender"
-                  value="boy"
-                  checked={gender === 'boy'}
-                  onChange={() => setGender('boy')}
+                  value="male"
+                  checked={gender === 'male'}
+                  onChange={() => setGender('male')}
                 />
                 <span>For boy</span>
               </LabelGender>
