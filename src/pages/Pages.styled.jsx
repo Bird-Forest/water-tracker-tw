@@ -4,8 +4,6 @@ import WaterMainPage from '../img/BgMainPage/WaterMainPage.svg';
 import WaterMainTablet from '../img/BgMainPage/WaterMainTablet.svg';
 import WaterMainMobile from '../img/BgMainPage/WaterMainMobile.svg';
 
-
-
 import bg_mob from '../img/bg/mob-bg.svg';
 import bg_tab from '../img/bg/tab-bg.svg';
 import bg_desk from '../img/bg/desk-bg.svg';
@@ -39,7 +37,7 @@ export const Container = styled.div`
 export const WrapHeader = styled.div`
   display: flex;
   width: 100%;
-  height: 10vh;
+  height: 7vh;
   margin: 0;
   padding: 0;
   // background-color: #e3f2fd;
@@ -47,7 +45,7 @@ export const WrapHeader = styled.div`
 export const WrapRender = styled.div`
   display: flex;
   width: 100vw;
-  height: 90vh;
+  height: 93vh;
   margin: 0;
   padding: 0;
   background-image: url(${WaterMainMobile});
