@@ -2,12 +2,15 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+axios.defaults.baseURL = 'https://backend-225p.onrender.com';
+
 // Додавання запису по спожитій воді
 export const addWaterEntry = createAsyncThunk(
   'tracker/addWaterEntry',
-  async (waterData, thunkAPI) => {
+  async (saveWater, thunkAPI) => {
     try {
-      const res = await axios.post('/water/add', waterData);
+      const res = await axios.post('/api/water/add', saveWater);
+      console.log(res.data);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -20,9 +23,9 @@ export const addWaterEntry = createAsyncThunk(
 // Редагування запису по спожитій воді
 export const updateWaterEntry = createAsyncThunk(
   'tracker/updateWaterEntry',
-  async ({ waterId, updatedData }, thunkAPI) => {
+  async (waterId, thunkAPI) => {
     try {
-      const res = await axios.put(`api/water/update/${waterId}`, updatedData);
+      const res = await axios.put(`api/water/update/${waterId}`);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -37,8 +40,8 @@ export const deleteWaterEntry = createAsyncThunk(
   'tracker/deleteWaterEntry',
   async (waterId, thunkAPI) => {
     try {
-      await axios.delete(`api/water/${waterId}`);
-      return await thunkAPI.dispatch(getDailyWaterAmount());
+      const res = await axios.delete(`api/water/${waterId}`);
+      return res.data;
     } catch (error) {
       console.error(error);
       // Обробка помилки

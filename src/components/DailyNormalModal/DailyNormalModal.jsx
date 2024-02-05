@@ -34,8 +34,13 @@ const DailyNormalModal = ({ closeModal }) => {
   const [dailyVol, setDailyVol] = useState('1.8');
   const [volGoal, setVolGoal] = useState('');
 
-  const { user } = useSelector(selectUser);
+  // const { user } = useSelector(selectUser);
   // const dispatch = useDispatch();
+  // ****
+  // const dispatch = useDispatch();
+  // const dailNorma = useSelector(selectDailyNorma);
+  const user = useSelector(selectUser);
+  // ***************
 
   const calculateWaterVol = useCallback(() => {
     if (!weight) return;
@@ -56,10 +61,11 @@ const DailyNormalModal = ({ closeModal }) => {
     }
   }, [calculateWaterVol, user]);
 
-  const handleSave = async () => {
+  const handleSave = evt => {
+    console.log(evt.target);
     //! *temporary entry to avoid the error message:*
     // eslint-disable-next-line no-unused-vars
-    const userData = {
+    const userNorm = {
       gender,
       weight,
       activeTraningHours,

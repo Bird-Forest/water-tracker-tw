@@ -26,14 +26,17 @@ import { useSelector } from 'react-redux';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
 import { WaterDelModal } from 'components/WaterDelModal/WaterDelModal';
-import { selectDailyWaterAmount } from '../../../redux/tracker/selectors';
+// import { selectDailyWaterAmount } from '../../../redux/tracker/selectors';
+import { selectEntries } from '../../../redux/tracker/selectors';
 
 const TodayWaterList = () => {
   const [openModalAddWater, setOpenModalAddWater] = useState(false);
   const [openModalEditWater, setOpenModalEditWater] = useState(false);
   const [openModalDel, setOpenModalDel] = useState(false);
 
-  const todayWater = useSelector(selectDailyWaterAmount);
+  // const todayWater = useSelector(selectDailyWaterAmount);
+  const dayList = useSelector(selectEntries);
+  console.log(dayList);
 
   const timeFromDate = date => {
     return new Date(date).toLocaleTimeString('en-US', {
@@ -45,16 +48,16 @@ const TodayWaterList = () => {
   const handleOpenModalAddWater = () => {
     setOpenModalAddWater(true);
   };
-  const handleOpenModalEditWater = () => {
+  const handleOpenModalEditWater = evt => {
+    // console.log(evt.currentTarget);
     setOpenModalEditWater(true);
   };
-  const handleModalDel = () => {
+  const handleModalDel = evt => {
+    // console.log(evt.currentTarget);
     setOpenModalDel(true);
   };
 
-
-
-  const portionsAll = todayWater.entries.map(({ _id, time, amountWater }) => (
+  const portionsAll = dayList.map(({ _id, time, amountWater }) => (
     <ListItem key={_id}>
       <InfoWrap>
         <IconWrapper>
@@ -66,10 +69,10 @@ const TodayWaterList = () => {
       </InfoWrap>
 
       <WrapBtn>
-        <EditBtn onClick={handleOpenModalEditWater}>
+        <EditBtn id={_id} onClick={handleOpenModalEditWater}>
           <FaRegEdit />
         </EditBtn>
-        <DeleteBtn  onClick={handleModalDel}>
+        <DeleteBtn id={_id} onClick={handleModalDel}>
           <CiTrash />
         </DeleteBtn>
       </WrapBtn>
@@ -81,9 +84,13 @@ const TodayWaterList = () => {
       <TodayStyle>Today</TodayStyle>
       <ListAddDiv>
         <UlStyle>
-     {portionsAll?.length > 0 ? portionsAll : <li>
-             <StyledQuestion>Did you drink water today?</StyledQuestion>
-            </li>}
+          {portionsAll?.length > 0 ? (
+            portionsAll
+          ) : (
+            <li>
+              <StyledQuestion>Did you drink water today?</StyledQuestion>
+            </li>
+          )}
 
           <StyledLi>
             <AddBtnStyle onClick={handleOpenModalAddWater}>
@@ -126,7 +133,7 @@ const TodayWaterList = () => {
           openModal={openModalDel}
           setOpenModal={setOpenModalDel}
         >
-          <WaterDelModal  closeModal={setOpenModalDel} title={'Delete entry'} />
+          <WaterDelModal closeModal={setOpenModalDel} title={'Delete entry'} />
         </GlobalModal>
       )}
     </TodayStyledDiv>

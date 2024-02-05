@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Notiflix from 'notiflix';
-// import { useDispatch } from 'react-redux';
-// import {
-//   addWaterEntry,
-//   updateWaterEntry,
-//   getDailyWaterAmount,
-// } from '../../redux/tracker/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addWaterEntry,
+  // updateWaterEntry,
+  // getDailyWaterAmount,
+} from '../../redux/tracker/operations';
 
 import {
   AddWater,
@@ -18,14 +18,14 @@ import {
   ButtonSaveWrapper,
   StyledAddWaterModal,
 } from './AddWaterModal.styled';
+import { selectDailyNorma } from '../../redux/auth/selectors';
+import { selectTotalWater } from '../../redux/tracker/selectors';
 
 const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
   const [amountWater, setAmountWater] = useState(initialAmount || 0);
   const [recordedTime, setRecordedTime] = useState(
     new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   );
-
-  // const dispatch = useDispatch();
 
   const handleAmountChange = evt => {
     const { name } = evt.currentTarget;
@@ -45,9 +45,15 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
       default:
     }
   };
-
-  const handleSave = async evt => {
+  // *******
+  const dispatch = useDispatch();
+  const normUser = useSelector(selectDailyNorma);
+  const totalWater = useSelector(selectTotalWater);
+  // ********
+  const handleSave = evt => {
     evt.preventDefault();
+    // const amountWater = evt.target.input;
+    console.log(amountWater);
 
     if (amountWater === 0) {
       Notiflix.Notify.warning(
@@ -61,15 +67,25 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
       );
       return;
     }
-    if (!recordedTime) {
-      Notiflix.Notify.warning('Enter the recording time');
-      return;
-    }
-    const newTime = new Date(recordedTime);
+    // if (!recordedTime) {
+    //   Notiflix.Notify.warning('Enter the recording time');
+    //   return;
+    // }
+    // const newTime = new Date(recordedTime);
     // eslint-disable-next-line
-    const saveWater = { dailyWaterAmount: amountWater, time: newTime };
-
-    // dispatch(addWaterEntry(saveWater))
+    // *** Додавання
+    // const newPercentage = `(${totalWater}+${amountWater})/${normUser}`;
+    const newPercentage = Math.round(
+      ((totalWater + amountWater) / (normUser * 1000)) * 100
+    );
+    const date = new Date();
+    const newDay = date.getDate();
+    console.log(newDay);
+    const saveWater = { amountWater: amountWater, day: newDay };
+    const portion = { saveWater, newPercentage };
+    console.log(portion);
+    dispatch(addWaterEntry(saveWater));
+    // ***
     //   .then(() => {
     //     Notiflix.Notify.success('Amount of water added successfully!');
     //     dispatch(getDailyWaterAmount());
