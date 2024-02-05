@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import Notiflix from 'notiflix';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selectors';
-// import { updateWaterRateThunk } from '../../redux/auth/operations';
+import { updateWaterRate } from '../../redux/auth/operations';
 
 import {
   DailyNormWrap,
@@ -28,22 +29,19 @@ import {
 } from './DailyModal.styled';
 
 const DailyNormalModal = ({ closeModal }) => {
-  const [gender, setGender] = useState('female');
+  const dispatch = useDispatch();
+  const { dailyNorma, ...user } = useSelector(selectUser);
+
+  const [gender, setGender] = useState(user?.gender || 'female');
   const [weight, setWeight] = useState('');
   const [activeTraningHours, setActiveTraningHours] = useState('');
-  const [dailyVol, setDailyVol] = useState('1.8');
+  const [dailyVol, setDailyVol] = useState(dailyNorma || '1.8');
   const [volGoal, setVolGoal] = useState('');
-
-  // const { user } = useSelector(selectUser);
-  // const dispatch = useDispatch();
-  // ****
-  // const dispatch = useDispatch();
-  // const dailNorma = useSelector(selectDailyNorma);
-  const user = useSelector(selectUser);
-  // ***************
+  // const dailyNorma = useSelector(selectDailyNorma);
 
   const calculateWaterVol = useCallback(() => {
     if (!weight) return;
+
     const factor = gender === 'female' ? 0.03 : 0.04;
     const activityFactor = gender === 'female' ? 0.4 : 0.6;
     const volume = (
@@ -55,23 +53,24 @@ const DailyNormalModal = ({ closeModal }) => {
 
   useEffect(() => {
     calculateWaterVol();
-
-    if (user) {
-      setGender(user.gender || 'female');
-    }
   }, [calculateWaterVol, user]);
 
-  const handleSave = evt => {
-    console.log(evt.target);
-    //! *temporary entry to avoid the error message:*
-    // eslint-disable-next-line no-unused-vars
-    const userNorm = {
-      gender,
-      weight,
-      activeTraningHours,
-      dailyVol,
-    };
-    // dispatch(updateWaterRateThunk({ waterRateData })); //* waterRate
+  const handleVolGoalChange = e => {
+    const newVolGoal = e.target.value;
+    setVolGoal(newVolGoal >= 1 ? newVolGoal : '');
+  };
+
+  const handleSave = () => {
+    const isDataValid = (weight > 0 && activeTraningHours >= 0) || volGoal > 0;
+
+    if (!isDataValid) {
+      Notiflix.Notify.warning(
+        'All fields must be filled in correctly before saving'
+      );
+      return;
+    }
+
+    dispatch(updateWaterRate(volGoal ? volGoal : dailyVol)); //* waterRate
   };
 
   return (
@@ -133,6 +132,8 @@ const DailyNormalModal = ({ closeModal }) => {
               <QuestionText>Your weight in kilograms:</QuestionText>
               <Input
                 type="number"
+                min="0"
+                max="300"
                 placeholder="kg"
                 value={weight}
                 onChange={e => setWeight(e.target.value)}
@@ -171,7 +172,7 @@ const DailyNormalModal = ({ closeModal }) => {
                 type="number"
                 placeholder="L"
                 value={volGoal}
-                onChange={e => setVolGoal(e.target.value)}
+                onChange={handleVolGoalChange}
               />
             </QuestionLabel>
           </BoxForm>
