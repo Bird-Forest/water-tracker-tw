@@ -164,7 +164,7 @@ export const WrapContRight = styled.div`
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   padding: 24px 16px;
   margin: 0;
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1200px) {
     margin-top: 72px;
   }
 `;
