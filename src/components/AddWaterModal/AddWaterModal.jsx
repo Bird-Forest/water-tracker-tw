@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Notiflix from 'notiflix';
-// import { useDispatch } from 'react-redux';
-// import {
-//   addWaterEntry,
-//   updateWaterEntry,
-//   getDailyWaterAmount,
-// } from '../../redux/tracker/operations';
+
+import {
+  addWaterEntry,
+  updateWaterEntry,
+  getDailyWaterAmount,
+} from '../../redux/tracker/operations';
 
 import {
   AddWater,
@@ -19,13 +20,15 @@ import {
   StyledAddWaterModal,
 } from './AddWaterModal.styled';
 
-const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
-  const [amountWater, setAmountWater] = useState(initialAmount || 0);
+const AddWaterModal = ({ isEditing, data, closeModal }) => {
+  const [amountWater, setAmountWater] = useState(
+    isEditing ? data.dailyWaterAmount : 0
+  );
   const [recordedTime, setRecordedTime] = useState(
-    new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    isEditing ? new Date(data.time) : new Date()
   );
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleAmountChange = evt => {
     const { name } = evt.currentTarget;
@@ -61,24 +64,43 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
       );
       return;
     }
-    if (!recordedTime) {
-      Notiflix.Notify.warning('Enter the recording time');
-      return;
-    }
-    const newTime = new Date(recordedTime);
-    // eslint-disable-next-line
-    const saveWater = { dailyWaterAmount: amountWater, time: newTime };
+    // if (!recordedTime) {
+    //   Notiflix.Notify.warning('Enter the recording time');
+    //   return;
+    // }
 
-    // dispatch(addWaterEntry(saveWater))
-    //   .then(() => {
-    //     Notiflix.Notify.success('Amount of water added successfully!');
-    //     dispatch(getDailyWaterAmount());
-    //   //! опційно - закриття модалки
-    //     close();
-    //   })
-    //   .catch(error => {
-    //     Notiflix.Notify.failure(`Failed to add amount of water: ${error.message}`);
-    //   });
+    const saveWater = {
+      dailyWaterAmount: amountWater,
+      time: new Date(recordedTime),
+    };
+
+    if (isEditing) {
+      // Edit mode
+      dispatch(updateWaterEntry({ ...saveWater, waterId: data._id }))
+        .then(() => {
+          Notiflix.Notify.success('Amount of water updated successfully!');
+          dispatch(getDailyWaterAmount());
+          closeModal();
+        })
+        .catch(error => {
+          Notiflix.Notify.failure(
+            `Failed to update amount of water: ${error.message}`
+          );
+        });
+    } else {
+      // Add mode
+      dispatch(addWaterEntry(saveWater))
+        .then(() => {
+          Notiflix.Notify.success('Amount of water added successfully!');
+          dispatch(getDailyWaterAmount());
+          closeModal();
+        })
+        .catch(error => {
+          Notiflix.Notify.failure(
+            `Failed to add amount of water: ${error.message}`
+          );
+        });
+    }
   };
 
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
@@ -91,8 +113,8 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
           <div>
             <h3>Entered records:</h3>
             <p>
-              {initialAmount
-                ? `${initialAmount} at ${initialTime}`
+              {amountWater
+                ? `${amountWater} at ${recordedTime}`
                 : 'No value entered'}
             </p>
           </div>
@@ -115,17 +137,7 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
           <StyledMinusIcon aria-label="minus_button" />
         </button>
 
-        <span>
-          {/* <input
-            type="number"
-            value={amountWater}
-            onChange={handleAmountChange}
-            onBlur={() =>
-              setWaterAmount(prevAmount => prevAmount || initialAmount || 0)
-            }
-          /> */}
-          {amountWater}ml
-        </span>
+        <span>{amountWater}ml</span>
 
         <button type="button" name="plus" onClick={handleAmountChange}>
           <StyledPlusIcon aria-label="plus_button" />
