@@ -13,11 +13,11 @@ import {
   Button,
 } from './WaterDelModal.styled';
 
-export const WaterDelModal = ({ waterId, closeModal }) => {
+export const WaterDelModal = ({ id, closeModal }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteWaterEntry(waterId))
+    dispatch(deleteWaterEntry(id))
       .then(() => {
         Notiflix.Notify.success('Record deleted successfully');
         dispatch(getDailyWaterAmount());
