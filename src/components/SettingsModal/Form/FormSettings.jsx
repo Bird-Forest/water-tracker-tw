@@ -22,11 +22,11 @@ import { Notify } from 'notiflix';
 
 export const FormSettings = () => {
   const { user } = useAuth();
-  const [name = user.name, setName] = useState();
-  const [gender = user.gender, setGender] = useState();
-  const [email = user.email, setEmail] = useState();
-  let [password, setPassword] = useState('');
-  const [newPassword = '', setNewPassword] = useState('');
+  const [name, setName] = useState(user.name);
+  const [gender, setGender] = useState(user.gender);
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const [repeatPassword = '', setRepeatPassword] = useState();
 
   let isSubmit = true;
@@ -36,14 +36,6 @@ export const FormSettings = () => {
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
   const dispatch = useDispatch();
-
-  const state = {
-    gender: gender,
-    name: name,
-    email: email,
-    password: password,
-    newPassword: newPassword,
-  };
 
   const handleChangePassword = e => {
     setRepeatPassword(e.target.value);
@@ -73,21 +65,48 @@ export const FormSettings = () => {
     e.preventDefault();
 
     if (password && !newPassword) {
-      Notify.error('Please enter new password');
+      Notify.failure('Please enter new password');
       return;
     }
     if (!password && newPassword) {
-      Notify.error('Please enter old password');
+      Notify.failure('Please enter old password');
       return;
     }
     if (newPassword !== repeatPassword) {
-      Notify.error("Passwords don't match");
+      Notify.failure("Passwords don't match");
       return;
     }
+
+    const updatedData = {};
+
+    if (name !== user.name) {
+      updatedData.name = name;
+    }
+
+    if (gender !== user.gender) {
+      updatedData.gender = gender;
+    }
+
+    if (email !== user.email) {
+      updatedData.email = email;
+    }
+
+    if (password !== '') {
+      updatedData.password = password;
+    }
+
+    if (newPassword !== '') {
+      updatedData.newPassword = newPassword;
+    }
+
+    if (Object.keys(updatedData).length === 0) {
+      Notify.info('No changes made.');
+      return;
+    }
+
     isSubmit = false;
     setNewPassword(newPassword);
-    dispatch(updateUser(state));
-    Notify.success("User's data updated successfully");
+    dispatch(updateUser(updatedData));
   };
 
   return (
@@ -172,6 +191,8 @@ export const FormSettings = () => {
                 value={password}
                 id="exampleInputPassword1"
                 placeholder="Password"
+                minLength={8}
+                maxLength={64}
               />
             </PasswordWrapper>
           </FieldWrapper>
@@ -180,7 +201,7 @@ export const FormSettings = () => {
             <div>
               <PasswordWrapper>
                 <EyeButton onClick={() => setShowNewPassword(!showNewPassword)}>
-                  {showPassword ? (
+                  {showNewPassword ? (
                     <FiEye
                       size={16}
                       color="#407BFF"
@@ -197,6 +218,8 @@ export const FormSettings = () => {
                   value={newPassword}
                   id="exampleInputPassword2"
                   placeholder="Password"
+                  minLength={8}
+                  maxLength={64}
                 />
               </PasswordWrapper>
             </div>
@@ -208,7 +231,7 @@ export const FormSettings = () => {
                 <EyeButton
                   onClick={() => setShowRepeatPassword(!showRepeatPassword)}
                 >
-                  {showPassword ? (
+                  {showRepeatPassword ? (
                     <FiEye
                       size={16}
                       color="#407BFF"
@@ -225,6 +248,8 @@ export const FormSettings = () => {
                   value={repeatPassword}
                   id="exampleInputPassword3"
                   placeholder="Password"
+                  minLength={8}
+                  maxLength={64}
                 />
               </PasswordWrapper>
             </div>

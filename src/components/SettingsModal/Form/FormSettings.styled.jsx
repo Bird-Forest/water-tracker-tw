@@ -165,6 +165,8 @@ export const Button = styled.button`
     padding: 10px 30px;
     margin-left: auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   @media screen and (min-width: 1440px) {

@@ -164,11 +164,10 @@ export const getInfoUser = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-      const userId = state.auth.user._id;
 
       setAuthHeader(token);
 
-      const res = await axios.get(`user/${userId}`);
+      const res = await axios.get('user/');
       return res.data;
     } catch (error) {
       switch (error.response.status) {
@@ -231,13 +230,14 @@ export const updateUser = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-      const userId = state.auth.user._id;
 
       setAuthHeader(token);
 
-      const res = await axios.patch(`user/update/${userId}`, userData);
+      const res = await axios.patch('user/update/', userData);
 
       Notify.success(NOTIFICATIONS.SUCCESS.USER_UPDATED, paramsForNotify);
+
+      thunkAPI.dispatch(refreshUser());
       return res.data;
     } catch (error) {
       switch (error.response.status) {

@@ -11,6 +11,7 @@ import {
 } from './operations';
 
 const initialState = {
+  dailyNorma: 2,
   user: {
     _id: null,
     name: null,
