@@ -14,11 +14,16 @@ export const WrapMain = styled.div`
   }
   @media screen and (min-width: 1440px) {
     padding: 80px 210px 0 210px;
+    justify-content: center;
+    align-items: center;
     margin-bottom: auto;
   }
 `;
 export const TitleMain = styled.h1`
-  /* margin: 24px 0 16px 0; */
+  // display: flex;
+  // justify-content: flex-start;
+  // align-items: flex-start;
+  text-align: start;
   overflow-wrap: normal;
   color: #2f2f2f;
   font-size: 28px;
@@ -54,14 +59,11 @@ export const WrapLeft = styled.div`
 `;
 
 export const SubtitleMain = styled.h2`
-  /* margin-bottom: 24px;
-  max-width: 197px; */
   font-size: 24px;
   font-style: normal;
   color: black;
   font-weight: 400;
   line-height: 1.25;
-  /* margin-bottom: 0 0 24px 0; */
 `;
 export const WrapContLeft = styled.div`
   display: flex;
@@ -87,7 +89,6 @@ export const WrapBenefits = styled.div`
 `;
 export const TitleWrap = styled.h3`
   margin: 0;
-  /* margin-bottom: 12px; */
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -109,7 +110,6 @@ export const WrapItem = styled.div`
   .icon-item {
     width: 32px;
     height: 32px;
-    /* fill: ${theme.colors.secondaryBlue}; */
     stroke: #407bff;
   }
   @media screen and (min-width: 768px) {
@@ -135,8 +135,9 @@ export const BtnTryTracker = styled.button`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   padding: 10px 15px;
   font-size: 16px;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  background-color: ${({ disabled }) => (disabled ? '#8F8F8F' : '#407BFF')};
+  cursor: pointer;
+  // cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  // background-color: ${({ disabled }) => (disabled ? '#8F8F8F' : '#407BFF')};
   color: ${theme.colors.primaryLight};
   border: none;
   margin: 0;
@@ -163,6 +164,9 @@ export const WrapContRight = styled.div`
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   padding: 24px 16px;
   margin: 0;
+  @media screen and (min-width: 1440px) {
+    margin-top: 72px;
+  }
 `;
 export const WrapListRight = styled.ul`
   display: flex;
@@ -178,7 +182,6 @@ export const ItemList = styled.li`
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  // line-height: 1.25;
   padding: 0;
   margin: 0;
   &::before {

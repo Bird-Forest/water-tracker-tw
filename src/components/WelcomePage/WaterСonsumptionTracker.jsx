@@ -5,6 +5,7 @@ import { HiOutlineWrenchScrewdriver } from 'react-icons/hi2';
 import {
   BtnTryTracker,
   SubtitleMain,
+  TitleMain,
   TitleWrap,
   WrapBenefits,
   WrapContLeft,
@@ -12,10 +13,13 @@ import {
   WrapLeft,
 } from './Welcome.styled';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks';
 
 export default function WaterСonsumptionTracker() {
+  const { isLoggedIn } = useAuth();
   return (
     <WrapLeft>
+      <TitleMain>Water consumption tracker</TitleMain>
       <SubtitleMain>Record daily water intake and track</SubtitleMain>
       <WrapContLeft>
         <TitleWrap>Tracker Benefits</TitleWrap>
@@ -34,9 +38,15 @@ export default function WaterСonsumptionTracker() {
           </WrapItem>
         </WrapBenefits>
       </WrapContLeft>
-      <Link to="/signup">
-        <BtnTryTracker>Try tracker</BtnTryTracker>
-      </Link>
+      {isLoggedIn ? (
+        <Link to="/home">
+          <BtnTryTracker>To home page</BtnTryTracker>
+        </Link>
+      ) : (
+        <Link to="/signup">
+          <BtnTryTracker>Try tracker</BtnTryTracker>
+        </Link>
+      )}
     </WrapLeft>
   );
 }
