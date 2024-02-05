@@ -21,7 +21,7 @@ import {
 import { selectDailyNorma } from '../../redux/auth/selectors';
 import { selectTotalWater } from '../../redux/tracker/selectors';
 
-const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
+const AddWaterModal = ({ isEditing, initialAmount, initialTime, closeModal }) => {
   const [amountWater, setAmountWater] = useState(initialAmount || 0);
   const [recordedTime, setRecordedTime] = useState(
     new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
@@ -50,7 +50,7 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
   const normUser = useSelector(selectDailyNorma);
   const totalWater = useSelector(selectTotalWater);
   // ********
-  const handleSave = evt => {
+  const handleSave = async (evt) => {
     evt.preventDefault();
     // const amountWater = evt.target.input;
     console.log(amountWater);
@@ -85,6 +85,17 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
     const portion = { saveWater, newPercentage };
     console.log(portion);
     dispatch(addWaterEntry(saveWater));
+
+
+    try {
+      await dispatch(addWaterEntry(saveWater));
+      Notiflix.Notify.success('Amount of water added successfully!');
+      closeModal();
+    } catch (error) {
+      // Обробка помилок (якщо потрібно)
+      Notiflix.Notify.failure(`Failed to add amount of water: ${error.message}`);
+      console.error("Failed to add water: ", error);
+    }
     // ***
     //   .then(() => {
     //     Notiflix.Notify.success('Amount of water added successfully!');
