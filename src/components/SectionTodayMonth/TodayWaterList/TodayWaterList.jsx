@@ -2,7 +2,6 @@ import { CiTrash } from 'react-icons/ci';
 import { FaRegEdit } from 'react-icons/fa';
 import { FaPlus } from 'react-icons/fa';
 
-import portions from './portions';
 import { ReactComponent as Icon } from '../../../img/glass.svg';
 import {
   AddBtnStyle,
@@ -22,14 +21,26 @@ import {
   StyledQuestion,
 } from '../TodayWaterList/TodayWaterList.styled';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
 import { WaterDelModal } from 'components/WaterDelModal/WaterDelModal';
+import { selectDailyWaterAmount } from '../../../redux/tracker/selectors';
 
 const TodayWaterList = () => {
   const [openModalAddWater, setOpenModalAddWater] = useState(false);
   const [openModalEditWater, setOpenModalEditWater] = useState(false);
   const [openModalDel, setOpenModalDel] = useState(false);
+
+  const todayWater = useSelector(selectDailyWaterAmount);
+
+  const timeFromDate = date => {
+    return new Date(date).toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
 
   const handleOpenModalAddWater = () => {
     setOpenModalAddWater(true);
@@ -42,15 +53,16 @@ const TodayWaterList = () => {
   };
 
 
-  const portionsAll = portions.map(({ id, time, quantity }) => (
-    <ListItem key={id}>
+
+  const portionsAll = todayWater.entries.map(({ _id, time, amountWater }) => (
+    <ListItem key={_id}>
       <InfoWrap>
         <IconWrapper>
           {' '}
           <Icon />{' '}
         </IconWrapper>
-        <TextVolume>{quantity} ml</TextVolume>
-        <TextTime>{time}</TextTime>
+        <TextVolume>{amountWater} ml</TextVolume>
+        <TextTime>{timeFromDate(time)}</TextTime>
       </InfoWrap>
 
       <WrapBtn>
