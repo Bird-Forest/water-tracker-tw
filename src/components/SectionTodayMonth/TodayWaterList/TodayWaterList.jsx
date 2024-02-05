@@ -24,16 +24,17 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
-import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
+// import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
 import { WaterDelModal } from 'components/WaterDelModal/WaterDelModal';
 // import { selectDailyWaterAmount } from '../../../redux/tracker/selectors';
 import { selectEntries } from '../../../redux/tracker/selectors';
+import TodayListModal from 'components/AddWaterModal/TodayListModal';
 
 const TodayWaterList = () => {
-  const [openModalAddWater, setOpenModalAddWater] = useState(false);
-  const [openModalEditWater, setOpenModalEditWater] = useState(false);
+  const [openModalTodayList, setOpenModalTodayList] = useState(false);
   const [openModalDel, setOpenModalDel] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   // const todayWater = useSelector(selectDailyWaterAmount);
   const dayList = useSelector(selectEntries);
@@ -47,22 +48,23 @@ const TodayWaterList = () => {
     });
   };
 
-  const handleOpenModalAddWater = () => {
-    setOpenModalAddWater(true);
-  };
-
-
-  const handleOpenModalEditWater = (item) => {
+  const handleOpenModalTodayListEdit = item => {
     setCurrentItem(item);
-    setOpenModalEditWater(true);
+    setOpenModalTodayList(true);
+    setIsEditing(true);
   };
-  const handleModalDel = (item) => {
+
+  const handleOpenModalTodayListAdd = () => {
+    setOpenModalTodayList(true);
+    setIsEditing(false);
+  };
+
+  const handleModalDel = item => {
     setCurrentItem(item);
     setOpenModalDel(true);
-};
+  };
 
-
-  const portionsAll = dayList.map((item) => (
+  const portionsAll = dayList.map(item => (
     <ListItem key={item._id}>
       <InfoWrap>
         <IconWrapper>
@@ -74,7 +76,7 @@ const TodayWaterList = () => {
       </InfoWrap>
 
       <WrapBtn>
-      <EditBtn onClick={() => handleOpenModalEditWater(item)}>
+        <EditBtn onClick={() => handleOpenModalTodayListEdit(item)}>
           <FaRegEdit />
         </EditBtn>
         <DeleteBtn onClick={() => handleModalDel(item)}>
@@ -98,7 +100,7 @@ const TodayWaterList = () => {
           )}
 
           <StyledLi>
-            <AddBtnStyle onClick={handleOpenModalAddWater}>
+            <AddBtnStyle onClick={handleOpenModalTodayListAdd}>
               <FaPlus />
               Add water
             </AddBtnStyle>
@@ -106,42 +108,32 @@ const TodayWaterList = () => {
         </UlStyle>
       </ListAddDiv>
 
-      {openModalAddWater && (
+      {openModalTodayList && (
         <GlobalModal
           $position={'center'}
-          openModal={openModalAddWater}
-          setOpenModal={setOpenModalAddWater}
+          openModal={openModalTodayList}
+          setOpenModal={setOpenModalTodayList}
+          //  title={'add water'}
         >
-          <AddWaterModal
-            closeModal={setOpenModalDel}
-            isEditing={false}
-            title={'add water'}
+          <TodayListModal
+            closeModal={setOpenModalTodayList}
+            isEditing={isEditing}
+            data={currentItem}
           />
         </GlobalModal>
       )}
-      {openModalEditWater && (
-        <GlobalModal
-          $position={'center'}
-          openModal={openModalEditWater}
-          setOpenModal={setOpenModalEditWater}
-        >
-          <AddWaterModal
-            closeModal={setOpenModalDel}
-            isEditing={true}
-            title={'Edit the entered amount of water'}
-            item = {currentItem}
-          />
-        </GlobalModal>
-      )}
+
       {openModalDel && (
         <GlobalModal
           $position={'center'}
           openModal={openModalDel}
           setOpenModal={setOpenModalDel}
         >
-          <WaterDelModal closeModal={setOpenModalDel} 
-          title={'Delete entry'}
-           id = {currentItem._id}/>
+          <WaterDelModal
+            closeModal={setOpenModalDel}
+            title={'Delete entry'}
+            id={currentItem._id}
+          />
         </GlobalModal>
       )}
     </TodayStyledDiv>

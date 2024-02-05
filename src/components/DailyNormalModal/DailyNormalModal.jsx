@@ -60,7 +60,8 @@ const DailyNormalModal = ({ closeModal }) => {
     setVolGoal(newVolGoal >= 1 ? newVolGoal : '');
   };
 
-  const handleSave = () => {
+  const handleSave = e => {
+    e.preventDefault();
     const isDataValid = (weight > 0 && activeTraningHours >= 0) || volGoal > 0;
 
     if (!isDataValid) {
@@ -71,6 +72,8 @@ const DailyNormalModal = ({ closeModal }) => {
     }
 
     dispatch(updateWaterRate(volGoal ? volGoal : dailyVol)); //* waterRate
+
+    closeModal();
   };
 
   return (
