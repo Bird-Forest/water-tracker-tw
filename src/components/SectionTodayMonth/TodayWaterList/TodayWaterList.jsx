@@ -26,14 +26,17 @@ import { useSelector } from 'react-redux';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
 import { WaterDelModal } from 'components/WaterDelModal/WaterDelModal';
-import { selectDailyWaterAmount } from '../../../redux/tracker/selectors';
+// import { selectDailyWaterAmount } from '../../../redux/tracker/selectors';
+import { selectEntries } from '../../../redux/tracker/selectors';
 
 const TodayWaterList = () => {
   const [openModalAddWater, setOpenModalAddWater] = useState(false);
   const [openModalEditWater, setOpenModalEditWater] = useState(false);
   const [openModalDel, setOpenModalDel] = useState(false);
 
-  const todayWater = useSelector(selectDailyWaterAmount);
+  // const todayWater = useSelector(selectDailyWaterAmount);
+  const dayList = useSelector(selectEntries);
+  console.log(dayList);
 
   const timeFromDate = date => {
     return new Date(date).toLocaleTimeString('en-US', {
@@ -54,7 +57,7 @@ const TodayWaterList = () => {
     setOpenModalDel(true);
   };
 
-  const portionsAll = todayWater.entries.map(({ _id, time, amountWater }) => (
+  const portionsAll = dayList.map(({ _id, time, amountWater }) => (
     <ListItem key={_id}>
       <InfoWrap>
         <IconWrapper>

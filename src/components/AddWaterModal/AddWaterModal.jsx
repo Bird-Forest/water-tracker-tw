@@ -86,7 +86,6 @@ const AddWaterModal = ({ isEditing, initialAmount, initialTime }) => {
     console.log(portion);
     dispatch(addWaterEntry(saveWater));
     // ***
-    // *** Зміна
     //   .then(() => {
     //     Notiflix.Notify.success('Amount of water added successfully!');
     //     dispatch(getDailyWaterAmount());
