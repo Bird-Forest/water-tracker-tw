@@ -33,10 +33,12 @@ const TodayWaterList = () => {
   const [openModalAddWater, setOpenModalAddWater] = useState(false);
   const [openModalEditWater, setOpenModalEditWater] = useState(false);
   const [openModalDel, setOpenModalDel] = useState(false);
+  const [currentItem, setCurrentItem] = useState(null);
 
   // const todayWater = useSelector(selectDailyWaterAmount);
   const dayList = useSelector(selectEntries);
   console.log(dayList);
+  console.log(currentItem);
 
   const timeFromDate = date => {
     return new Date(date).toLocaleTimeString('en-US', {
@@ -48,31 +50,34 @@ const TodayWaterList = () => {
   const handleOpenModalAddWater = () => {
     setOpenModalAddWater(true);
   };
-  const handleOpenModalEditWater = evt => {
-    // console.log(evt.currentTarget);
+
+
+  const handleOpenModalEditWater = (item) => {
+    setCurrentItem(item);
     setOpenModalEditWater(true);
   };
-  const handleModalDel = evt => {
-    // console.log(evt.currentTarget);
+  const handleModalDel = (item) => {
+    setCurrentItem(item);
     setOpenModalDel(true);
-  };
+};
 
-  const portionsAll = dayList.map(({ _id, time, amountWater }) => (
-    <ListItem key={_id}>
+
+  const portionsAll = dayList.map((item) => (
+    <ListItem key={item._id}>
       <InfoWrap>
         <IconWrapper>
           {' '}
           <Icon />{' '}
         </IconWrapper>
-        <TextVolume>{amountWater} ml</TextVolume>
-        <TextTime>{timeFromDate(time)}</TextTime>
+        <TextVolume>{item.amountWater} ml</TextVolume>
+        <TextTime>{timeFromDate(item.time)}</TextTime>
       </InfoWrap>
 
       <WrapBtn>
-        <EditBtn id={_id} onClick={handleOpenModalEditWater}>
+      <EditBtn onClick={() => handleOpenModalEditWater(item)}>
           <FaRegEdit />
         </EditBtn>
-        <DeleteBtn id={_id} onClick={handleModalDel}>
+        <DeleteBtn onClick={() => handleModalDel(item)}>
           <CiTrash />
         </DeleteBtn>
       </WrapBtn>
@@ -124,6 +129,7 @@ const TodayWaterList = () => {
             closeModal={setOpenModalDel}
             isEditing={true}
             title={'Edit the entered amount of water'}
+            item = {currentItem}
           />
         </GlobalModal>
       )}
@@ -133,7 +139,9 @@ const TodayWaterList = () => {
           openModal={openModalDel}
           setOpenModal={setOpenModalDel}
         >
-          <WaterDelModal closeModal={setOpenModalDel} title={'Delete entry'} />
+          <WaterDelModal closeModal={setOpenModalDel} 
+          title={'Delete entry'}
+           id = {currentItem._id}/>
         </GlobalModal>
       )}
     </TodayStyledDiv>
