@@ -49,11 +49,11 @@ const TodayWaterList = () => {
     setOpenModalAddWater(true);
   };
   const handleOpenModalEditWater = evt => {
-    console.log(evt.currentTarget);
+    // console.log(evt.currentTarget);
     setOpenModalEditWater(true);
   };
   const handleModalDel = evt => {
-    console.log(evt.currentTarget);
+    // console.log(evt.currentTarget);
     setOpenModalDel(true);
   };
 
