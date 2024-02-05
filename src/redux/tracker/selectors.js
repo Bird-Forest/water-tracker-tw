@@ -1,3 +1,5 @@
+export const selectMonthWater = state => state.tracker.monthAmountWater;
+
 export const selectTotalWater = state => state.tracker.totalAmountWater;
 
 export const selectPercentage = state => state.tracker.percentage;

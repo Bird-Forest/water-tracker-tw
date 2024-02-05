@@ -5,10 +5,12 @@ import {
   updateWaterEntry,
   deleteWaterEntry,
   getDailyWaterAmount,
+  getMonthWaterAmount,
 } from './operations';
 import { logOut } from '../auth/operations';
 
 const initialState = {
+  monthAmountWater: null,
   totalAmountWater: null,
   percentage: null,
   entries: [
@@ -61,7 +63,7 @@ export const trackerSlice = createSlice({
       })
       .addCase(deleteWaterEntry.fulfilled, (state, action) => {
         const deletedWaterId = action.payload;
-        state.dailyWaterAmount = state.dailyWaterAmount.filter(
+        state.totalAmountWater = state.dailyWaterAmount.filter(
           entry => entry.id !== deletedWaterId
         );
         state.loading = false;
@@ -75,15 +77,37 @@ export const trackerSlice = createSlice({
         state.error = null;
       })
       .addCase(getDailyWaterAmount.fulfilled, (state, action) => {
-        state.dailyWaterAmount = action.payload;
+        state.totalAmountWater = action.payload;
         state.loading = false;
       })
       .addCase(getDailyWaterAmount.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
+      .addCase(getMonthWaterAmount.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getMonthWaterAmount.fulfilled, (state, action) => {
+        state.monthAmountWater = action.payload;
+        state.loading = false;
+      })
+      .addCase(getMonthWaterAmount.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
       .addCase(logOut.fulfilled, state => {
-        state.dailyWaterAmount = [];
+        state.monthAmountWater = null;
+        state.totalAmountWater = null;
+        state.percentage = null;
+        state.entries = [
+          {
+            _id: null,
+            amountWater: null,
+            day: null,
+            time: null,
+          },
+        ];
       }),
 });
 
