@@ -62,10 +62,9 @@ export const trackerSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteWaterEntry.fulfilled, (state, action) => {
-        const deletedWaterId = action.payload;
-        state.totalAmountWater = state.dailyWaterAmount.filter(
-          entry => entry.id !== deletedWaterId
-        );
+        state.entries = action.payload.entries;
+        state.totalAmountWater = action.payload.totalAmountWater;
+        state.percentage = action.payload.percentage;
         state.loading = false;
       })
       .addCase(deleteWaterEntry.rejected, (state, action) => {
