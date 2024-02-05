@@ -1,4 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import Notiflix from 'notiflix';
+import {
+  deleteWaterEntry,
+  getDailyWaterAmount,
+} from '../../redux/tracker/operations';
+
 import {
   ModalWrap,
   TextStyle,
@@ -6,29 +13,27 @@ import {
   Button,
 } from './WaterDelModal.styled';
 
-export const WaterDelModal = ({ closeModal }) => {
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [recordId, setRecordId] = useState(null);
+export const WaterDelModal = ({ waterId, closeModal }) => {
+  const dispatch = useDispatch();
 
   const handleDelete = () => {
-    setIsDeleting(true);
-    console.log('Deleting record with ID:', recordId);
-    setIsDeleting(false);
+    dispatch(deleteWaterEntry(waterId))
+      .then(() => {
+        Notiflix.Notify.success('Record deleted successfully');
+        dispatch(getDailyWaterAmount());
+        closeModal();
+      })
+      .catch(error => {
+        Notiflix.Notify.failure(`Failed to delete: ${error.message}`);
+      });
     closeModal();
-  };
-
-  // eslint-disable-next-line
-  const handleRecordIdChange = newRecordId => {
-    setRecordId(newRecordId);
   };
 
   return (
     <ModalWrap>
       <TextStyle>Are you sure you want to delete the entry?</TextStyle>
       <ButtonBox>
-        <Button  onClick={handleDelete}>
-          Delete {isDeleting && 'Deleting...'}
-        </Button>
+        <Button onClick={handleDelete}>Delete</Button>
         <Button onClick={closeModal}>Cancel</Button>
       </ButtonBox>
     </ModalWrap>
