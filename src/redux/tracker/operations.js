@@ -41,6 +41,7 @@ export const deleteWaterEntry = createAsyncThunk(
   async (waterId, thunkAPI) => {
     try {
       const res = await axios.delete(`api/water/${waterId}`);
+      console.log(res.data);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -56,7 +57,23 @@ export const getDailyWaterAmount = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await axios.get('api/water/today');
-		console.log('res: ', res.data);
+      // console.log('res: ', res.data);
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      // Обробка помилки
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// Отримання інформації про кількість води за місяць
+export const getMonthWaterAmount = createAsyncThunk(
+  'tracker/getMonthWaterAmount',
+  async (date, thunkAPI) => {
+    try {
+      const res = await axios.get(`/api/water/month/${date}`);
+      // console.log('res: ', res.data);
       return res.data;
     } catch (error) {
       console.error(error);

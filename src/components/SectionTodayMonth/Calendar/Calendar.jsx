@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getMonthWaterAmount } from '../../../redux/tracker/operations';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import {
   Button,
@@ -52,16 +53,23 @@ const Calendar = () => {
     }
   };
 
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
+
   useEffect(() => {
     setDay(date.getDate());
     setMonth(date.getMonth());
     setYear(date.getFullYear());
     updateXCoord();
     window.addEventListener('resize', updateXCoord);
+    if (token) {
+      const formattedMonth = `${year}-${month + 1}`.padStart(7, '0');
+      dispatch(getMonthWaterAmount(formattedMonth));
+    }
     return () => {
       window.removeEventListener('resize', updateXCoord);
     };
-  }, [date]);
+  }, [date, token, dispatch, month, year]);
 
   function isLeapYear(year) {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -80,7 +88,13 @@ const Calendar = () => {
       <MonthNav>
         <MonthTitle>Month</MonthTitle>
         <StyledMonthWrapper>
-          <Button onClick={() => setDate(new Date(year, month - 1, day))}>
+          <Button onClick={() => {
+              const newDate = new Date(year, month - 1, day);
+              setYear(newDate.getFullYear());
+              setMonth(newDate.getMonth());
+              setDay(newDate.getDate());
+              setDate(newDate);
+          }}>
             <IoIosArrowBack className="nav" />
           </Button>
           <Month>{`${MONTHS[month]}, ${year}`}</Month>
