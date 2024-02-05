@@ -110,7 +110,7 @@ export const WrapItem = styled.div`
     width: 32px;
     height: 32px;
     /* fill: ${theme.colors.secondaryBlue}; */
-    stroke: #9ebbff;
+    stroke: #407bff;
   }
   @media screen and (min-width: 768px) {
     .icon-item {
@@ -168,14 +168,27 @@ export const WrapListRight = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  list-style: initial;
-  list-style-type: circle;
-  padding: 0 16px;
-
-  .text {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.25;
+  list-style: none;
+  padding: 0;
+`;
+export const ItemList = styled.li`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  // line-height: 1.25;
+  padding: 0;
+  margin: 0;
+  &::before {
+    content: '';
+    background-color: #407bff;
+    color: #407bff;
+    padding: 0 8px 0 0;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    margin: 0 8px 0 0;
   }
 `;
