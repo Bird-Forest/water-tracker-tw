@@ -2,7 +2,7 @@ import { StyledRadioPanel } from './WaterRadioPanel.styled';
 import { GoPlusCircle } from 'react-icons/go';
 import theme from 'BasicStyle/themeJSX';
 import { useState } from 'react';
-import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
+// import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 import { useSelector } from 'react-redux';
 // import { selectPercentage } from '../../../redux/tracker/selectors';
