@@ -1,11 +1,11 @@
 import React from 'react';
-import { WrapRender } from './Pages.styled';
+import { WrapWelcomePage } from './Pages.styled';
 import Main from 'components/WelcomePage/Main';
 
 export default function WelcomePage() {
   return (
-    <WrapRender>
+    <WrapWelcomePage>
       <Main />
-    </WrapRender>
+    </WrapWelcomePage>
   );
 }

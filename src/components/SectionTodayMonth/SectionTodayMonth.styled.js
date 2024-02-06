@@ -18,7 +18,8 @@ export const StyledSectionTodayMonth = styled.div`
     height: 688px;
   }
   @media only screen and (min-width: 1440px) {
-    margin-bottom: 0;
+    /* margin-top: 80px; */
+    /* width: 592px; */
     height: 680px;
   }
 `;
