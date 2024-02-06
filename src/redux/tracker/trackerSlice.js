@@ -10,7 +10,7 @@ import {
 import { logOut } from '../auth/operations';
 
 const initialState = {
-  monthAmountWater: null,
+  monthAmountWater: [],
   totalAmountWater: null,
   percentage: null,
   entries: [
@@ -89,7 +89,7 @@ export const trackerSlice = createSlice({
         state.error = null;
       })
       .addCase(getMonthWaterAmount.fulfilled, (state, action) => {
-        state.monthAmountWater = action.payload.monthAmountWater;
+        state.monthAmountWater = action.payload;
         state.loading = false;
       })
       .addCase(getMonthWaterAmount.rejected, (state, action) => {
