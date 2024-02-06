@@ -63,10 +63,10 @@ const DailyNormalModal = ({ closeModal }) => {
     setVolGoal(newVolGoal >= 1 ? newVolGoal : '');
   };
 
-  // const handleSave = () => {
   const handleSave = e => {
     e.preventDefault();
     // console.log('Збереження цілі обєму води...', volGoal, dailyVol);
+    
     const isDataValid = (weight > 0 && activeTraningHours >= 0) || volGoal > 0;
 
     if (!isDataValid) {

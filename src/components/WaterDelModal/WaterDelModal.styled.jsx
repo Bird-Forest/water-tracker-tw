@@ -3,7 +3,20 @@ import styled from 'styled-components';
 import theme from '../../BasicStyle/themeJSX';
 
 export const ModalWrap = styled.div`
-  padding: 0 24px 32px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  width: 100vh;
+  max-width: calc(280px - 24px);
+
+  @media only screen and (max-width: 767px) {
+    padding: 12px 12px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    max-width: calc(592px - 48px);
+  }
 `;
 
 export const TextStyle = styled.p`
@@ -22,6 +35,7 @@ export const ButtonBox = styled.div`
   gap: 24px;
 
   @media screen and (min-width: 768px) {
+	align-self: flex-end;
     flex-direction: row-reverse;
   }
 `;

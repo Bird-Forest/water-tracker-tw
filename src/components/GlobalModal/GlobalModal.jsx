@@ -7,6 +7,7 @@ export const GlobalModal = ({
   setOpenModal,
   children,
   $position,
+  title,
 }) => {
   const handleCloseModal = e => {
     if (
@@ -41,7 +42,7 @@ export const GlobalModal = ({
   }, [setOpenModal, openModal]);
 
   return (
-    <GlobalOverlay closeModal={handleCloseModal} $position={$position}>
+    <GlobalOverlay title={title} closeModal={handleCloseModal} $position={$position}>
       <GlobalBodyModalWrapper>{children}</GlobalBodyModalWrapper>
     </GlobalOverlay>
   );
