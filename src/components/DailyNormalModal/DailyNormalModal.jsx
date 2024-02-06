@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Notiflix from 'notiflix';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../redux/auth/selectors';
 import { updateWaterRate } from '../../redux/auth/operations';
+import { selectUser, selectDailyNorma } from '../../redux/auth/selectors';
 
 import {
   DailyNormWrap,
@@ -29,15 +30,17 @@ import {
 } from './DailyModal.styled';
 
 const DailyNormalModal = ({ closeModal }) => {
-  const dispatch = useDispatch();
-  const { dailyNorma, ...user } = useSelector(selectUser);
+  const { gender: userGender } = useSelector(selectUser);
 
-  const [gender, setGender] = useState(user?.gender || 'female');
+  const dailyNorma = useSelector(selectDailyNorma);
+  // console.log('dailyNorma...', dailyNorma);
+  const [gender, setGender] = useState(userGender || 'female');
   const [weight, setWeight] = useState('');
   const [activeTraningHours, setActiveTraningHours] = useState('');
   const [dailyVol, setDailyVol] = useState(dailyNorma || '1.8');
   const [volGoal, setVolGoal] = useState('');
-  // const dailyNorma = useSelector(selectDailyNorma);
+
+  const dispatch = useDispatch();
 
   const calculateWaterVol = useCallback(() => {
     if (!weight) return;
@@ -53,24 +56,36 @@ const DailyNormalModal = ({ closeModal }) => {
 
   useEffect(() => {
     calculateWaterVol();
-  }, [calculateWaterVol, user]);
+  }, [calculateWaterVol, volGoal]);
 
   const handleVolGoalChange = e => {
     const newVolGoal = e.target.value;
     setVolGoal(newVolGoal >= 1 ? newVolGoal : '');
   };
 
-  const handleSave = () => {
+  // const handleSave = () => {
+  const handleSave = e => {
+    e.preventDefault();
+    // console.log('Збереження цілі обєму води...', volGoal, dailyVol);
     const isDataValid = (weight > 0 && activeTraningHours >= 0) || volGoal > 0;
 
     if (!isDataValid) {
       Notiflix.Notify.warning(
-        'All fields must be filled in correctly before saving'
+        'Please fill in all fields correctly before saving'
       );
       return;
     }
 
-    dispatch(updateWaterRate(volGoal ? volGoal : dailyVol)); //* waterRate
+    dispatch(updateWaterRate(volGoal ? volGoal : dailyVol))
+      .then(() => {
+        Notiflix.Notify.success(
+          'The goal was successfully set! Track your progress!'
+        );
+        closeModal();
+      })
+      .catch(error => {
+        Notiflix.Notify.failure(`Failed to hydrate: ${error.message}`);
+      });
   };
 
   return (
