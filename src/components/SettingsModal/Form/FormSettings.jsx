@@ -120,9 +120,9 @@ export const FormSettings = () => {
                 <input
                   type="radio"
                   name="gender"
-                  value="female"
+                  value="woman"
                   onChange={handleChange}
-                  checked={gender === 'female'}
+                  checked={gender === 'woman'}
                 />
                 <span>Woman</span>
               </label>
@@ -132,9 +132,9 @@ export const FormSettings = () => {
                 <input
                   type="radio"
                   name="gender"
-                  value="male"
+                  value="man"
                   onChange={handleChange}
-                  checked={gender === 'male'}
+                  checked={gender === 'man'}
                 />
                 <span>Man</span>
               </label>
