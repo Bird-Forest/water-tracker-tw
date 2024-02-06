@@ -1,6 +1,6 @@
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 
-export const selectDailyNorma = state => state.auth.dailyNorma;
+export const selectDailyNorma = state => state.auth.user.dailyNorma;
 
 export const selectUser = state => state.auth.user;
 
