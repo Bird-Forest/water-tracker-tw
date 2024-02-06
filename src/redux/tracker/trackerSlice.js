@@ -4,7 +4,7 @@ import {
   addWaterEntry,
   updateWaterEntry,
   deleteWaterEntry,
-  getDailyWaterAmount,
+  // getDailyWaterAmount,
   getMonthWaterAmount,
 } from './operations';
 import { logOut } from '../auth/operations';
@@ -71,18 +71,18 @@ export const trackerSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(getDailyWaterAmount.pending, state => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getDailyWaterAmount.fulfilled, (state, action) => {
-        state.totalAmountWater = action.payload.totalAmountWater;
-        state.loading = false;
-      })
-      .addCase(getDailyWaterAmount.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
+      // .addCase(getDailyWaterAmount.pending, state => {
+      //   state.loading = true;
+      //   state.error = null;
+      // })
+      // .addCase(getDailyWaterAmount.fulfilled, (state, action) => {
+      //   state.totalAmountWater = action.payload.totalAmountWater;
+      //   state.loading = false;
+      // })
+      // .addCase(getDailyWaterAmount.rejected, (state, action) => {
+      //   state.loading = false;
+      //   state.error = action.payload;
+      // })
       .addCase(getMonthWaterAmount.pending, state => {
         state.loading = true;
         state.error = null;
