@@ -2,6 +2,7 @@ import { LogoutModal } from 'components/ModalUser/UserLogoutModal.styled';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
+import { Link } from 'react-router-dom';
 
 const UserLogoutModal = ({ onClose }) => {
   const dispatch = useDispatch();
@@ -21,10 +22,10 @@ const UserLogoutModal = ({ onClose }) => {
         <h4 className="title">Do you really want to leave?</h4>
         <div className="buttons">
           <button type="button" onClick={handleLogout} className="logoutBtn">
-            Log out
+          <Link to="/">Log out</Link> 
           </button>
           <button type="button" onClick={handleClose} className="cancelBtn">
-            Cancel
+           Cancel 
           </button>
         </div>
       </div>

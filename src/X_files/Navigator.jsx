@@ -15,6 +15,7 @@ export default function Navigator() {
       {/* {isLoggedIn && <NavLink to="/home" />} */}
 
       <NavLink to="/home" />
+      {/* <NavLink to="*" /> */}
     </nav>
   );
 }

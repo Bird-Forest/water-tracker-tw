@@ -17,7 +17,7 @@ import {
   StyledMonthWrapper,
 } from './Calendar.styled';
 import { selectMonthWater, selectEntries } from '../../../redux/tracker/selectors';
-import { selectDailyNorma } from '../../../redux/auth/selectors';
+// import { selectDailyNorma } from '../../../redux/auth/selectors';
 
 const Calendar = () => {
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -52,7 +52,7 @@ const Calendar = () => {
   //   console.log(record.percentage);
   // });
   const entries = useSelector(selectEntries);
-  const normUser = useSelector(selectDailyNorma);
+  // const normUser = useSelector(selectDailyNorma);
   
 
   const updateXCoord = () => {
