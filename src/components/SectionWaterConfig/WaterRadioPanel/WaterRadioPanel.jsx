@@ -2,12 +2,13 @@ import { StyledRadioPanel } from './WaterRadioPanel.styled';
 import { GoPlusCircle } from 'react-icons/go';
 import theme from 'BasicStyle/themeJSX';
 import { useState } from 'react';
-import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
+// import AddWaterModal from 'components/AddWaterModal/AddWaterModal';
 import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 import { useSelector } from 'react-redux';
 // import { selectPercentage } from '../../../redux/tracker/selectors';
 import { selectDailyNorma } from '../../../redux/auth/selectors';
 import { selectTotalWater } from '../../../redux/tracker/selectors';
+import TodayListModal from 'components/AddWaterModal/TodayListModal';
 // import { selectDailyWaterAmount } from '../../../redux/tracker/selectors';
 
 export const WaterRadioPanel = () => {
@@ -58,12 +59,9 @@ export const WaterRadioPanel = () => {
           $position={'center'}
           openModal={openModal}
           setOpenModal={setOpenModal}
+         //  title={'add Water'}
         >
-          <AddWaterModal
-            closeModal={setOpenModal}
-            isEditing={false}
-            title={'add Water'}
-          />
+          <TodayListModal closeModal={setOpenModal} isEditing={false} />
         </GlobalModal>
       )}
     </>

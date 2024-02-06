@@ -13,7 +13,7 @@ import {
   Button,
 } from './WaterDelModal.styled';
 
-export const WaterDelModal = ({ id, closeModal }) => {
+export const WaterDelModal = ({ id, closeModal, title }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -31,10 +31,11 @@ export const WaterDelModal = ({ id, closeModal }) => {
 
   return (
     <ModalWrap>
+      <h2 className="modal-title">{title}</h2>
       <TextStyle>Are you sure you want to delete the entry?</TextStyle>
       <ButtonBox>
         <Button onClick={handleDelete}>Delete</Button>
-        <Button onClick={closeModal}>Cancel</Button>
+        <Button onClick={() => closeModal()}>Cancel</Button>
       </ButtonBox>
     </ModalWrap>
   );

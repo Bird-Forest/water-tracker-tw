@@ -97,6 +97,7 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
           );
         });
     }
+    closeModal();
   };
 
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';

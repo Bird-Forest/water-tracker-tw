@@ -60,7 +60,7 @@ const DailyNormalModal = ({ closeModal }) => {
     setVolGoal(newVolGoal >= 1 ? newVolGoal : '');
   };
 
-  const handleSave = () => {
+  const handleSave = e => {
     const isDataValid = (weight > 0 && activeTraningHours >= 0) || volGoal > 0;
 
     if (!isDataValid) {
