@@ -25,7 +25,7 @@ export const updateWaterEntry = createAsyncThunk(
   'tracker/updateWaterEntry',
   async (waterData, thunkAPI) => {
     try {
-      const res = await axios.put(`api/water/update/${waterData.waterId}`, {
+      const res = await axios.put(`/api/water/update/${waterData.waterId}`, {
         amountWater: waterData.amountWater,
       });
       return res.data;
@@ -42,7 +42,7 @@ export const deleteWaterEntry = createAsyncThunk(
   'tracker/deleteWaterEntry',
   async (waterId, thunkAPI) => {
     try {
-      const res = await axios.delete(`api/water/${waterId}`);
+      const res = await axios.delete(`/api/water/${waterId}`);
       console.log(res.data);
       return res.data;
     } catch (error) {
@@ -58,7 +58,7 @@ export const getDailyWaterAmount = createAsyncThunk(
   'tracker/getDailyWaterAmount',
   async (_, thunkAPI) => {
     try {
-      const res = await axios.get('api/water/today');
+      const res = await axios.get('/api/water/today');
       // console.log('res: ', res.data);
       return res.data;
     } catch (error) {
