@@ -7,7 +7,7 @@ import { GlobalModal } from 'components/GlobalModal/GlobalModal';
 import { useSelector } from 'react-redux';
 // import { selectPercentage } from '../../../redux/tracker/selectors';
 import { selectDailyNorma } from '../../../redux/auth/selectors';
-import { selectTotalWater } from '../../../redux/tracker/selectors';
+import { selectEntries } from '../../../redux/tracker/selectors';
 import TodayListModal from 'components/AddWaterModal/TodayListModal';
 // import { selectDailyWaterAmount } from '../../../redux/tracker/selectors';
 
@@ -17,12 +17,12 @@ export const WaterRadioPanel = () => {
   const handleOpenModal = () => {
     setOpenModal(true);
   };
-  // const { percentage } = useSelector(selectDailyWaterAmount);
   // ************
+  const entries = useSelector(selectEntries);
   const normUser = useSelector(selectDailyNorma);
-  const totalWater = useSelector(selectTotalWater);
-  const percentage = Math.round((totalWater / (normUser * 1000)) * 100);
-  // const percentage = useSelector(selectPercentage);
+  const total = entries.reduce((acc, currentValue) => acc + currentValue.amountWater, 0);
+
+  const percentage = Math.round(total / (normUser * 10));
   // ******
 
   let parsent = percentage;
