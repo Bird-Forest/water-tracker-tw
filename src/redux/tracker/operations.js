@@ -23,9 +23,11 @@ export const addWaterEntry = createAsyncThunk(
 // Редагування запису по спожитій воді
 export const updateWaterEntry = createAsyncThunk(
   'tracker/updateWaterEntry',
-  async (waterId, thunkAPI) => {
+  async (waterData, thunkAPI) => {
     try {
-      const res = await axios.put(`/api/water/update/${waterId}`);
+      const res = await axios.put(`/api/water/update/${waterData.waterId}`, {
+        amountWater: waterData.amountWater,
+      });
       return res.data;
     } catch (error) {
       console.error(error);
