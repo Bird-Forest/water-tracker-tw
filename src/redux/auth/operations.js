@@ -1,43 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-export const NOTIFICATIONS = {
-  SUCCESS: {
-    AVATAR_UPDATED: 'Avatar updated successfully.',
-    USER_UPDATED: 'User information updated successfully.',
-  },
-  FAILURE: {
-    USER_CREATION: 'User creation error.',
-    INVALID_DATA: 'Email or password is wrong.',
-    NOT_FOUND: 'Not found.',
-    EMAIL: 'Email is already in use.',
-    SERVER: 'Server error.',
-    LOGIN: 'Login error.',
-    UNAUTHORIZED: 'Not authorized.',
-    NO_FILE: 'File not found.',
-    FETCHING_USER: 'Unable to fetch user.',
-    USER_UPDATE: 'Error updating user information.',
-    LOGOUT: 'Logout error.',
-  },
-  INFO: {
-    WELCOME: 'Welcome to Tracker of Water!',
-    LOGOUT: `We're going to miss you...`,
-  },
-};
-
-export const paramsForNotify = {
-  position: 'center-bottom',
-  distance: '16px',
-  timeout: 3000,
-  width: '300px',
-  fontSize: '16px',
-  borderRadius: '10px',
-  showOnlyTheLastOne: true,
-  fontFamily: 'Montserrat',
-  cssAnimationStyle: 'from-bottom',
-  fontAwesomeIconSize: '20px',
-};
+import { NOTIFICATIONS, paramsForNotify } from '../notifications';
 
 // axios.defaults.baseURL = 'http://localhost:3001';
 
@@ -262,20 +226,20 @@ export const updateUser = createAsyncThunk(
 
 export const updateWaterRate = createAsyncThunk(
   'user/waterRate',
-  async (_, thunkAPI) => {
+  async (dailyNorma, thunkAPI) => {
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
 
       setAuthHeader(token);
 
-      const res = await axios.patch('/user/water-rate');
+      const res = await axios.patch('/user/water-rate', { dailyNorma });
 
-      Notify.success(NOTIFICATIONS.SUCCESS.USER_UPDATED, paramsForNotify);
+      // Notify.success(NOTIFICATIONS.SUCCESS.USER_UPDATED, paramsForNotify);
       return res.data;
     } catch (error) {
       console.error(error);
-      Notify.failure(NOTIFICATIONS.FAILURE.USER_UPDATE, paramsForNotify);
+      // Notify.failure(NOTIFICATIONS.FAILURE.USER_UPDATE, paramsForNotify);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
