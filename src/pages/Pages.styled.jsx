@@ -4,8 +4,8 @@ import WaterMainPage from '../img/BgMainPage/WaterMainPage.svg';
 import WaterMainTablet from '../img/BgMainPage/WaterMainTablet.svg';
 import WaterMainMobile from '../img/BgMainPage/WaterMainMobile.svg';
 
-import bg_mob from '../img/bg/mob-bg.svg';
-import bg_tab from '../img/bg/tab-bg.svg';
+// import bg_mob from '../img/bg/mob-bg.svg';
+// import bg_tab from '../img/bg/tab-bg.svg';
 // import bg_desk from '../img/bg/desk-bg.svg';
 import bg_desk_elem from '../img/bg/desk-elem-bg.svg';
 
@@ -35,7 +35,7 @@ export const WrapRender = styled.div`
   background-image: url(${bg_desk_elem});
 
   @media screen and (min-width: 320px) {
-    /* background-image: url(${bg_mob}); */
+  
 
     /* background-position-x: center;
     background-position-y: 108px; */
@@ -43,7 +43,7 @@ export const WrapRender = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    /* background-image: url(${bg_tab}); */
+    
     /* background-position-y: 90px; */
     /* background-repeat: no-repeat;
      */
