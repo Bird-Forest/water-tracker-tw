@@ -22,7 +22,7 @@ import {
 
 const TodayListModal = ({ isEditing, data, closeModal }) => {
   const [amountWater, setAmountWater] = useState(
-    isEditing ? data.dailyWaterAmount : 0
+    isEditing ? data.amountWater : 0
   );
   const [recordedTime, setRecordedTime] = useState(
     isEditing ? new Date(data.time) : new Date()
@@ -66,8 +66,7 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
     }
 
     const saveWater = {
-      dailyWaterAmount: amountWater,
-      time: new Date(recordedTime),
+      amountWater: amountWater,
     };
 
     if (isEditing) {
@@ -97,7 +96,6 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
           );
         });
     }
-    closeModal();
   };
 
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
