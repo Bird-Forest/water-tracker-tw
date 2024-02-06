@@ -1,12 +1,14 @@
 import SignBgWrapper from '../components/SignBgWrapper/SignBgWrapper';
 import SigninForm from 'components/SigninForm/SigninForm';
-
+import { WrapRender } from './Pages.styled';
 
 const SigninPage = () => {
   return (
-    <SignBgWrapper>
-      <SigninForm/>
-    </SignBgWrapper>
+    <WrapRender>
+      <SignBgWrapper>
+        <SigninForm />
+      </SignBgWrapper>
+    </WrapRender>
   );
 };
 
