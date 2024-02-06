@@ -35,7 +35,7 @@ export const WrapRender = styled.div`
   background-image: url(${bg_desk_elem});
 
   @media screen and (min-width: 320px) {
-    // background-image: url(${bg_mob});
+    /* background-image: url(${bg_mob}); */
 
     /* background-position-x: center;
     background-position-y: 108px; */
@@ -43,14 +43,14 @@ export const WrapRender = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    // background-image: url(${bg_tab});
+    /* background-image: url(${bg_tab}); */
     /* background-position-y: 90px; */
     /* background-repeat: no-repeat;
      */
   }
 
   @media screen and (min-width: 1200px) {
-    // background-image: url(${bg_desk_elem});
+    /* background-image: url(${bg_desk_elem}); */
     /* background-position-y: center; */
     // background-repeat: repeat;
   }

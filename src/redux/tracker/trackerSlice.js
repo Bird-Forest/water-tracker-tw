@@ -76,7 +76,7 @@ export const trackerSlice = createSlice({
         state.error = null;
       })
       .addCase(getDailyWaterAmount.fulfilled, (state, action) => {
-        state.totalAmountWater = action.payload;
+        state.totalAmountWater = action.payload.totalAmountWater;
         state.loading = false;
       })
       .addCase(getDailyWaterAmount.rejected, (state, action) => {
@@ -88,7 +88,7 @@ export const trackerSlice = createSlice({
         state.error = null;
       })
       .addCase(getMonthWaterAmount.fulfilled, (state, action) => {
-        state.monthAmountWater = action.payload;
+        state.monthAmountWater = action.payload.monthAmountWater;
         state.loading = false;
       })
       .addCase(getMonthWaterAmount.rejected, (state, action) => {
