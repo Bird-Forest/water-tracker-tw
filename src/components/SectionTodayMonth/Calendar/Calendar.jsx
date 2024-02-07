@@ -18,7 +18,8 @@ import {
   StyledMonthWrapper,
 } from './Calendar.styled';
 import { selectMonthWater, selectEntries } from '../../../redux/tracker/selectors';
-// import { selectDailyNorma } from '../../../redux/auth/selectors';
+// import { selectDailyNorma } from 'redux/auth/selectors';
+import { selectDailyNorma } from '../../../redux/auth/selectors';
 
 const Calendar = () => {
   const DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -53,7 +54,7 @@ const Calendar = () => {
   //   console.log(record.percentage);
   // });
   const entries = useSelector(selectEntries);
-  // const normUser = useSelector(selectDailyNorma);
+  const normUser = useSelector(selectDailyNorma);
   
 
   const updateXCoord = () => {
@@ -68,6 +69,8 @@ const Calendar = () => {
 
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.token);
+ 
+
   const { isLoggedIn } = useAuth();
 
   useEffect(() => {
@@ -78,7 +81,6 @@ const Calendar = () => {
     window.addEventListener('resize', updateXCoord);
     if (token && isLoggedIn) {
       const formattedMonth = `${year}-${month + 1}`.padStart(7, '0');
-      // console.log(formattedMonth);
       dispatch(getMonthWaterAmount(formattedMonth));
     }
     return () => {
@@ -148,10 +150,9 @@ const Calendar = () => {
                   (dayOfMonth >= 11 && dayOfMonth <= 15) ||
                   (dayOfMonth >= 21 && dayOfMonth <= 25) ||
                   dayOfMonth === 31;
-
                   if (!record) {
                     record = {
-                      dailyNorma: 0,
+                      dailyNorma: normUser,
                       percentage: 0,
                       recordsWaterConsumption: 0,
                     };

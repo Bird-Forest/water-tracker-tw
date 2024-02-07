@@ -99,13 +99,14 @@ const TodayWaterList = () => {
             </li>
           )}
 
-          <StyledLi>
+          
+        </UlStyle>
+        <StyledLi>
             <AddBtnStyle onClick={handleOpenModalTodayListAdd}>
               <FaPlus />
               Add water
             </AddBtnStyle>
           </StyledLi>
-        </UlStyle>
       </ListAddDiv>
 
       {openModalTodayList && (

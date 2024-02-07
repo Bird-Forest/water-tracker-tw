@@ -8,7 +8,7 @@ import { refreshUser } from './redux/auth/operations';
 import { getDailyWaterAmount } from './redux/tracker/operations';
 import PageRoutes from './X_files/PageRoutes';
 import Loader from 'components/Loader/Loader';
-import Spinner from 'components/Loader/Spinner';
+// import Spinner from 'components/Loader/Spinner';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export const App = () => {
   const { isRefreshing } = useAuth();
 
   return isRefreshing ? (
-    <Spinner />
+    <Loader />
   ) : (
     <>
       <GlobalStyles />
