@@ -1,5 +1,7 @@
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { forgotPassword } from '../../redux/auth/operations';
 import {
   ForgotPasswordContainer,
   ForgotPasswordTitle,
@@ -11,6 +13,8 @@ import {
 } from './ForgotPassForm.styled';
 
 const ForgotPassForm = () => {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -27,7 +31,7 @@ const ForgotPassForm = () => {
       return errors;
     },
     onSubmit: (values) => {
-      // Логіка відправки запиту на зміну пароля
+      dispatch(forgotPassword(values));
       console.log(values);
     },
   });
@@ -53,7 +57,7 @@ const ForgotPassForm = () => {
         </FormLabel>
         <ForgotPasswordButton type="submit" disabled={!formik.isValid}>Send Reset Request</ForgotPasswordButton>
       </ForgotPasswordForm>
-      <BackToSignInLink as={Link} to="/signin">Back to Sign In</BackToSignInLink>
+      <BackToSignInLink as={Link} to="/signin">Sign in</BackToSignInLink>
     </ForgotPasswordContainer>
   );
 };

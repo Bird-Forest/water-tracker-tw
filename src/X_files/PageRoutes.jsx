@@ -8,7 +8,8 @@ const SignIn = lazy(() => import('../pages/SigninPage'));
 const SignUp = lazy(() => import('../pages/SignupPage'));
 const Home = lazy(() => import('../pages/HomePage'));
 const NotFound = lazy(() => import('../pages/NotFoundPage'));
-// const ForgotPassPage = lazy(() => import('../pages/ForgotPassPage'));
+const ForgotPassPage = lazy(() => import('../pages/ForgotPassPage'));
+const ResetPassPage = lazy(() => import('../pages/ReaetPassPage'));
 
 export default function PageRoutes() {
   return (
@@ -17,7 +18,10 @@ export default function PageRoutes() {
         <Route path="/" element={<Welcome />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPassPage />} />
+        <Route path="/reset-password" element={<ResetPassPage />} />
         <Route path="/home" element={<Home />} />
+        
 
         {/* <Route path="/" element={<SharedLayout />} />
         <Route index element={<Welcome />} /> */}

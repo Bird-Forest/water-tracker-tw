@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
+export const SignInSection = styled.div`
+  width: 100%;
+`;
+
 export const SignBgWrapperStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0 20px;
-  min-height: calc(100vh - 56px);
+  min-height: 92vh;
   position: relative;
   max-width: 100%;
   padding: 0 20px;
