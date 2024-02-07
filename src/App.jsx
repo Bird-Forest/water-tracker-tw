@@ -13,13 +13,12 @@ import Spinner from 'components/Loader/Spinner';
 export const App = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.auth.token);
-  const { isLoggedIn } = useAuth();
   useEffect(() => {
-    if (token && isLoggedIn) {
+    if (token) {
       dispatch(refreshUser());
       dispatch(getDailyWaterAmount());
     }
-  }, [token, dispatch, isLoggedIn]);
+  }, [token, dispatch]);
 
   const { isRefreshing } = useAuth();
 
