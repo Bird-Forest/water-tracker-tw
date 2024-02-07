@@ -24,7 +24,7 @@ export const AddWater = styled.h2`
   margin-bottom: 24px;
 `;
 
-export const ChooseText = styled.p`
+export const ChooseText = styled.div`
   font-size: 18px;
   font-weight: 500;
   line-height: 1.1;

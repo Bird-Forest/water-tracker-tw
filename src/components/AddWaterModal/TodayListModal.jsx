@@ -67,6 +67,7 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
 
     const saveWater = {
       amountWater: amountWater,
+      time: new Date(recordedTime)
     };
 
     if (isEditing) {
@@ -107,11 +108,11 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
         {isEditing && (
           <div>
             <h3>Entered records:</h3>
-            <p>
+            <div>
               {amountWater
                 ? `${amountWater} at ${recordedTime}`
                 : 'No value entered'}
-            </p>
+            </div>
           </div>
         )}
       </ChooseText>
