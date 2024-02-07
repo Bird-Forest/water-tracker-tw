@@ -182,7 +182,7 @@ export const DeleteBtn = styled.button`
 export const AddBtnStyle = styled.button`
   display: flex;
   gap: 8px;
-  padding: 12px 0 0 0;
+  margin-left: 5px;
   color: ${theme.colors.primaryAccent};
   border: none;
   background-color: transparent;

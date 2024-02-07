@@ -127,7 +127,12 @@ export const Day = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: ${theme.colors.primaryLight};
+  background-color: ${props =>
+    props.$isToday
+      ? `rgba(215, 227, 255, 1)`
+      : `${theme.colors.primaryLight}`
+  
+  };
   display: flex;
   align-items: center;
   justify-content: center;

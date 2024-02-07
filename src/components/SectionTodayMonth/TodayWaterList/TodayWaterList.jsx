@@ -11,7 +11,6 @@ import {
   InfoWrap,
   ListAddDiv,
   ListItem,
-  StyledLi,
   TextTime,
   TextVolume,
   TodayStyle,
@@ -98,17 +97,14 @@ const TodayWaterList = () => {
               <StyledQuestion>Did you drink water today?</StyledQuestion>
             </li>
           )}
-
-          
         </UlStyle>
-        <StyledLi>
+            {/* <StyledLi> */}
             <AddBtnStyle onClick={handleOpenModalTodayListAdd}>
               <FaPlus />
               Add water
             </AddBtnStyle>
-          </StyledLi>
+          {/* </StyledLi> */}
       </ListAddDiv>
-
       {openModalTodayList && (
         <GlobalModal
           $position={'center'}
