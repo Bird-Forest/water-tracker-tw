@@ -18,6 +18,10 @@ import {
   FormStyled,
   ButtonSaveWrapper,
   StyledAddWaterModal,
+  GlassContainer,
+  GlassStyle,
+  TextAmount,
+  TimeValue,
 } from './AddWaterModal.styled';
 
 const TodayListModal = ({ isEditing, data, closeModal }) => {
@@ -49,14 +53,14 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
     }
   };
 
-  const handleTimeChange = (evt) => {
+  const handleTimeChange = evt => {
     const timeString = evt.target.value;
     const [hours, minutes] = timeString.split(':').map(Number);
-  
+
     const newRecordedTime = new Date(recordedTime);
     newRecordedTime.setHours(hours);
     newRecordedTime.setMinutes(minutes);
-  
+
     setRecordedTime(newRecordedTime);
   };
 
@@ -69,6 +73,7 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
       );
       return;
     }
+
     if (amountWater < 0 || amountWater === '') {
       Notiflix.Notify.warning(
         'It is necessary to enter a positive value for the amount of water'
@@ -78,7 +83,7 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
 
     const saveWater = {
       amountWater: amountWater,
-      time: recordedTime
+      time: recordedTime,
     };
 
     if (isEditing) {
@@ -115,18 +120,20 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
   return (
     <StyledAddWaterModal>
       <AddWater>{title}</AddWater>
-      <ChooseText>
+      <div>
         {isEditing && (
-          <div>
-            <h3>Entered records:</h3>
-            <div>
-              {amountWater
-                ? `${amountWater} at ${recordedTime}`
-                : 'No value entered'}
-            </div>
-          </div>
+          <GlassContainer>
+            <GlassStyle />
+            <TextAmount>{data.amountWater}ml</TextAmount>
+            <TimeValue>
+              {new Date(data.time).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </TimeValue>
+          </GlassContainer>
         )}
-      </ChooseText>
+      </div>
 
       <ChooseText>
         {isEditing ? 'Correct entered data:' : 'Choose a value:'}
@@ -155,8 +162,11 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
         <label>
           Recording time:
           <input
-            type="text"
-            value={recordedTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            type="time"
+            value={recordedTime.toLocaleTimeString([], {
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
             onChange={handleTimeChange}
           />
         </label>
