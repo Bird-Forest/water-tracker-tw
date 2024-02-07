@@ -1,12 +1,14 @@
 {
   "files": {
     "main.css": "/water-tracker-tw/static/css/main.a97a1dbf.css",
-    "main.js": "/water-tracker-tw/static/js/main.36194ccf.js",
+    "main.js": "/water-tracker-tw/static/js/main.04ca2668.js",
     "static/js/279.c6b7f63a.chunk.js": "/water-tracker-tw/static/js/279.c6b7f63a.chunk.js",
-    "static/js/249.e612133b.chunk.js": "/water-tracker-tw/static/js/249.e612133b.chunk.js",
-    "static/js/407.a83065c8.chunk.js": "/water-tracker-tw/static/js/407.a83065c8.chunk.js",
-    "static/js/767.f3fccf62.chunk.js": "/water-tracker-tw/static/js/767.f3fccf62.chunk.js",
+    "static/js/249.74e0fda0.chunk.js": "/water-tracker-tw/static/js/249.74e0fda0.chunk.js",
+    "static/js/985.efbf3668.chunk.js": "/water-tracker-tw/static/js/985.efbf3668.chunk.js",
+    "static/js/767.dcda7d9a.chunk.js": "/water-tracker-tw/static/js/767.dcda7d9a.chunk.js",
     "static/js/827.f32f2254.chunk.js": "/water-tracker-tw/static/js/827.f32f2254.chunk.js",
+    "static/js/701.1fba9f96.chunk.js": "/water-tracker-tw/static/js/701.1fba9f96.chunk.js",
+    "static/js/388.39d9ed3c.chunk.js": "/water-tracker-tw/static/js/388.39d9ed3c.chunk.js",
     "static/js/705.503bdf76.chunk.js": "/water-tracker-tw/static/js/705.503bdf76.chunk.js",
     "static/js/761.628d0213.chunk.js": "/water-tracker-tw/static/js/761.628d0213.chunk.js",
     "static/js/236.0a0cc58b.chunk.js": "/water-tracker-tw/static/js/236.0a0cc58b.chunk.js",
@@ -46,12 +48,14 @@
     "static/media/minus.svg": "/water-tracker-tw/static/media/minus.ea7197da75e246fd86455c07dfd782d9.svg",
     "static/media/plus.svg": "/water-tracker-tw/static/media/plus.a028f8daec495841fe42646bb539e349.svg",
     "main.a97a1dbf.css.map": "/water-tracker-tw/static/css/main.a97a1dbf.css.map",
-    "main.36194ccf.js.map": "/water-tracker-tw/static/js/main.36194ccf.js.map",
+    "main.04ca2668.js.map": "/water-tracker-tw/static/js/main.04ca2668.js.map",
     "279.c6b7f63a.chunk.js.map": "/water-tracker-tw/static/js/279.c6b7f63a.chunk.js.map",
-    "249.e612133b.chunk.js.map": "/water-tracker-tw/static/js/249.e612133b.chunk.js.map",
-    "407.a83065c8.chunk.js.map": "/water-tracker-tw/static/js/407.a83065c8.chunk.js.map",
-    "767.f3fccf62.chunk.js.map": "/water-tracker-tw/static/js/767.f3fccf62.chunk.js.map",
+    "249.74e0fda0.chunk.js.map": "/water-tracker-tw/static/js/249.74e0fda0.chunk.js.map",
+    "985.efbf3668.chunk.js.map": "/water-tracker-tw/static/js/985.efbf3668.chunk.js.map",
+    "767.dcda7d9a.chunk.js.map": "/water-tracker-tw/static/js/767.dcda7d9a.chunk.js.map",
     "827.f32f2254.chunk.js.map": "/water-tracker-tw/static/js/827.f32f2254.chunk.js.map",
+    "701.1fba9f96.chunk.js.map": "/water-tracker-tw/static/js/701.1fba9f96.chunk.js.map",
+    "388.39d9ed3c.chunk.js.map": "/water-tracker-tw/static/js/388.39d9ed3c.chunk.js.map",
     "705.503bdf76.chunk.js.map": "/water-tracker-tw/static/js/705.503bdf76.chunk.js.map",
     "761.628d0213.chunk.js.map": "/water-tracker-tw/static/js/761.628d0213.chunk.js.map",
     "236.0a0cc58b.chunk.js.map": "/water-tracker-tw/static/js/236.0a0cc58b.chunk.js.map",
@@ -59,6 +63,6 @@
   },
   "entrypoints": [
     "static/css/main.a97a1dbf.css",
-    "static/js/main.36194ccf.js"
+    "static/js/main.04ca2668.js"
   ]
 }
