@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ReactComponent as PlusIcon } from '../../img/plus.svg';
 import { ReactComponent as MinusIcon } from '../../img/minus.svg';
 import theme from '../../BasicStyle/themeJSX';
+import { ReactComponent as Glass } from '../../img/glass.svg';
 
 export const StyledAddWaterModal = styled.div`
   width: 100vw;
@@ -195,4 +196,32 @@ export const ButtonSaveWrapper = styled.div`
       width: 160px;
     }
   }
+`;
+
+export const GlassContainer = styled.div`
+  width: 254px;
+  display: flex;
+  align-items: center;
+  padding: 8px 24px;
+  border-radius: 10px;
+  gap: 12px;
+  background-color: ${theme.colors.secondaryLight};
+  margin-bottom: 24px;
+`;
+
+export const GlassStyle = styled(Glass)`
+  width: 36px;
+  height: 36px;
+`;
+
+export const TextAmount = styled.p`
+  color: ${theme.colors.primaryAccent};
+  font-size: 18px;
+  line-height: 1.3;
+  margin-right: 4px;
+`;
+
+export const TimeValue = styled.p`
+  font-size: 12px;
+  line-height: 2;
 `;
