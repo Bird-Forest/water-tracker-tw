@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { useAuth } from '../../../hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthWaterAmount } from '../../../redux/tracker/operations';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
@@ -67,6 +68,7 @@ const Calendar = () => {
 
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.token);
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     setDay(date.getDate());
@@ -74,7 +76,7 @@ const Calendar = () => {
     setYear(date.getFullYear());
     updateXCoord();
     window.addEventListener('resize', updateXCoord);
-    if (token) {
+    if (token && isLoggedIn) {
       const formattedMonth = `${year}-${month + 1}`.padStart(7, '0');
       console.log(formattedMonth);
       dispatch(getMonthWaterAmount(formattedMonth));
@@ -82,7 +84,7 @@ const Calendar = () => {
     return () => {
       window.removeEventListener('resize', updateXCoord);
     };
-  }, [date, token, dispatch, month, year, entries]);
+  }, [date, token, dispatch, month, year, entries, isLoggedIn]);
 
   function isLeapYear(year) {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -99,7 +101,7 @@ const Calendar = () => {
   };
   function findWaterRecordByDate(date) {
     // console.log(date);
-    return monthAmountWater.find(record => record.date === date);
+    return monthAmountWater ? monthAmountWater.find(record => record.date === date) : null;
     
   }
 
