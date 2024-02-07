@@ -19,20 +19,21 @@ const ForgotPassForm = () => {
     initialValues: {
       email: '',
     },
-    validate: (values) => {
+    validate: values => {
       const errors = {};
 
       if (!values.email) {
         errors.email = 'Required';
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+      ) {
         errors.email = 'Invalid email address';
       }
 
       return errors;
     },
-    onSubmit: (values) => {
+    onSubmit: values => {
       dispatch(forgotPassword(values));
-      console.log(values);
     },
   });
 
@@ -40,7 +41,8 @@ const ForgotPassForm = () => {
     <ForgotPasswordContainer>
       <ForgotPasswordTitle>Forgot Password</ForgotPasswordTitle>
       <ForgotPasswordForm onSubmit={formik.handleSubmit}>
-        <FormLabel htmlFor="email">Enter your email
+        <FormLabel htmlFor="email">
+          Enter your email
           <FormInput
             type="email"
             id="email"
@@ -49,15 +51,21 @@ const ForgotPassForm = () => {
             onChange={formik.handleChange}
             value={formik.values.email}
             onBlur={formik.handleBlur}
-            className={formik.touched.email && formik.errors.email ? 'error' : ''}
+            className={
+              formik.touched.email && formik.errors.email ? 'error' : ''
+            }
           />
           {formik.touched.email && formik.errors.email && (
             <div className="error-message">{formik.errors.email}</div>
           )}
         </FormLabel>
-        <ForgotPasswordButton type="submit" disabled={!formik.isValid}>Send Reset Request</ForgotPasswordButton>
+        <ForgotPasswordButton type="submit" disabled={!formik.isValid}>
+          Send Reset Request
+        </ForgotPasswordButton>
       </ForgotPasswordForm>
-      <BackToSignInLink as={Link} to="/signin">Sign in</BackToSignInLink>
+      <BackToSignInLink as={Link} to="/signin">
+        Sign in
+      </BackToSignInLink>
     </ForgotPasswordContainer>
   );
 };

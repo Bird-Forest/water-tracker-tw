@@ -33,7 +33,7 @@ const DailyNormalModal = ({ closeModal }) => {
   const { gender: userGender } = useSelector(selectUser);
 
   const dailyNorma = useSelector(selectDailyNorma);
-  // console.log('dailyNorma...', dailyNorma);
+
   const [gender, setGender] = useState(userGender || 'female');
   const [weight, setWeight] = useState('');
   const [activeTraningHours, setActiveTraningHours] = useState('');
@@ -65,35 +65,47 @@ const DailyNormalModal = ({ closeModal }) => {
 
   const handleSave = e => {
     e.preventDefault();
-  
+
     // Конвертація рядкових значень у числа
     const parsedWeight = parseFloat(weight);
     const parsedActiveTraningHours = parseFloat(activeTraningHours);
     const parsedVolGoal = parseFloat(volGoal);
-  
+
     // Перевірка чи значення коректні
     if (isNaN(parsedWeight) || isNaN(parsedActiveTraningHours)) {
-      Notiflix.Notify.warning('Please enter valid numeric values for weight and active training hours.', paramsForNotify);
+      Notiflix.Notify.warning(
+        'Please enter valid numeric values for weight and active training hours.',
+        paramsForNotify
+      );
       return;
     }
-  
+
     // Перевірка чи введено значення для цілі обсягу, якщо так, то чи є воно числовим
     if (volGoal && isNaN(parsedVolGoal)) {
-      Notiflix.Notify.warning('Please enter a valid numeric value for the volume goal.', paramsForNotify);
+      Notiflix.Notify.warning(
+        'Please enter a valid numeric value for the volume goal.',
+        paramsForNotify
+      );
       return;
     }
-  
+
     // Відправлення запиту на сервер з числовими значеннями
     dispatch(updateWaterRate(parsedVolGoal ? parsedVolGoal : dailyVol))
       .then(() => {
-        Notiflix.Notify.success('The goal was successfully set! Track your progress!', paramsForNotify);
+        Notiflix.Notify.success(
+          'The goal was successfully set! Track your progress!',
+          paramsForNotify
+        );
         closeModal();
       })
       .catch(error => {
-        Notiflix.Notify.failure(`Failed to hydrate: ${error.message}`, paramsForNotify);
+        Notiflix.Notify.failure(
+          `Failed to hydrate: ${error.message}`,
+          paramsForNotify
+        );
       });
   };
-  
+
   return (
     <DailyNormWrap>
       <Title>My daily norma</Title>
