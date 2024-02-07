@@ -18,10 +18,14 @@ export const SignUpContainer = styled.div`
 
   div.error-message {
     color: ${theme.colors.secondaryRed};
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400px;
     position: absolute;
     top: calc(100% + 2px);
+
+    @media screen and (min-width: 768px) {
+      font-size: 13px;
+    }
   }
 `;
 
@@ -45,6 +49,11 @@ export const FormLabel = styled.label`
   flex-direction: column;
   gap: 8px;
   position: relative;
+  font-size: 16px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 export const FormInput = styled.input.attrs(props => ({
@@ -54,10 +63,16 @@ export const FormInput = styled.input.attrs(props => ({
   border: 1px solid ${(props) => (props['data-has-error'] ? '#EF5050' : '#D7E3FF')};
   border-radius: 6px;
   outline: none;
+  color: ${(props) => (props['data-has-error'] ? '#EF5050' : '#407BFF')};
+  font-size: 16px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 export const RepeatPasswordInput = styled(FormInput)`
-  /* Стилі для повторення пароля, використовуйте стилі FormInput та додайте потрібні зміни */
+  
 `;
 
 export const ShowPasswordIcon = styled.span`
@@ -65,6 +80,10 @@ export const ShowPasswordIcon = styled.span`
   position: absolute;
   right: 10px;
   top: 40px;
+
+  & svg:hover {
+    stroke: ${theme.colors.secondaryYellow};
+  }
 `;
 
 export const SignUpButton = styled.button`
@@ -79,20 +98,50 @@ export const SignUpButton = styled.button`
   border: none;
   margin-top: 10px;
   outline: none;
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: ${(props) => (props.disabled ? '#8F8F8F' : '#407BFF')}; /* Змінює колір при наведенні, якщо кнопка активна */
+    background-color: ${(props) => (props.disabled ? '#8F8F8F' : '#407BFF')};
+    color: ${(props) => (props.disabled ? '#FFFFFF' : '#FF9D43')};
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
   }
 `;
 
 export const SignInLink = styled.a`
   display: inline-block;
+  width: fit-content;
   text-decoration: none;
   color: ${theme.colors.primaryAccent};
   cursor: pointer;
   margin-top: 16px;
+  position: relative;
+  padding-bottom: 1px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+
+  &:before{
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: ${theme.colors.secondaryYellow};
+    transition: width 0.3s ease;
+  }
 
   &:hover {
     color: ${theme.colors.secondaryYellow};
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
   }
 `;

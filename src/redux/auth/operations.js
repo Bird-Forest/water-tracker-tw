@@ -245,6 +245,52 @@ export const updateWaterRate = createAsyncThunk(
   }
 );
 
+export const forgotPassword = createAsyncThunk(
+  'auth/forgotPassword',
+  async (email, thunkAPI) => {
+    try {
+      const res = await axios.post('/auth/forgot-password', email);
+
+      Notify.success('Email was sent successfully.', paramsForNotify);
+      return res.data;
+    } catch (error) {
+      switch (error.response.status) {
+        case 404:
+          Notify.failure(NOTIFICATIONS.FAILURE.NOT_FOUND, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 500:
+          Notify.failure(NOTIFICATIONS.FAILURE.SERVER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        default:
+          return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async (userData, thunkAPI) => {
+    try {
+      const res = await axios.patch('/auth/reset-password', userData);
+
+      Notify.success('Password was reseted successfully.', paramsForNotify);
+      return res.data;
+    } catch (error) {
+      switch (error.response.status) {
+        case 404:
+          Notify.failure(NOTIFICATIONS.FAILURE.NOT_FOUND, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        case 500:
+          Notify.failure(NOTIFICATIONS.FAILURE.SERVER, paramsForNotify);
+          return thunkAPI.rejectWithValue(error.message);
+        default:
+          return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
 /*
  * POST @ /auth/logout
  * headers: Authorization: Bearer token

@@ -1,4 +1,4 @@
-import { SignBgWrapperStyled } from './SignBgWrapper.styled';
+import { SignBgWrapperStyled, SignInSection } from './SignBgWrapper.styled';
 
 import imgDesk from './bg/bottle-desk-1x.webp';
 import imgDesk2x from './bg/bottle-desk-2x.webp';
@@ -15,7 +15,7 @@ import imgMobPng2x from './bg/bottle-mob-2x.png';
 
 const SignBgWrapper = ({ children }) => {
   return (
-    <section className={'sign-section-container'}>
+    <SignInSection className={'sign-section-container'}>
       <SignBgWrapperStyled className={'sign-bg-wrapper'}>
         <picture>
           <source
@@ -52,7 +52,7 @@ const SignBgWrapper = ({ children }) => {
         </picture>
         {children}
       </SignBgWrapperStyled>
-    </section>
+    </SignInSection>
   );
 };
 

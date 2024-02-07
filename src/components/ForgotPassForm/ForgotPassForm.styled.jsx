@@ -11,17 +11,21 @@ export const ForgotPasswordContainer = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    transform: translateY(-140px);
+    transform: translateY(-25%);
     grid-column-start: 8;
     grid-column-end: 12;
   }
 
   div.error-message {
     color: ${theme.colors.secondaryRed};
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400px;
     position: absolute;
     top: calc(100% + 2px);
+
+    @media screen and (min-width: 768px) {
+      font-size: 13px;
+    }
   }
 `;
 
@@ -45,6 +49,11 @@ export const FormLabel = styled.label`
   flex-direction: column;
   gap: 8px;
   position: relative;
+  font-size: 16px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 export const FormInput = styled.input`
@@ -52,10 +61,16 @@ export const FormInput = styled.input`
   border: 1px solid ${theme.colors.secondaryLightBlue};
   border-radius: 6px;
   outline: none;
+  font-size: 16px;
+  color: ${theme.colors.primaryAccent};
 
   &.error {
-    /* Стилі для інпутів з помилкою */
-    border: 1px solid ${theme.colors.secondaryRed};
+    border: 1px solid ${theme.colors.primaryAccent};
+    color: ${theme.colors.secondaryRed};
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
   }
 `;
 
@@ -71,20 +86,50 @@ export const ForgotPasswordButton = styled.button`
   border: none;
   margin-top: 10px;
   outline: none;
+  transition: all 0.3s ease;
 
   &:hover {
-    background-color: ${(props) => (props.disabled ? '#8F8F8F' : '#407BFF')}; /* Змінює колір при наведенні, якщо кнопка активна */
+    background-color: ${(props) => (props.disabled ? '#8F8F8F' : '#407BFF')};
+    color: ${(props) => (props.disabled ? '#FFFFFF' : '#FF9D43')};
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
   }
 `;
 
 export const BackToSignInLink = styled.a`
   display: inline-block;
   text-decoration: none;
+  width: fit-content;
   color: ${theme.colors.primaryAccent};
   cursor: pointer;
   margin-top: 16px;
+  position: relative;
+  padding-bottom: 1px;
+  font-size: 16px;
+  transition: color 0.3s ease;
+
+  &:before{
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: ${theme.colors.secondaryYellow};
+    transition: width 0.3s ease;
+  }
 
   &:hover {
     color: ${theme.colors.secondaryYellow};
+  }
+
+  &:hover::before {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
   }
 `;

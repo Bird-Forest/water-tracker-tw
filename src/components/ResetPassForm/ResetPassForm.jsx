@@ -4,47 +4,35 @@ import { useFormik } from 'formik';
 import zxcvbn from 'zxcvbn';
 import PasswordStrengthMeter from '../PassStrengthMeter/PasswordStrengthMeter';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/auth/operations';
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
-import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { resetPassword } from '../../redux/auth/operations';
+
 import {
-  SignUpContainer,
-  SignUpTitle,
-  SignUpForm,
+  ResetPassContainer,
+  ResetPassTitle,
+  ResetPasswordForm,
   FormLabel,
   FormInput,
   RepeatPasswordInput,
   ShowPasswordIcon,
-  SignUpButton,
+  ResetPassButton,
   SignInLink,
-} from './SignupForm.styled';
+} from './ResetPassForm.styled';
 
-const SignupForm = () => {
+const ResetPassForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [passwordLength, setPasswordLength] = useState(0);
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const formik = useFormik({
     initialValues: {
-      email: '',
       password: '',
       repeatPassword: '',
     },
     validate: values => {
       const errors = {};
-
-      if (formik.touched.email && !values.email) {
-        errors.email = 'Required';
-      } else if (
-        formik.touched.email &&
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-      ) {
-        errors.email = 'Invalid email address';
-      }
 
       if (formik.touched.password && !values.password) {
         errors.password = 'Required';
@@ -63,19 +51,15 @@ const SignupForm = () => {
 
       return errors;
     },
-    onSubmit: async ({ email, password }) => {
+    onSubmit: async ({ password }) => {
       try {
-        await dispatch(register({ email, password }));
+        await dispatch(resetPassword({ password }));
       } catch (error) {
         console.log(error);
       }
     },
   });
 
-  if (isLoggedIn) {
-    // Якщо користувач вже авторизований, перенаправити його на home
-    return <Navigate to="/home" />;
-  }
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -93,25 +77,10 @@ const SignupForm = () => {
   };
 
   return (
-    <SignUpContainer>
-      <SignUpTitle>Sign Up</SignUpTitle>
-      <SignUpForm onSubmit={formik.handleSubmit}>
-        <FormLabel htmlFor="email">Enter your email
-          <FormInput
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-            data-has-error={formik.touched.email && formik.errors.email} // Додаємо властивість data-has-error
-          />
-          {formik.errors.email && formik.touched.email && (
-            <div className="error-message">{formik.errors.email}</div>
-          )}
-        </FormLabel>
-        <FormLabel htmlFor="password">Enter your password
+    <ResetPassContainer>
+      <ResetPassTitle>Reset Password</ResetPassTitle>
+      <ResetPasswordForm onSubmit={formik.handleSubmit}>
+        <FormLabel htmlFor="password">Enter new password
           <FormInput
             type={showPassword ? 'text' : 'password'}
             id="password"
@@ -123,7 +92,7 @@ const SignupForm = () => {
             }}
             onBlur={formik.handleBlur}
             value={formik.values.password}
-            data-has-error={formik.touched.password && formik.errors.password} // Додаємо властивість data-has-error
+            data-has-error={formik.touched.password && formik.errors.password}
           />
           {formik.errors.password && formik.touched.password && (
             <div className="error-message">{formik.errors.password}</div>
@@ -156,15 +125,15 @@ const SignupForm = () => {
             {showRepeatPassword ? <FiEyeOff size={16} color="#407BFF" style={{transform: 'rotate(180deg)'}} /> : <FiEye size={16} color="#407BFF" />}
           </ShowPasswordIcon>
         </FormLabel>
-        <SignUpButton type="submit" disabled={!formik.isValid}>
-          Sign Up
-        </SignUpButton>
-      </SignUpForm>
+        <ResetPassButton type="submit" disabled={!formik.isValid}>
+        Reset Password
+        </ResetPassButton>
+      </ResetPasswordForm>
       <SignInLink as={Link} to="/signin">
         Sign in
       </SignInLink>
-    </SignUpContainer>
+    </ResetPassContainer>
   );
 };
 
-export default SignupForm;
+export default ResetPassForm;
