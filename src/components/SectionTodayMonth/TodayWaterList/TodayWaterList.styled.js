@@ -42,6 +42,9 @@ export const TodayStyle = styled.h2`
 `;
 
 export const ListAddDiv = styled.div`
+display: flex;
+flex-direction: column;
+ justify-content: space-between;
   width: inherit;
   max-height: 212px;
   @media screen and (min-width: 768px) {

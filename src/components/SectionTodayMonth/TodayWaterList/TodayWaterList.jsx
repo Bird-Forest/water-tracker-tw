@@ -38,8 +38,8 @@ const TodayWaterList = () => {
 
   // const todayWater = useSelector(selectDailyWaterAmount);
   const dayList = useSelector(selectEntries);
-  console.log(dayList);
-  console.log(currentItem);
+  // console.log(dayList);
+  // console.log(currentItem);
 
   const timeFromDate = date => {
     return new Date(date).toLocaleTimeString('en-US', {
@@ -99,13 +99,14 @@ const TodayWaterList = () => {
             </li>
           )}
 
-          <StyledLi>
+          
+        </UlStyle>
+        <StyledLi>
             <AddBtnStyle onClick={handleOpenModalTodayListAdd}>
               <FaPlus />
               Add water
             </AddBtnStyle>
           </StyledLi>
-        </UlStyle>
       </ListAddDiv>
 
       {openModalTodayList && (
