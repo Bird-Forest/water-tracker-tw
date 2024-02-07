@@ -97,7 +97,7 @@ export const trackerSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(logOut.fulfilled, state => {
-        state.monthAmountWater = null;
+        state.monthAmountWater = [];
         state.totalAmountWater = null;
         state.percentage = null;
         state.entries = [

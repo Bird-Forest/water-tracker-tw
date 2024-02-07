@@ -49,6 +49,17 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
     }
   };
 
+  const handleTimeChange = (evt) => {
+    const timeString = evt.target.value;
+    const [hours, minutes] = timeString.split(':').map(Number);
+  
+    const newRecordedTime = new Date(recordedTime);
+    newRecordedTime.setHours(hours);
+    newRecordedTime.setMinutes(minutes);
+  
+    setRecordedTime(newRecordedTime);
+  };
+
   const handleSave = async evt => {
     evt.preventDefault();
 
@@ -67,7 +78,7 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
 
     const saveWater = {
       amountWater: amountWater,
-      time: new Date(recordedTime)
+      time: recordedTime
     };
 
     if (isEditing) {
@@ -144,9 +155,9 @@ const TodayListModal = ({ isEditing, data, closeModal }) => {
         <label>
           Recording time:
           <input
-            type="time"
-            value={recordedTime}
-            onChange={evt => setRecordedTime(evt.target.value)}
+            type="text"
+            value={recordedTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            onChange={handleTimeChange}
           />
         </label>
 

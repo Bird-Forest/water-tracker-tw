@@ -45,13 +45,7 @@ const SigninForm = () => {
       return errors;
     },
     onSubmit: async (values) => {
-      try {
-        await dispatch(logIn(values));
-        // Після успішного логіну можна використати Navigate для переходу на сторінку Home
-      } catch (error) {
-        console.log(error);
-        // Обробка помилок логіну, відображення повідомлення користувачу
-      }
+      dispatch(logIn(values));
     },
   });
 
