@@ -3,7 +3,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default function Navigator() {
-  // const { isLoggedIn } = useAuth();
   return (
     <nav>
       <NavLink to="/" />
@@ -12,14 +11,11 @@ export default function Navigator() {
 
       <NavLink to="/signup" />
 
-      {/* {isLoggedIn && <NavLink to="/home" />} */}
-
       <NavLink to="/home" />
-      {/* <NavLink to="*" /> */}
+
+      <NavLink to="/forgot-password" />
+
+      <NavLink to="/reset-password:id" />
     </nav>
   );
 }
-
-// {
-//   /* <NavLink to="/forgot-password" /> */
-// }
