@@ -13,7 +13,7 @@ export const MyDailyNorma = () => {
   };
 
   const dailyNorma = useSelector(selectDailyNorma);
-  console.log('dailyNorma: ', dailyNorma);
+  // console.log('dailyNorma: ', dailyNorma);
 
   // const handleCloseModal = () => {
   //     setOpenModal(false);

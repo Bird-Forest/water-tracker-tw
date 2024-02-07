@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectUser } from '../../../redux/auth/selectors';
+import {  selectUser } from '../../../redux/auth/selectors';
 import UserLogoModal from 'components/ModalUser/UserLogoModal';
 import {
   UserAvatar,
@@ -15,9 +15,9 @@ import { rotate180DegVariants } from './rotateanimation';
 
 const UserLogo = () => {
   const userProfile = useSelector(selectUser);
-  console.log(userProfile);
-  const auth = useSelector(selectIsLoggedIn);
-  console.log(auth);
+  // console.log(userProfile);
+  // const auth = useSelector(selectIsLoggedIn);
+  // console.log(auth);
 
   const name = userProfile?.name;
   const avatar = userProfile?.avatarURL;

@@ -46,7 +46,7 @@ const Calendar = () => {
   const [hoveredDayCoords, setHoveredDayCoords] = useState({ x: 0, y: 0 });
   const daysContainerRef = React.useRef(null);
   const monthAmountWater = useSelector(selectMonthWater);
-  console.log(monthAmountWater);
+  // console.log(monthAmountWater);
   // const dates = monthAmountWater.map(record => record.date);
   // console.log(dates);
   // monthAmountWater.forEach(record => {
@@ -78,7 +78,7 @@ const Calendar = () => {
     window.addEventListener('resize', updateXCoord);
     if (token && isLoggedIn) {
       const formattedMonth = `${year}-${month + 1}`.padStart(7, '0');
-      console.log(formattedMonth);
+      // console.log(formattedMonth);
       dispatch(getMonthWaterAmount(formattedMonth));
     }
     return () => {
